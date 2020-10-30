@@ -5,6 +5,38 @@ const { check, validationResult } = require('express-validator')
 const moment = require('moment')
 const jwt = require('jwt-simple')
 
+
+//register users
+router.post('/logReg', [
+    check('name', 'El nombre es requerido').not().isEmpty(),
+    check('email', 'El email debe estar correcto').isEmail(),
+    check('last_name', 'El apellido es requerido').not().isEmpty()
+], (req, res) => {
+    console.log('ya casi');
+    const errors = validationResult(req)
+
+    if (!errors.isEmpty()) {
+        console.log('validacion fallida');
+        return res.status(422).json({ errores: errors.array() })
+    }
+
+    const user = await User.findOne({
+        where: {
+            email: req.body.email
+        }
+    })
+    if (user) {
+        console.log('usuario ya existente solo log');
+        res.json({success: createToken(user)})
+    } else {
+        console.log('crea usuario luego log');
+        const salt = bcrypt.genSaltSync();
+        req.body.password = bcrypt.hashSync(req.body.password, salt)
+        const user = User.create(req.body)
+        res.json({success: createToken(user)})
+    }
+})
+
 //register users
 router.post('/register', [
     check('name', 'El nombre es requerido').not().isEmpty(),
@@ -16,7 +48,6 @@ router.post('/register', [
     if (!errors.isEmpty()) {
         return res.status(422).json({ errores: errors.array() })
     }
-
     const salt = bcrypt.genSaltSync();
     req.body.password = bcrypt.hashSync(req.body.password, salt)
     const user = User.create(req.body)
@@ -43,6 +74,7 @@ router.post('/login', async (req, res) => {
 
 const createToken = (user) => {
     const payload = {
+        usuarioEmail : user.email,
         usuarioId: user.id,
         createdAt: moment().unix(),
         expiredAt: moment().add(5, 'minutes').unix()
