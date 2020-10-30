@@ -1,0 +1,12 @@
+.iconoFacebook{
+    background-color: #4c69ba;
+    color: white;
+    height: 2em;
+    width: 14em;
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-block;
+    font-size: calc(.27548vw + 12.71074px);
+    border: calc(.06887vw + .67769px) solid #4c69ba;
+   
+}

@@ -1,0 +1,10 @@
+.imagenCotizar{
+    width: 45em;
+    height: 32em;
+    
+    margin-top: -17em;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: "absolute",
+}
