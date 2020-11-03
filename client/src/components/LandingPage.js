@@ -29,7 +29,7 @@ import "../components/ui/imagenCotizar.css";
 
 const useStyles = makeStyles((theme) => ({
   tituloHeader: {
-    fontSize: "3em",
+    fontSize: "2.5em",
     fontWeight: "900"
   },
   backgroundCel: {
@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
     height: "32em",
-    width: "45em",
+    width: "42em",
     marginTop: "-17em",
     [theme.breakpoints.down("xs")]: {
       display: "none",
@@ -51,9 +51,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundPosition: "center",
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
-    height: "32em",
-    width: "45em",
-   
+    height: "24em",
+    width: "22em",
+   marginLeft: "10em",
     [theme.breakpoints.down("xs")]: {
       display: "none",
     },
@@ -63,6 +63,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#D34D4C",
     color: "white",
     borderRadius: 50,
+    border: "1px solid white",
     height: 45,
     width: 145,
     marginRight: 40,
@@ -77,12 +78,13 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   buttonContainer: {
-    marginTop: "2em",
+    marginTop: "1em",
   },
   masInfoButton: {
-    borderColor: "#D34D4C",
-    color: "#D34D4C",
-    borderWidth: 2,
+    
+    color: "white",
+    
+    border: "1px solid white",
     borderRadius: 50,
     fontFamily: "Roboto",
     fontWeight: "bold",
@@ -92,7 +94,7 @@ const useStyles = makeStyles((theme) => ({
     width: 180,
     "&:hover": {
       backgroundColor: "#D34D4C",
-      border: "none",
+     
       color: "white",
       opacity: 1,
     },
@@ -118,6 +120,7 @@ const useStyles = makeStyles((theme) => ({
   },
   mainContainer: {
     marginTop: "5em",
+    
     [theme.breakpoints.down("md")]: {
       marginTop: "3em",
     },
@@ -236,7 +239,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "5em",
     marginTop: "1em",
     marginBottom: "1em",
-    
+    width: "62em",
   },
   formLin5: {
     marginLeft: "10em",
@@ -423,21 +426,21 @@ export default function LandingPage(props) {
           className={classes.headerBackground}
         >
           <Grid sm item className={classes.heroTextContainer}>
-            <Typography className={classes.tituloHeader} variant="h2" align="center" style={{ marginTop: matchesSM ? "3em" : "1em",  marginLeft: matchesSM ? "1em" : "6em", }}>
+            <Typography className={classes.tituloHeader} variant="h2" align="center" style={{ marginTop: matchesSM ? "3em" : "1.5em",  marginLeft: matchesSM ? "1em" : "9em", width: matchesSM ? "0em" : "14em" }}>
               TRANSPORTE Y LOGÍSTICA
               <br />
               
             </Typography>
 
             <Grid item container className={classes.formLin2}>
-              <Grid item direction="row" style={{ marginLeft: matchesSM ? "10em" : "20em", marginTop: matchesSM ? "1.5em" : "1em", fontWeight: 900 }}>
+              <Grid item direction="row" style={{ marginLeft: matchesSM ? "10em" : "20em", marginTop: matchesSM ? "1.5em" : "0em", fontWeight: 900 }}>
                 <Typography variant="p" align="center"  style={{color: matchesSM ? "#8EC3C7" : "white"}}>
                   COTIZAR
                 </Typography>
               </Grid>
             </Grid>
             <Grid item container className={classes.formLin3}>
-              <Grid item direction="row" style={{ marginLeft: matchesSM ? "16em" : "31em", marginTop: "1.3em", fontFamily: "Roboto", fontWeight: 900, color: matchesSM ? "#8EC3C7" : "white"  }}>
+              <Grid item direction="row" style={{ marginLeft: matchesSM ? "16em" : "31em", marginTop: matchesSM ? "0em" : "-1em", fontFamily: "Roboto", fontWeight: 900, color: matchesSM ? "#8EC3C7" : "white"  }}>
                 <Radio
                   checked={datosEnvio.envioPaquete === true}
                   name="envioPaquete"
@@ -521,14 +524,14 @@ export default function LandingPage(props) {
               </Grid>
             </Grid>
             <Grid item container className={classes.formLin2}>
-              <Grid item direction="row" style={{ marginLeft: matchesSM ? "10em" : "20em", marginTop: matchesSM ? "1.5em" : "inherit", fontFamily: "Roboto", fontWeight: 900  }}>
+              <Grid item direction="row" style={{ marginLeft: matchesSM ? "10em" : "19em", marginTop: matchesSM ? "1.5em" : "0em", fontFamily: "Roboto", fontWeight: 900  }}>
                 <Typography variant="p" align="center" style={{color: matchesSM ? "#8EC3C7" : "white"}}>
                   PAGO EN
                 </Typography>
               </Grid>
             </Grid>
             <Grid item container className={classes.formLin3}>
-            <Grid item direction="row" style={{ marginLeft: matchesSM ? "19em" : "34em", marginTop: "1.3em", fontFamily: "Roboto", fontWeight: 900, color: matchesSM ? "#8EC3C7" : "white"  }}>
+            <Grid item direction="row" style={{ marginLeft: matchesSM ? "19em" : "33em", marginTop: matchesSM ? "0em" : "-1em", fontFamily: "Roboto", fontWeight: 900, color: matchesSM ? "#8EC3C7" : "white"  }}>
                 <Radio
                   checked={datosEnvio.pagoOrigen === true}
                   name="pagoOrigen"
