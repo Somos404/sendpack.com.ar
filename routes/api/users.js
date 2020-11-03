@@ -5,15 +5,22 @@ const { check, validationResult } = require('express-validator')
 const moment = require('moment')
 const jwt = require('jwt-simple')
 
+router.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 //register users
 router.post('/logReg', [
     check('name', 'El nombre es requerido').not().isEmpty(),
     check('email', 'El email debe estar correcto').isEmail(),
     check('last_name', 'El apellido es requerido').not().isEmpty()
-], (req, res) => {
-    console.log('ya casi');
+], async (req, res) => {
+    return res.status(200).json({ errores: 'hola' });
     const errors = validationResult(req)
+
+    return res.status(200).json({ errores: errors.array() })
 
     if (!errors.isEmpty()) {
         console.log('validacion fallida');
@@ -27,13 +34,13 @@ router.post('/logReg', [
     })
     if (user) {
         console.log('usuario ya existente solo log');
-        res.json({success: createToken(user)})
+        res.status(200).json({success: createToken(user)})
     } else {
         console.log('crea usuario luego log');
         const salt = bcrypt.genSaltSync();
         req.body.password = bcrypt.hashSync(req.body.password, salt)
         const user = User.create(req.body)
-        res.json({success: createToken(user)})
+        res.status(200).json({success: createToken(user)})
     }
 })
 

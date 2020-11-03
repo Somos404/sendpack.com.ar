@@ -393,8 +393,8 @@ export default function LandingPage(props) {
     let data = "";
     try {
       data = await fetch(
-        `http://localhost:5000/api/maps/getRoute?source=${from}&destination=${to}`
-        //`https://sendpack.com.ar/api/maps/getRoute?source=${from}&destination=${to}`
+        //`http://localhost:5000/api/maps/getRoute?source=${from}&destination=${to}`
+        `https://sendpack.com.ar/api/maps/getRoute?source=${from}&destination=${to}`
       );
       data = await data.text().then((data) => JSON.parse(data));
     } catch (error) {
