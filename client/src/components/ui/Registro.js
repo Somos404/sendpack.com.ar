@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Paper, withStyles, Grid, TextField, Button, FormControlLabel, Checkbox } from '@material-ui/core';
 import { Face, Fingerprint } from '@material-ui/icons';
 import { makeStyles, useTheme } from "@material-ui/core/styles";
+import AuthService from "services/AuthService";
 
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
@@ -35,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
         },
     }
 }));
+const EmailVer = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 export default function Registro(props) {
     
@@ -44,61 +46,127 @@ export default function Registro(props) {
         const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
         const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
         
+        const [inputs,  setInputs] = useState({
+            name: "",
+            last_name: "",
+            email: "",
+            password: "",
+            repeatPassword: "",
+        });
+
+        const changeForm = e => {
+            if (e.target.name) {
+                setInputs({
+                    ...inputs,
+                    [e.target.name]: e.target.value
+                })
+            }
+        }
+
+        function validateForm() {
+            let isEmail = EmailVer.test(String(inputs.email).toLowerCase());
+            let isEqualPassword = inputs.password === inputs.repeatPassword;
+
+            return isEmail && inputs.password.length > 6 && isEqualPassword;
+        }
+        
+        const handleSubmitRegister = (e) => {
+            e.preventDefault();
+            console.log(inputs);
+
+            AuthService.register(inputs).then(
+                () => {
+                    //vulve a donde estaba antes del logeo
+                    window.history.back();
+                },
+                error => {
+                    //mensaje de error
+                }
+            );
+        }
       
         return (
             <Paper className={classes.padding} justify="center" alignItems="center" style={{ width: matchesSM ? "100%" : '30%' }}>
                 <div className={classes.margin}>
-                    <Grid container spacing={8} alignItems="flex-end">
-                        <Grid item>
-                            <Face />
+                    <form onChangeCapture={changeForm} onSubmit={handleSubmitRegister}>
+                        <Grid container spacing={8} alignItems="flex-end">
+                            <Grid item>
+                                <Face />
+                            </Grid>
+                            <Grid item md={true} sm={true} xs={true}>
+                                <TextField 
+                                 value={inputs.name}
+                                 name="name"
+                                 label="Nombre" 
+                                 type="text" 
+                                 fullWidth autoFocus required />
+                            </Grid>
                         </Grid>
-                        <Grid item md={true} sm={true} xs={true}>
-                            <TextField id="username" label="Nombre" type="text" fullWidth autoFocus required />
+                        <Grid container spacing={8} alignItems="flex-end">
+                            <Grid item>
+                                <Face />
+                            </Grid>
+                            <Grid item md={true} sm={true} xs={true}>
+                                <TextField 
+                                 value={inputs.last_name}
+                                 name="last_name"
+                                 label="Apellido" 
+                                 type="text" 
+                                 fullWidth autoFocus required />
+                            </Grid>
                         </Grid>
-                    </Grid>
-                    <Grid container spacing={8} alignItems="flex-end">
-                        <Grid item>
-                            <Face />
+                        <Grid container spacing={8} alignItems="flex-end">
+                            <Grid item>
+                                <MailOutlineIcon />
+                            </Grid>
+                            <Grid item md={true} sm={true} xs={true}>
+                                <TextField
+                                 value={inputs.email}
+                                 name="email"
+                                 label="Email" 
+                                 type="email" 
+                                 fullWidth autoFocus required />
+                            </Grid>
                         </Grid>
-                        <Grid item md={true} sm={true} xs={true}>
-                            <TextField id="username" label="Apellido" type="text" fullWidth autoFocus required />
+                        <Grid container spacing={8} alignItems="flex-end">
+                            <Grid item>
+                                <Fingerprint />
+                            </Grid>
+                            <Grid item md={true} sm={true} xs={true}>
+                                <TextField 
+                                 value={inputs.password}
+                                 name="password"
+                                 label="Contraseña" 
+                                 type="password" 
+                                 fullWidth required />
+                            </Grid>
+                            
                         </Grid>
-                    </Grid>
-                    <Grid container spacing={8} alignItems="flex-end">
-                        <Grid item>
-                            <MailOutlineIcon />
+                        <Grid container spacing={8} alignItems="flex-end">
+                            <Grid item>
+                                <Fingerprint />
+                            </Grid>
+                            <Grid item md={true} sm={true} xs={true}>
+                                <TextField 
+                                value={inputs.repeatPassword}
+                                name="repeatPassword"
+                                label="Repetir contraseña"
+                                type="password"
+                                fullWidth required />
+                            </Grid>
+                            
                         </Grid>
-                        <Grid item md={true} sm={true} xs={true}>
-                            <TextField id="username" label="Email" type="email" fullWidth autoFocus required />
-                        </Grid>
-                    </Grid>
-                    <Grid container spacing={8} alignItems="flex-end">
-                        <Grid item>
-                            <Fingerprint />
-                        </Grid>
-                        <Grid item md={true} sm={true} xs={true}>
-                            <TextField id="username" label="Contraseña" type="password" fullWidth required />
-                        </Grid>
-                        
-                    </Grid>
-                    <Grid container spacing={8} alignItems="flex-end">
-                        <Grid item>
-                            <Fingerprint />
-                        </Grid>
-                        <Grid item md={true} sm={true} xs={true}>
-                            <TextField id="username" label="Repetir contraseña" type="password" fullWidth required />
-                        </Grid>
-                        
-                    </Grid>
-                   
-                    <Grid container justify="center" style={{ marginTop: '3em' }}>
-                        <Button
-                            className={classes.botonRegistrar}  
-                            variant="outlined" 
-                            color="primary" 
-                            style={{ textTransform: "none" }}>REGISTRARSE</Button>
-                    </Grid>
                     
+                        <Grid container justify="center" style={{ marginTop: '3em' }}>
+                            <Button
+                                className={classes.botonRegistrar}  
+                                disabled={!validateForm()}
+                                variant="outlined" 
+                                color="primary"
+                                type="submit"
+                                style={{ textTransform: "none" }}>REGISTRARSE</Button>
+                        </Grid>
+                    </form>
                 </div>
             </Paper>
         );
