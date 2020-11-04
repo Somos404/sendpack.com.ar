@@ -5,6 +5,7 @@ import { Face, Fingerprint } from '@material-ui/icons';
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import ReactDOM from 'react-dom'
 import useMediaQuery from "@material-ui/core/useMediaQuery";
+import axios from 'axios';
 
 import GoogleLogin from 'react-google-login';
 import FacebookLogin from 'react-facebook-login';
@@ -52,35 +53,26 @@ export default function LoginTab(props) {
         const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
         
         const respuestaGoogle=(respuesta)=>{
-            console.log(respuesta.profileObj)
+            //console.log(respuesta.profileObj)
             try {
-                const data = new FormData();
-                data.append('email', 'respuesta.profileObj.email');
-                data.append('name', 'respuesta.profileObj.givenName');
-                data.append('apellido', 'respuesta.profileObj.familyName');
-                data.append('password', 'respuesta.profileObj.googleId');
+                const body = {
+                    'email': respuesta.profileObj.email,
+                    'name': respuesta.profileObj.givenName,
+                    'apellido': respuesta.profileObj.familyName,
+                    'password': respuesta.profileObj.googleId
+                }
 
-                fetch(`https://sendpack.com.ar/api/users/logReg`, { 
+                axios.post(`https://sendpack.com.ar/api/users/logReg`,
+                    body
+                 ).then(res => {
 
-                    method: 'POST',
-                    headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    body: JSON.stringify(data)
-
-                }).then(function(response) {
-                    console.log('response: ',response.json());
-                    if(response.ok) {
-                        console.log('entraste!!!')
-                    } else {
-                        //no puedo ntrar debedo a aulgun problema
-                        console.log('algo salio muy mal!!!!')
+                    if(res.data.ok){
+                        //console.log('logeaste',res.data);
+                    }else{
+                       // console.log('algun error!!!!');
                     }
+                })
 
-                }).catch(function(err) {
-                    console.log(err);
-                });
             } catch (error) {
                 console.log('error: ',error);
             }
@@ -88,6 +80,32 @@ export default function LoginTab(props) {
         
         const responseFacebook = (response) => {
             console.log(response);
+        }
+
+        const logintab = () => {
+             //console.log(respuesta.profileObj)
+             try {
+                const body = {
+                    'email': email,
+                    'name': givenName,
+                    'apellido': givenName,
+                    'password': givenName
+                }
+
+                axios.post(`https://sendpack.com.ar/api/users/logReg`,
+                    body
+                 ).then(res => {
+
+                    if(res.data.ok){
+                        //console.log('logeaste',res.data);
+                    }else{
+                       // console.log('algun error!!!!');
+                    }
+                })
+
+            } catch (error) {
+                console.log('error: ',error);
+            }
         }
 
         
@@ -108,7 +126,7 @@ export default function LoginTab(props) {
                             <Fingerprint />
                         </Grid>
                         <Grid item md={true} sm={true} xs={true}>
-                            <TextField id="username" label="Contraseña" type="password" fullWidth required />
+                            <TextField id="userpass" label="Contraseña" type="password" fullWidth required />
                         </Grid>
                         
                     </Grid>
@@ -128,7 +146,8 @@ export default function LoginTab(props) {
                         <Button
                             className={classes.botonIngresar} 
                             variant="outlined" 
-                            color="primary" 
+                            color="primary"
+                            onClick={logintab}
                             style={{ textTransform: "none" }}>Ingresar</Button>
                     </Grid>
                     <Grid 
