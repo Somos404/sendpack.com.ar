@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
         zIndex: 1302,
         position: "relative",
         [theme.breakpoints.down("xs")]: {
-            width: "215%"
+            width: "80em",
          }
          
     },

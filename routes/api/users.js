@@ -11,7 +11,7 @@ router.post('/logReg', [
     check('name', 'El nombre es requerido').not().isEmpty(),
     check('email', 'El email debe estar correcto').isEmail(),
     check('last_name', 'El apellido es requerido').not().isEmpty()
-], (req, res) => {
+], async (req, res) => {
     console.log('ya casi');
     const errors = validationResult(req)
 

@@ -99,7 +99,7 @@ function ElevationScroll(props) {
         width: "50px",
         color: "white",
         [theme.breakpoints.down("xs")]: {
-            marginLeft: "-15em"
+            marginLeft: "-23em"
         }
       },
       drawerIconContainer:  {
