@@ -120,7 +120,6 @@ export default function LoginTab(props) {
                             className={classes.botonIngresar} 
                             variant="outlined" 
                             color="primary"
-                            onClick={logintab}
                             style={{ textTransform: "none" }}>Ingresar</Button>
                     </Grid>
                     <Grid 
