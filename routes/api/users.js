@@ -17,7 +17,7 @@ router.post('/logReg', [
     check('email', 'El email debe estar correcto').isEmail(),
     check('last_name', 'El apellido es requerido').not().isEmpty()
 ], async (req, res) => {
-    return res.status(200).json({ errores: 'hola' });
+    return res.status(200).json({ errores: 'hola' })
     const errors = validationResult(req)
 
     return res.status(200).json({ errores: errors.array() })
