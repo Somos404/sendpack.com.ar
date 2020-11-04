@@ -56,17 +56,14 @@ router.post('/register', [
     check('email', 'El email debe estar correcto').isEmail()
 ], (req, res) => {
 
-    const errors = validationResult(req.body)
+    const errors = validationResult(req)
     if (!errors.isEmpty()) {
         return res.status(422).json({ errores: errors.array() })
     }
     const salt = bcrypt.genSaltSync();
     req.body.password = bcrypt.hashSync(req.body.password, salt)
     const user = User.create(req.body)
-    res.status(200).send({
-        token: createToken(user),
-        ok:true
-    });
+    res.json(user)
 })
 //login users
 router.post('/login', async (req, res) => {
@@ -78,21 +75,12 @@ router.post('/login', async (req, res) => {
     if (user) {
         const iguales = bcrypt.compareSync(req.body.password, user.password)
         if (iguales) {
-            res.status(200).send({
-                token: createToken(user),
-                ok:true
-            });
+            res.json({success: createToken(user)})
         } else {
-            res.status(404).send({
-                error: 'Error en contraseña',
-                ok:false
-            });
+            res.json({ error: 'Error en usuario y/o contraseña' })
         }
     } else {
-        res.status(404).send({
-            error: 'Error en usuario',
-            ok:false
-        });
+        res.json({ error: 'Error en usuario y/o contraseña' })
     }
 })
 
