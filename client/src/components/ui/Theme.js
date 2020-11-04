@@ -55,7 +55,7 @@ export default createMuiTheme({
     overrides: {
         MuiInputLabel: {
             root: {
-                color: "white"
+                color: "#747582"
             }
         },
         MuiInput: {

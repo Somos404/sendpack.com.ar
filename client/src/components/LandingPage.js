@@ -81,22 +81,22 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "1em",
   },
   masInfoButton: {
-    
-    color: "white",
-    
-    border: "1px solid white",
+    borderColor: "#D34D4C",
+    color: "#D34D4C",
+    borderWidth: 2,
     borderRadius: 50,
     fontFamily: "Roboto",
     fontWeight: "bold",
-    fontSize: "0.9rem",
-    transitionDuration: ".5s",
+    fontSize: "0.7rem",
     height: 45,
-    width: 180,
     "&:hover": {
       backgroundColor: "#D34D4C",
-     
+      border: "none",
       color: "white",
       opacity: 1,
+    },
+    [theme.breakpoints.down("sm")]: {
+      marginBottom: "2em",
     },
   },
   botonLeerMas: {
@@ -126,13 +126,14 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.down("xs")]: {
       marginTop: "2em",
+      flexWrap: "inherit",
     },
   },
   heroTextContainer: {
     minWidth: "50.5em",
     marginLeft: "1em",
     [theme.breakpoints.down("xs")]: {
-      marginLeft: 0,
+      
     },
   },
   subtitle: {
@@ -145,7 +146,7 @@ const useStyles = makeStyles((theme) => ({
   icon: {
     marginLeft: "4em",
     [theme.breakpoints.down("xs")]: {
-      marginLeft: "-33em",
+      marginLeft: "0em",
     },
   },
   servicioContainer: {
@@ -157,7 +158,7 @@ const useStyles = makeStyles((theme) => ({
   contenedor2: {
     marginTop: "3em",
     [theme.breakpoints.down("xs")]: {
-      marginTop: "-5em",
+      marginTop: "2em",
     },
   },
 
@@ -188,7 +189,7 @@ const useStyles = makeStyles((theme) => ({
       opacity: 1,
     },
     [theme.breakpoints.down("sm")]: {
-      marginBottom: "2em",
+      marginBottom: "-12em",
     },
   },
 
@@ -228,7 +229,8 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "-1em",
     [theme.breakpoints.down("sm")]: {
       marginTop: "0em",
-      marginLeft: "19em",
+      
+      maxWidth: "50%",
     },
   },
   formLin2: {
@@ -248,7 +250,8 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "1em",
     width: "62em",
     [theme.breakpoints.down("sm")]: {
-      marginLeft: "18em",
+      marginLeft: "-14em",
+      marginTop: "1em",
     },
   },
   formLin5: {
@@ -439,7 +442,7 @@ export default function LandingPage(props) {
           className={classes.headerBackground}
         >
           <Grid sm item className={classes.heroTextContainer}>
-            <Typography className={classes.tituloHeader} variant="h2" align="center" style={{ marginTop: matchesSM ? "3em" : "1.5em",  marginLeft: matchesSM ? "3em" : "9em", width: matchesSM ? "25em" : "14em" }}>
+            <Typography className={classes.tituloHeader} variant="h2" align="center" style={{ marginTop: matchesSM ? "3em" : "1.5em",  marginLeft: matchesSM ? "11em" : "9em", maxWidth: matchesSM ? "100%" : "14em" }}>
               TRANSPORTE Y LOGÍSTICA
               <br />
               
@@ -453,7 +456,7 @@ export default function LandingPage(props) {
               </Grid>
             </Grid>
             <Grid item container className={classes.formLin3}>
-              <Grid item direction="row" style={{ marginLeft: matchesSM ? "18em" : "31em", marginTop: matchesSM ? "0em" : "-1em", fontFamily: "Roboto", fontWeight: 900, color: matchesSM ? "#8EC3C7" : "white", fontSize: matchesSM ? "1.5em" : undefined   }}>
+              <Grid item direction="row" style={{ marginLeft: matchesSM ? "21em" : "31em", marginTop: matchesSM ? "0em" : "-1em", fontFamily: "Roboto", fontWeight: 900, color: matchesSM ? "#8EC3C7" : "white", fontSize: matchesSM ? "1.3em" : undefined   }}>
                 <Radio
                   checked={datosEnvio.envioPaquete === true}
                   name="envioPaquete"
@@ -480,7 +483,7 @@ export default function LandingPage(props) {
             <Grid item container className={classes.formLin1} >
               <Grid item direction="row" justify="center"
                   alignItems="center"
-                  style={{ marginLeft: matchesSM ? "7.5em" : "22em" }}
+                  style={{ marginLeft: matchesSM ? "24em" : "22em" }}
                   >
                     
               
@@ -544,7 +547,7 @@ export default function LandingPage(props) {
               </Grid>
             </Grid>
             <Grid item container className={classes.formLin3}>
-            <Grid item direction="row" style={{ marginLeft: matchesSM ? "21em" : "33em", marginTop: matchesSM ? "0em" : "-1em", fontFamily: "Roboto", fontWeight: 900, color: matchesSM ? "#8EC3C7" : "white", fontSize: matchesSM ? "1.5em" : undefined  }}>
+            <Grid item direction="row" style={{ marginLeft: matchesSM ? "21em" : "33em", marginTop: matchesSM ? "0em" : "-1em", fontFamily: "Roboto", fontWeight: 900, color: matchesSM ? "#8EC3C7" : "white", fontSize: matchesSM ? "1.3em" : undefined  }}>
                 <Radio
                   checked={datosEnvio.pagoOrigen === true}
                   name="pagoOrigen"
@@ -568,7 +571,7 @@ export default function LandingPage(props) {
               </Grid>
             </Grid>
             <Grid item container className={classes.formLin4}>
-              <Grid item direction="row" style={{ marginLeft: matchesSM ? "5em" : "19em" }}>
+              <Grid item direction="row" style={{ marginLeft: matchesSM ? "43em" : "19em" }}>
                 <TextField
                   label="Cantidad de bultos"
                   id="cantBultos"
@@ -689,7 +692,7 @@ export default function LandingPage(props) {
               className={classes.icon}
               alt="custom software icon"
               src={customSoftwareIcon}
-              style={{marginTop: matchesSM ? "13em" : "-3em"}}
+              style={{marginTop: matchesSM ? "0em" : "-3em"}}
             />
           </Grid>
         </Grid>
@@ -753,6 +756,7 @@ export default function LandingPage(props) {
             item
             style={{
               marginLeft: matchesSM ? 0 : "5em",
+              marginTop: matchesSM ? "-9em" : undefined,
               textAlign: matchesSM ? "center" : undefined,
             }}
           >
@@ -779,7 +783,7 @@ export default function LandingPage(props) {
               className={classes.icon}
               alt="web site icon"
               src={websiteIcon}
-              style={{marginTop: matchesSM ? "20em" : "inherit"}}
+              style={{marginTop: matchesSM ? "0em" : "inherit"}}
             />
           </Grid>
         </Grid>
@@ -799,14 +803,14 @@ export default function LandingPage(props) {
             <img 
               className={classes.divisor} 
               alt="Divisor" src={divisor} 
-              style={{marginTop: matchesSM ? "2em" : "2em", marginLeft: matchesSM ? "36em" : "41em" }} />
+              style={{marginTop: matchesSM ? "2em" : "2em", marginLeft: matchesSM ? "10.5em" : "41em" }} />
           </Grid>
         </Grid>
         <Grid
           container
           alignItems="center"
           justify="center"
-          style={{ height: "60em", marginTop: matchesSM ? "2em" : "-7em" }}
+          style={{ height: "60em", marginTop: matchesSM ? "2em" : "-7em", flexWrap: matchesSM ? "wrap" : undefined }}
         >
           <Grid item className={[classes.preguntasCard, classes.gridItem]}>
             <Grid container direction="column" spacing={2}>

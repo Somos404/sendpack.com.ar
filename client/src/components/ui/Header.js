@@ -48,15 +48,18 @@ function ElevationScroll(props) {
       },
       logo: {
         height:  "5em",
+       
             [theme.breakpoints.down("md")]: {
                 height: "5em"
             },
             [theme.breakpoints.down("xs")]: {
-                height: "5em"
+                height: "5em",
+                marginLeft: "-2em",
             }
         },
       logoContainer: {
           padding: 0,
+          
           "&:hover": {
               backgroundColor: "transparent"
           }
@@ -101,14 +104,17 @@ function ElevationScroll(props) {
         width: "50px",
         color: "white",
         [theme.breakpoints.down("xs")]: {
-            marginLeft: "-23em"
+            
         }
       },
       drawerIconContainer:  {
           marginLeft: "auto",
           "&:hover": {
                 backgroundColor: "transparent"
-          }
+          },
+          [theme.breakpoints.down("xs")]: {
+            marginLeft: "3em"
+        }
       },
       drawer: {
           backgroundColor: theme.palette.common.blue,
