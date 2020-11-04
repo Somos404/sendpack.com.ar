@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
         zIndex: 1302,
         position: "relative",
         [theme.breakpoints.down("xs")]: {
-            width: "80em",
+            
          }
          
     },
@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
        
        [theme.breakpoints.down("xs")]: {
            width: "20em",
-           marginTop: "2em",
+           marginTop: "0em",
         }
         },
        mainContainer: {
@@ -63,7 +63,15 @@ const useStyles = makeStyles(theme => ({
             right: "0.9em",
             marginTop: "-4em",
             }
-       }
+       },
+       contenedorCopy: {
+           marginTop: "6.5em",
+           marginLeft: "2em"
+       },
+       [theme.breakpoints.down("xs")]: {
+        marginTop: "2em",
+        marginLeft: "2em"
+        }
     
 }));
 
@@ -228,8 +236,16 @@ export default function Footer(props) {
                         className={classes.icon} 
                     />
                 </Grid>
-
-            </Grid>   
+                <Grid item container alignItems="center" justify="center" className={classes.contenedorCopy}>
+                    <Grid 
+                        component={Link} 
+                        
+                        to="/" 
+                        item className={classes.link}>
+                        ©opyrigh Somos404studio Not Found
+                    </Grid>        
+                </Grid>                   
+                </Grid>   
         </footer>
         );
 }
