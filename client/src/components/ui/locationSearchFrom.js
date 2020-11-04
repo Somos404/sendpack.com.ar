@@ -47,6 +47,8 @@ class locationSearchFrom extends React.Component {
                   <input 
                     style={{ 
                      borderTop: "none",
+                     borderBottom: "2px solid white",
+                     color: "white",
                      borderLeft: "none",
                      borderRight: "none",
                      marginTop: "3em",

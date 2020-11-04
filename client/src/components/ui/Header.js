@@ -38,7 +38,7 @@ function ElevationScroll(props) {
       toolbarMargin: {
           ...theme.mixins.toolbar,
           marginBotton: "5em",
-         
+          backgroundColor: "#71c4c8",
           [theme.breakpoints.down("md")]: {
             
         },
@@ -86,7 +86,7 @@ function ElevationScroll(props) {
         }
       },
       menu: {
-          backgroundColor: theme.palette.common.blue,
+          backgroundColor: "#71c4c8",
           color: "white"
       },
       menuItem: {
@@ -126,7 +126,8 @@ function ElevationScroll(props) {
           opacity: 1
       },
       appbar: {
-          zIndex: theme.zIndex.modal + 1
+          zIndex: theme.zIndex.modal + 1,
+          backgroundColor: "#71c4c8",
       }
 
       
