@@ -46,7 +46,8 @@ class locationSearchFrom extends React.Component {
                     borderRight: "none",
                     marginTop: "2.5em",
                     background: "none",
-                    fontFamily: "Roboto"
+                    fontFamily: "Roboto",
+                    fontSize: "1em"
                   }}
                   {...getInputProps({
                     placeholder: "DESTINO",

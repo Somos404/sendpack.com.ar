@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundRepeat: "no-repeat",
     height: "32em",
     width: "42em",
-    marginTop: "-17em",
+    marginTop: "-11em",
     [theme.breakpoints.down("xs")]: {
       display: "none",
     },
@@ -145,7 +145,7 @@ const useStyles = makeStyles((theme) => ({
   icon: {
     marginLeft: "2em",
     [theme.breakpoints.down("xs")]: {
-      marginLeft: 0,
+      marginLeft: "-33em",
     },
   },
   servicioContainer: {
@@ -156,6 +156,9 @@ const useStyles = makeStyles((theme) => ({
   },
   contenedor2: {
     marginTop: "3em",
+    [theme.breakpoints.down("xs")]: {
+      marginTop: "-5em",
+    },
   },
 
   //Preguntas
@@ -169,7 +172,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   botonLeerMasPreguntas: {
-    marginTop: "-7em",
+    marginTop: "-22em",
     borderColor: "#D34D4C",
     color: "#D34D4C",
     borderWidth: 2,
@@ -222,7 +225,11 @@ const useStyles = makeStyles((theme) => ({
   },
   formLin1: {
     marginLeft: "5em",
-   
+    marginTop: "-1em",
+    [theme.breakpoints.down("sm")]: {
+      marginTop: "0em",
+      marginLeft: "19em",
+    },
   },
   formLin2: {
     marginLeft: "5em",
@@ -237,14 +244,20 @@ const useStyles = makeStyles((theme) => ({
   },
   formLin4: {
     marginLeft: "5em",
-    marginTop: "1em",
+    marginTop: "0em",
     marginBottom: "1em",
     width: "62em",
+    [theme.breakpoints.down("sm")]: {
+      marginLeft: "18em",
+    },
   },
   formLin5: {
     marginLeft: "10em",
     marginTop: "1em",
     marginBottom: "2em",
+    [theme.breakpoints.down("sm")]: {
+      marginLeft: "23em",
+    },
   },
   headerBackground: {
     backgroundImage: `url(${headerBackground})`,
@@ -396,8 +409,8 @@ export default function LandingPage(props) {
     let data = "";
     try {
       data = await fetch(
-        `http://localhost:5000/api/maps/getRoute?source=${from}&destination=${to}`
-        //`https://sendpack.com.ar/api/maps/getRoute?source=${from}&destination=${to}`
+        //`http://localhost:5000/api/maps/getRoute?source=${from}&destination=${to}`
+        `https://sendpack.com.ar/api/maps/getRoute?source=${from}&destination=${to}`
       );
       data = await data.text().then((data) => JSON.parse(data));
     } catch (error) {
@@ -426,21 +439,21 @@ export default function LandingPage(props) {
           className={classes.headerBackground}
         >
           <Grid sm item className={classes.heroTextContainer}>
-            <Typography className={classes.tituloHeader} variant="h2" align="center" style={{ marginTop: matchesSM ? "3em" : "1.5em",  marginLeft: matchesSM ? "1em" : "9em", width: matchesSM ? "0em" : "14em" }}>
+            <Typography className={classes.tituloHeader} variant="h2" align="center" style={{ marginTop: matchesSM ? "3em" : "1.5em",  marginLeft: matchesSM ? "3em" : "9em", width: matchesSM ? "25em" : "14em" }}>
               TRANSPORTE Y LOGÍSTICA
               <br />
               
             </Typography>
 
             <Grid item container className={classes.formLin2}>
-              <Grid item direction="row" style={{ marginLeft: matchesSM ? "10em" : "20em", marginTop: matchesSM ? "1.5em" : "0em", fontWeight: 900 }}>
+              <Grid item direction="row" style={{ marginLeft: matchesSM ? "19em" : "20em", marginTop: matchesSM ? "1.5em" : "0em", fontWeight: 900 }}>
                 <Typography variant="p" align="center"  style={{color: matchesSM ? "#8EC3C7" : "white"}}>
                   COTIZAR
                 </Typography>
               </Grid>
             </Grid>
             <Grid item container className={classes.formLin3}>
-              <Grid item direction="row" style={{ marginLeft: matchesSM ? "16em" : "31em", marginTop: matchesSM ? "0em" : "-1em", fontFamily: "Roboto", fontWeight: 900, color: matchesSM ? "#8EC3C7" : "white"  }}>
+              <Grid item direction="row" style={{ marginLeft: matchesSM ? "18em" : "31em", marginTop: matchesSM ? "0em" : "-1em", fontFamily: "Roboto", fontWeight: 900, color: matchesSM ? "#8EC3C7" : "white", fontSize: matchesSM ? "1.5em" : undefined   }}>
                 <Radio
                   checked={datosEnvio.envioPaquete === true}
                   name="envioPaquete"
@@ -524,14 +537,14 @@ export default function LandingPage(props) {
               </Grid>
             </Grid>
             <Grid item container className={classes.formLin2}>
-              <Grid item direction="row" style={{ marginLeft: matchesSM ? "10em" : "19em", marginTop: matchesSM ? "1.5em" : "0em", fontFamily: "Roboto", fontWeight: 900  }}>
+              <Grid item direction="row" style={{ marginLeft: matchesSM ? "19em" : "19em", marginTop: matchesSM ? "1.5em" : "0em", fontFamily: "Roboto", fontWeight: 900  }}>
                 <Typography variant="p" align="center" style={{color: matchesSM ? "#8EC3C7" : "white"}}>
                   PAGO EN
                 </Typography>
               </Grid>
             </Grid>
             <Grid item container className={classes.formLin3}>
-            <Grid item direction="row" style={{ marginLeft: matchesSM ? "19em" : "33em", marginTop: matchesSM ? "0em" : "-1em", fontFamily: "Roboto", fontWeight: 900, color: matchesSM ? "#8EC3C7" : "white"  }}>
+            <Grid item direction="row" style={{ marginLeft: matchesSM ? "21em" : "33em", marginTop: matchesSM ? "0em" : "-1em", fontFamily: "Roboto", fontWeight: 900, color: matchesSM ? "#8EC3C7" : "white", fontSize: matchesSM ? "1.5em" : undefined  }}>
                 <Radio
                   checked={datosEnvio.pagoOrigen === true}
                   name="pagoOrigen"
@@ -676,7 +689,7 @@ export default function LandingPage(props) {
               className={classes.icon}
               alt="custom software icon"
               src={customSoftwareIcon}
-              style={{marginTop: matchesSM ? "2em" : "2em"}}
+              style={{marginTop: matchesSM ? "13em" : "2em"}}
             />
           </Grid>
         </Grid>
@@ -721,7 +734,7 @@ export default function LandingPage(props) {
               className={classes.icon}
               alt="mobile phon icon"
               src={mobileAppsIcon}
-              style={{marginTop: matchesSM ? "2em" : "inherit"}}
+              style={{marginTop: matchesSM ? "3em" : "inherit"}}
             />
           </Grid>
         </Grid>
@@ -766,7 +779,7 @@ export default function LandingPage(props) {
               className={classes.icon}
               alt="web site icon"
               src={websiteIcon}
-              style={{marginTop: matchesSM ? "2em" : "inherit"}}
+              style={{marginTop: matchesSM ? "20em" : "inherit"}}
             />
           </Grid>
         </Grid>
@@ -786,7 +799,7 @@ export default function LandingPage(props) {
             <img 
               className={classes.divisor} 
               alt="Divisor" src={divisor} 
-              style={{marginTop: matchesSM ? "2em" : "2em", marginLeft: matchesSM ? "22em" : "55em" }} />
+              style={{marginTop: matchesSM ? "2em" : "2em", marginLeft: matchesSM ? "36em" : "41em" }} />
           </Grid>
         </Grid>
         <Grid
@@ -880,7 +893,7 @@ export default function LandingPage(props) {
             container 
             alignItems="center" 
             justify="center"
-            style={{marginTop: matchesSM ? "5em" : "-8em", marginBottom: matchesSM ? "1em" : "11em"}}
+            style={{marginTop: matchesSM ? "5em" : "-8em", marginBottom: matchesSM ? "1em" : "2em"}}
             >
             <Button
               variant="outlined"
@@ -916,9 +929,9 @@ export default function LandingPage(props) {
             >
               <Grid containter direction="column">
                 <Typography variant="h2" style={{ color: "white" }}>
-                  Sobre Nosotros
+                Contactános
                 </Typography>
-                <Typography variant="subtitle2">Hagámoslo personal</Typography>
+                <Typography variant="subtitle2">Comunicate con nosotros!</Typography>
                 <Grid item>
                   <Button
                     variant="outlined"
@@ -938,25 +951,6 @@ export default function LandingPage(props) {
                 textAlign: matchesXS ? "center" : "right",
               }}
             >
-              <Grid containter direction="column">
-                <Typography variant="h2" style={{ color: "white" }}>
-                  Contactános
-                </Typography>
-                <Typography variant="subtitle2">
-                  Comunicate con nosotros!
-                </Typography>
-                <Grid item>
-                  <Button
-                    component={Link}
-                    to="/"
-                    variant="outlined"
-                    style={{ color: "white", borderColor: "white" }}
-                    className={classes.botonLeerMas}
-                  >
-                    <span style={{ marginRight: 10 }}>Leer más</span>
-                  </Button>
-                </Grid>
-              </Grid>
             </Grid>
           </Grid>
         </Grid>

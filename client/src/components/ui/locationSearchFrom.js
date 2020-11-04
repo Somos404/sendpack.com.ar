@@ -50,7 +50,8 @@ class locationSearchFrom extends React.Component {
                      borderLeft: "none",
                      borderRight: "none",
                      marginTop: "3em",
-                     background: "none"
+                     background: "none",
+                     fontSize: "1em"
                     }}
                     {...getInputProps({
                       placeholder: "ORIGEN",

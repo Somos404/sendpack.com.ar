@@ -62,6 +62,9 @@ const useStyles = makeStyles((theme) => ({
    margin: "2em",
     marginBottom: "5em",
     marginTop: "5em",
+    [theme.breakpoints.down("sm")]: {
+      marginTop: "1em",
+    },
     "&:hover": {
       backgroundColor: "#D34D4C",
       border: "none",
@@ -79,7 +82,10 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "Roboto",
     fontWeight: "bold",
     fontSize: "0.9rem",
-    
+    [theme.breakpoints.down("sm")]: {
+      marginTop: "-3em",
+      marginBottom: "2em",
+    },
     "&:hover": {
       backgroundColor: "#D34D4C",
       border: "none",
@@ -205,22 +211,50 @@ export default function Calcauladora(props) {
             
         </Grid>
         <List className={classes.root}>
-      <ListItem>
-        <ListItemText primary="Origen" secondary={datosEnvio && datosEnvio.origen} />
-      </ListItem>
-      <Divider component="li" />
-      <li>
-        <Typography
-          className={classes.dividerFullWidth}
-          color="textSecondary"
-          display="block"
+          <ListItem>
+            <ListItemText primary="Origen" secondary={datosEnvio && datosEnvio.origen} style={{ marginTop: matchesSM ? "0em" : "-5px",  marginBottom: matchesSM ? "0em" : "-6px" }} />
+          </ListItem>
+            <Divider component="li" />
+            <li>
+              <Typography
+                className={classes.dividerFullWidth}
+                color="textSecondary"
+                display="block"
+                
+              >
+            
+              </Typography>
+                  </li>
+              <ListItem className={classes.listaEditada}>
+                <ListItemText primary="Destino" secondary={datosEnvio && datosEnvio.destino} style={{ marginTop: matchesSM ? "0em" : "-5px",  marginBottom: matchesSM ? "0em" : "-6px" }} />
+              </ListItem>
+              <Divider component="li" />
+           <li>
+              <Typography
+                className={classes.dividerInset}
+                color="textSecondary"
+                display="block"
+              
+              >
+                
+              </Typography>
+            </li>
+            <ListItem>
+              <ListItemText primary="Distancia" secondary={distancia && distancia.text}  style={{ marginTop: matchesSM ? "0em" : "-5px",  marginBottom: matchesSM ? "0em" : "-6px" }}/>
+            </ListItem>
+            <Divider component="li"/>
+            <li>
+              <Typography
+                className={classes.dividerInset}
+                color="textSecondary"
+                display="block"
+              
+              >
           
-        >
-       
-        </Typography>
-      </li>
+                </Typography>
+            </li>
       <ListItem className={classes.listaEditada}>
-        <ListItemText primary="Destino" secondary={datosEnvio && datosEnvio.destino} />
+        <ListItemText primary="Tiempo" secondary={tiempo && tiempo.text} style={{ marginTop: matchesSM ? "0em" : "-5px",  marginBottom: matchesSM ? "0em" : "-6px" }} />
       </ListItem>
       <Divider component="li" />
       <li>
@@ -234,7 +268,35 @@ export default function Calcauladora(props) {
         </Typography>
       </li>
       <ListItem>
-        <ListItemText primary="Distancia" secondary={distancia && distancia.text} />
+        <ListItemText primary="Pago en" secondary={datosEnvio && datosEnvio.pagoOrigen} style={{ marginTop: matchesSM ? "0em" : "-5px",  marginBottom: matchesSM ? "0em" : "-6px" }} />
+      </ListItem>
+      <Divider component="li" />
+      <li>
+        <Typography
+          className={classes.dividerInset}
+          color="textSecondary"
+          display="block"
+         
+        >
+          
+        </Typography>
+      </li>
+      <ListItem className={classes.listaEditada}>
+        <ListItemText primary="Cantidad de bultos" secondary={datosEnvio && datosEnvio.cantBultos}  style={{ marginTop: matchesSM ? "0em" : "-5px",  marginBottom: matchesSM ? "0em" : "-6px" }}/>
+      </ListItem>
+      <Divider component="li"/>
+      <li>
+        <Typography
+          className={classes.dividerInset}
+          color="textSecondary"
+          display="block"
+         
+        >
+          
+        </Typography>
+      </li>
+      <ListItem>
+        <ListItemText primary="Peso" secondary={datosEnvio && datosEnvio.peso}  style={{ marginTop: matchesSM ? "0em" : "-5px",  marginBottom: matchesSM ? "0em" : "-6px" }}/>
       </ListItem>
       <Divider component="li"/>
       <li>
@@ -248,7 +310,7 @@ export default function Calcauladora(props) {
         </Typography>
       </li>
       <ListItem className={classes.listaEditada}>
-        <ListItemText primary="Tiempo" secondary={tiempo && tiempo.text} />
+        <ListItemText primary="Valor declarado" secondary={datosEnvio && datosEnvio.valorDeclarado} style={{ marginTop: matchesSM ? "0em" : "-5px",  marginBottom: matchesSM ? "0em" : "-6px" }} />
       </ListItem>
       <Divider component="li" />
       <li>
@@ -262,63 +324,7 @@ export default function Calcauladora(props) {
         </Typography>
       </li>
       <ListItem>
-        <ListItemText primary="Pago en" secondary={datosEnvio && datosEnvio.pagoOrigen} />
-      </ListItem>
-      <Divider component="li" />
-      <li>
-        <Typography
-          className={classes.dividerInset}
-          color="textSecondary"
-          display="block"
-         
-        >
-          
-        </Typography>
-      </li>
-      <ListItem className={classes.listaEditada}>
-        <ListItemText primary="Cantidad de bultos" secondary={datosEnvio && datosEnvio.cantBultos} />
-      </ListItem>
-      <Divider component="li"/>
-      <li>
-        <Typography
-          className={classes.dividerInset}
-          color="textSecondary"
-          display="block"
-         
-        >
-          
-        </Typography>
-      </li>
-      <ListItem>
-        <ListItemText primary="Peso" secondary={datosEnvio && datosEnvio.peso} />
-      </ListItem>
-      <Divider component="li"/>
-      <li>
-        <Typography
-          className={classes.dividerInset}
-          color="textSecondary"
-          display="block"
-         
-        >
-          
-        </Typography>
-      </li>
-      <ListItem className={classes.listaEditada}>
-        <ListItemText primary="Valor declarado" secondary={datosEnvio && datosEnvio.valorDeclarado} />
-      </ListItem>
-      <Divider component="li" />
-      <li>
-        <Typography
-          className={classes.dividerInset}
-          color="textSecondary"
-          display="block"
-         
-        >
-          
-        </Typography>
-      </li>
-      <ListItem>
-        <ListItemText primary="Costo Estimado" secondary= {costoEstimado && calcularcostos()} />
+        <ListItemText primary="Costo Estimado" secondary= {costoEstimado && calcularcostos()} style={{ marginTop: matchesSM ? "0em" : "-5px",  marginBottom: matchesSM ? "0em" : "-6px" }} />
       </ListItem>
       <Divider component="li" />
       <li>
@@ -341,6 +347,7 @@ export default function Calcauladora(props) {
         direction={matchesSM ? "column-reverse" : "row"}
         justify="center"
         alignItems="center"
+        style={{ marginTop: matchesSM ? "0em" : "-60px",  marginBottom: matchesSM ? "0em" : "-6px" }}
         >
           <Button
             component={Link}

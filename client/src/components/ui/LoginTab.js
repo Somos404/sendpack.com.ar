@@ -5,6 +5,8 @@ import { Face, Fingerprint } from '@material-ui/icons';
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import ReactDOM from 'react-dom'
 import useMediaQuery from "@material-ui/core/useMediaQuery";
+import axios from 'axios';
+import AuthService from "services/AuthService";
 
 import GoogleLogin from 'react-google-login';
 import FacebookLogin from 'react-facebook-login';
@@ -43,7 +45,17 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
+const EmailVer = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
 export default function LoginTab(props) {
+
+        const [email, setEmail] = useState("");
+        const [password, setPassword] = useState("");
+
+        function validateForm() {
+            let isEmail = EmailVer.test(String(email).toLowerCase());
+            return isEmail && password.length > 6;
+        }
     
         const classes = useStyles();
         
@@ -51,82 +63,91 @@ export default function LoginTab(props) {
         const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
         const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
         
-        const respuestaGoogle=(respuesta)=>{
-            console.log(respuesta.profileObj)
-            try {
-                const data = new FormData();
-                data.append('email', 'respuesta.profileObj.email');
-                data.append('name', 'respuesta.profileObj.givenName');
-                data.append('apellido', 'respuesta.profileObj.familyName');
-                data.append('password', 'respuesta.profileObj.googleId');
 
-                fetch('https://sendpack.com.ar/api/logReg', {
+        const handleSubmit = (e) => {
+            e.preventDefault();
 
-                    method: 'POST',
-                    body: data
-
-                }).then(function(response) {
-                    console.log('response: ',response);
-                    if(response.ok) {
-                        console.log('entraste!!!')
-                    } else {
-                        //no puedo ntrar debedo a aulgun problema
-                        console.log('algo salio muy mal!!!!')
-                    }
-
-                }).catch(function(err) {
-                    console.log(err);
-                });
-            } catch (error) {
-                console.log('error: ',error);
-            }
-        }
-        
-        const responseFacebook = (response) => {
-            console.log(response);
+            AuthService.login(email, password).then(
+                () => {
+                    //vulve a donde estaba antes del logeo
+                    window.history.back();
+                    window.location.reload();
+                    
+                },
+                error => {
+                    //mensaje de error
+                }
+            );
         }
 
-        
+        const loginHandler=(response)=>{
+            AuthService.googleFacebookHandler(response).then(
+                () => {
+                    //vulve a donde estaba antes del logeo
+                    window.history.back();
+                },
+                error => {
+                    //mensaje de error
+                }
+            );
+        }
+  
         return (
             
             <Paper className={classes.padding} justify="center" alignItems="center" style={{ width: matchesSM ? "100%" : '30%' }}>
                 <div className={classes.margin}>
-                    <Grid container spacing={8} alignItems="flex-end">
-                        <Grid item>
-                            <Face />
+                    <form onSubmit={handleSubmit}>
+                        <Grid container spacing={8} alignItems="flex-end">
+                            <Grid item>
+                                <Face />
+                            </Grid>
+                            <Grid item md={true} sm={true} xs={true}>
+                                <TextField
+                                    value={email}
+                                    onChange={e => setEmail(e.target.value)}
+                                    id="username" 
+                                    label="Usuario" 
+                                    type="email" 
+                                    fullWidth autoFocus required />
+                            </Grid>
                         </Grid>
-                        <Grid item md={true} sm={true} xs={true}>
-                            <TextField id="username" label="Usuario" type="email" fullWidth autoFocus required />
+                        <Grid container spacing={8} alignItems="flex-end">
+                            <Grid item>
+                                <Fingerprint />
+                            </Grid>
+                            <Grid item md={true} sm={true} xs={true}>
+                                <TextField 
+                                    value={password}
+                                    onChange={e => setPassword(e.target.value)}
+                                    id="userpass" 
+                                    label="Contraseña" 
+                                    type="password" 
+                                    fullWidth required />
+                            </Grid>
+                            
                         </Grid>
-                    </Grid>
-                    <Grid container spacing={8} alignItems="flex-end">
-                        <Grid item>
-                            <Fingerprint />
+                        <Grid container alignItems="center" justify="space-between" style={{ marginTop: '2em' }}>
+                            <Grid item>
+                                <FormControlLabel control={
+                                    <Checkbox
+                                        color="primary"
+                                    />
+                                } label="Recordarme" />
+                            </Grid>
+                            <Grid item>
+                                <Button disableFocusRipple disableRipple style={{ textTransform: "none" }} variant="text" color="primary">Olvidaste la contraseña? ?</Button>
+                            </Grid>
                         </Grid>
-                        <Grid item md={true} sm={true} xs={true}>
-                            <TextField id="username" label="Contraseña" type="password" fullWidth required />
+                        <Grid container justify="center" style={{ marginTop: '3em' }}>
+                            <Button
+                                disabled={!validateForm()}
+                                type="submit"
+                                className={classes.botonIngresar} 
+                                variant="outlined" 
+                                color="primary"
+                                style={{ textTransform: "none" }}>Ingresar</Button>
                         </Grid>
-                        
-                    </Grid>
-                    <Grid container alignItems="center" justify="space-between" style={{ marginTop: '2em' }}>
-                        <Grid item>
-                            <FormControlLabel control={
-                                <Checkbox
-                                    color="primary"
-                                />
-                            } label="Recordarme" />
-                        </Grid>
-                        <Grid item>
-                            <Button disableFocusRipple disableRipple style={{ textTransform: "none" }} variant="text" color="primary">Olvidaste la contraseña? ?</Button>
-                        </Grid>
-                    </Grid>
-                    <Grid container justify="center" style={{ marginTop: '3em' }}>
-                        <Button
-                            className={classes.botonIngresar} 
-                            variant="outlined" 
-                            color="primary" 
-                            style={{ textTransform: "none" }}>Ingresar</Button>
-                    </Grid>
+                    </form>
                     <Grid 
                         item 
                         container
@@ -138,8 +159,8 @@ export default function LoginTab(props) {
                         <GoogleLogin
                             clientId="448673356256-kou597h432km5h0nbtij5vmlgs9o6a53.apps.googleusercontent.com"
                             buttonText="Acceder con Google"
-                            onSuccess={respuestaGoogle}
-                            onFailure={respuestaGoogle}
+                            onSuccess={loginHandler}
+                            onFailure={loginHandler}
                             cookiePolicy={'single_host_origin'}
                             />
                     </Grid>
@@ -157,7 +178,7 @@ export default function LoginTab(props) {
                         fields="name,email,picture"
                         textButton="Acceder con Facebook"
                         icon="fa-facebook"
-                        callback={responseFacebook}
+                        callback={loginHandler}
                         cssClass="iconoFacebook"
                     />
                     </Grid>
