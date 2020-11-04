@@ -17,30 +17,43 @@ router.post('/logReg', [
     check('email', 'El email debe estar correcto').isEmail(),
     check('last_name', 'El apellido es requerido').not().isEmpty()
 ], async (req, res) => {
+<<<<<<< HEAD
     return res.status(200).json({ errores: 'hola' })
     const errors = validationResult(req)
 
     return res.status(200).json({ errores: errors.array() })
 
+=======
+    
+    const errors = validationResult(req.body)
+	
+>>>>>>> 51a475d1242835d8ecbebff3d27ffc08b2b7f600
     if (!errors.isEmpty()) {
         console.log('validacion fallida');
         return res.status(422).json({ errores: errors.array() })
     }
-
+	
     const user = await User.findOne({
         where: {
             email: req.body.email
         }
     })
+
     if (user) {
         console.log('usuario ya existente solo log');
-        res.status(200).json({success: createToken(user)})
+		res.status(200).send({
+			token: createToken(user),
+			ok:true
+		});
     } else {
         console.log('crea usuario luego log');
         const salt = bcrypt.genSaltSync();
         req.body.password = bcrypt.hashSync(req.body.password, salt)
         const user = User.create(req.body)
-        res.status(200).json({success: createToken(user)})
+		res.status(200).send({
+			token: createToken(user),
+			ok:true
+		});
     }
 })
 
@@ -51,14 +64,17 @@ router.post('/register', [
     check('email', 'El email debe estar correcto').isEmail()
 ], (req, res) => {
 
-    const errors = validationResult(req)
+    const errors = validationResult(req.body)
     if (!errors.isEmpty()) {
         return res.status(422).json({ errores: errors.array() })
     }
     const salt = bcrypt.genSaltSync();
     req.body.password = bcrypt.hashSync(req.body.password, salt)
     const user = User.create(req.body)
-    res.json(user)
+    res.status(200).send({
+        token: createToken(user),
+        ok:true
+    });
 })
 //login users
 router.post('/login', async (req, res) => {
@@ -70,12 +86,21 @@ router.post('/login', async (req, res) => {
     if (user) {
         const iguales = bcrypt.compareSync(req.body.password, user.password)
         if (iguales) {
-            res.json({success: createToken(user)})
+            res.status(200).send({
+                token: createToken(user),
+                ok:true
+            });
         } else {
-            res.json({ error: 'Error en usuario y/o contraseña' })
+            res.status(404).send({
+                error: 'Error en contraseña',
+                ok:false
+            });
         }
     } else {
-        res.json({ error: 'Error en usuario y/o contraseña' })
+        res.status(404).send({
+            error: 'Error en usuario',
+            ok:false
+        });
     }
 })
 

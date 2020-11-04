@@ -19,6 +19,8 @@ import ListItem from '@material-ui/core/Listitem';
 import ListItemText from '@material-ui/core/ListItemText';
 import logo from '../../assets/Logo1.svg';
 
+//const user = JSON.parse(localStorage.getItem("user"));
+
 function ElevationScroll(props) {
     const { children } = props;
     const trigger = useScrollTrigger({
@@ -139,6 +141,8 @@ export default function Header(props) {
     const [anchorEl, setAnchorEl] = useState(null)
     const [openMenu, setOpenMenu] = useState(false);
 
+    const [user , setUser] = useState(JSON.parse(localStorage.getItem("user")));
+
     const handleChange = (e, newValue) => {
         props.setValue(newValue);
     };
@@ -226,16 +230,30 @@ export default function Header(props) {
                 ))}
                     
                 </Tabs>
-                <Button 
-                    component={Link}
-                    to="/login" 
-                    variant="contained" 
-                    color="#D34D4C" 
-                    className={classes.button}
-                    onClick={() =>props.setValue(5)}
-                    >
-                    Ingresar / Login
-                </Button>
+
+                    {!user?  
+                        <Button 
+                            component={Link}
+                            to="/login" 
+                            variant="contained" 
+                            color="#D34D4C" 
+                            className={classes.button}
+                            onClick={() =>props.setValue(5)}
+                            >
+                            Ingresar / Login 
+                        </Button>
+                    :
+                        <Button 
+                        component={Link}
+                        to="/login" 
+                        variant="contained" 
+                        color="#D34D4C" 
+                        className={classes.button}
+                        onClick={() =>props.setValue(5)}
+                        >
+                        salir 
+                        </Button>
+                    }
                     <Menu 
                         id="simple-menu" 
                         anchorEl={anchorEl} 
