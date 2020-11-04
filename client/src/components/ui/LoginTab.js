@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     },
     padding: {
         padding: theme.spacing.unit,
-        marginLeft: "30em",
+        marginLeft: "32.5em",
         marginTop: "3em",
         marginBottom: "3em",
         [theme.breakpoints.down("xs")]: {

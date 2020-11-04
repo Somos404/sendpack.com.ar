@@ -50,6 +50,22 @@ export default createMuiTheme({
         }
        
     },
+
+       
+    overrides: {
+        MuiInputLabel: {
+            root: {
+                color: "white"
+            }
+        },
+        MuiInput: {
+            underline: {
+                "&:before": {
+                    borderBottom: `2px solid white`
+                }
+            }
+        }
+    },
     
     
 });
