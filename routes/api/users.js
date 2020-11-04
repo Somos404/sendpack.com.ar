@@ -17,34 +17,35 @@ router.post('/logReg', [
     check('email', 'El email debe estar correcto').isEmail(),
     check('last_name', 'El apellido es requerido').not().isEmpty()
 ], async (req, res) => {
-<<<<<<< HEAD
-    console.log('ya casi');
-=======
-    return res.status(200).json({ errores: 'hola' })
->>>>>>> 6a07adada2ada5ed58f76eed2a055eca958bea7a
-    const errors = validationResult(req)
-
-    return res.status(200).json({ errores: errors.array() })
-
+    
+    const errors = validationResult(req.body)
+	
     if (!errors.isEmpty()) {
         console.log('validacion fallida');
         return res.status(422).json({ errores: errors.array() })
     }
-
+	
     const user = await User.findOne({
         where: {
             email: req.body.email
         }
     })
+
     if (user) {
         console.log('usuario ya existente solo log');
-        res.status(200).json({success: createToken(user)})
+		res.status(200).send({
+			token: createToken(user),
+			ok:true
+		});
     } else {
         console.log('crea usuario luego log');
         const salt = bcrypt.genSaltSync();
         req.body.password = bcrypt.hashSync(req.body.password, salt)
         const user = User.create(req.body)
-        res.status(200).json({success: createToken(user)})
+		res.status(200).send({
+			token: createToken(user),
+			ok:true
+		});
     }
 })
 
