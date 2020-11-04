@@ -29,8 +29,11 @@ import "../components/ui/imagenCotizar.css";
 
 const useStyles = makeStyles((theme) => ({
   tituloHeader: {
-    fontSize: "2.5em",
-    fontWeight: "900"
+    fontSize: "2.3em",
+    fontWeight: "900",
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "1.7em",
+    },
   },
   backgroundCel: {
     position: "absolute",
@@ -442,14 +445,14 @@ export default function LandingPage(props) {
           className={classes.headerBackground}
         >
           <Grid sm item className={classes.heroTextContainer}>
-            <Typography className={classes.tituloHeader} variant="h2" align="center" style={{ marginTop: matchesSM ? "3em" : "1.5em",  marginLeft: matchesSM ? "11em" : "9em", maxWidth: matchesSM ? "100%" : "14em" }}>
+            <Typography className={classes.tituloHeader} variant="h2" align="center" style={{ marginTop: matchesSM ? "3em" : "1.5em",  marginLeft: matchesSM ? "10.5em" : "9em", maxWidth: matchesSM ? "0em" : "14em" }}>
               TRANSPORTE Y LOGÍSTICA
               <br />
               
             </Typography>
 
             <Grid item container className={classes.formLin2}>
-              <Grid item direction="row" style={{ marginLeft: matchesSM ? "19em" : "20em", marginTop: matchesSM ? "1.5em" : "0em", fontWeight: 900 }}>
+              <Grid item direction="row" style={{ marginLeft: matchesSM ? "18.7em" : "20em", marginTop: matchesSM ? "1.5em" : "0em", fontWeight: 900 }}>
                 <Typography variant="p" align="center"  style={{color: matchesSM ? "#8EC3C7" : "white"}}>
                   COTIZAR
                 </Typography>
@@ -803,7 +806,7 @@ export default function LandingPage(props) {
             <img 
               className={classes.divisor} 
               alt="Divisor" src={divisor} 
-              style={{marginTop: matchesSM ? "2em" : "2em", marginLeft: matchesSM ? "10.5em" : "41em" }} />
+              style={{marginTop: matchesSM ? "2em" : "2em", marginLeft: matchesSM ? "10.8em" : "41em" }} />
           </Grid>
         </Grid>
         <Grid
