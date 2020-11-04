@@ -82,33 +82,6 @@ export default function LoginTab(props) {
             console.log(response);
         }
 
-        const logintab = () => {
-             //console.log(respuesta.profileObj)
-             try {
-                const body = {
-                    'email': email,
-                    'name': givenName,
-                    'apellido': givenName,
-                    'password': givenName
-                }
-
-                axios.post(`https://sendpack.com.ar/api/users/logReg`,
-                    body
-                 ).then(res => {
-
-                    if(res.data.ok){
-                        //console.log('logeaste',res.data);
-                    }else{
-                       // console.log('algun error!!!!');
-                    }
-                })
-
-            } catch (error) {
-                console.log('error: ',error);
-            }
-        }
-
-        
         return (
             
             <Paper className={classes.padding} justify="center" alignItems="center" style={{ width: matchesSM ? "100%" : '30%' }}>
