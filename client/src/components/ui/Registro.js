@@ -7,6 +7,7 @@ import AuthService from "services/AuthService";
 
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
+import data from "animations/documentsAnimation/data";
 const useStyles = makeStyles((theme) => ({
     margin: {
         margin: theme.spacing.unit * 2,
@@ -75,9 +76,12 @@ export default function Registro(props) {
             console.log(inputs);
 
             AuthService.register(inputs).then(
-                () => {
+                (data) => {
                     //vulve a donde estaba antes del logeo
-                    window.history.back();
+                    console.log(data);
+                    if(data.ok){
+                        window.history.back();
+                    }
                 },
                 error => {
                     //mensaje de error

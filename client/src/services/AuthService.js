@@ -27,7 +27,7 @@ class AuthService {
       const body = {
           'email': respuesta.profileObj.email,
           'name': respuesta.profileObj.givenName,
-          'apellido': respuesta.profileObj.familyName,
+          'last_name': respuesta.profileObj.familyName,
           'password': respuesta.profileObj.googleId
       }
 
@@ -55,7 +55,15 @@ class AuthService {
     localStorage.removeItem("userfecha");
   }
 
-  register(body) {
+  register(input) {
+
+    const body = {
+      'email': input.email,
+      'name': input.name,
+      'last_name': input.last_name,
+      'password': input.password
+    }
+
     return axios.post(API_URL + "users/register", {
       body
     }).then(response => {
