@@ -61,6 +61,7 @@ export default function LoginTab(props) {
                 data.append('password', 'respuesta.profileObj.googleId');
 
                 fetch(`https://sendpack.com.ar/api/users/logReg`, { 
+
                     method: 'POST',
                     headers: {
                     'Accept': 'application/json',
