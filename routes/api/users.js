@@ -54,16 +54,35 @@ router.post('/register', [
     check('name', 'El nombre es requerido').not().isEmpty(),
     check('password', 'El password obligatorio').not().isEmpty(),
     check('email', 'El email debe estar correcto').isEmail()
-], (req, res) => {
-
-    const errors = validationResult(req)
+], async (req, res) => {
+    
+    const errors = validationResult(req.body.body)
+	
     if (!errors.isEmpty()) {
+        console.log('validacion fallida');
         return res.status(422).json({ errores: errors.array() })
     }
-    const salt = bcrypt.genSaltSync();
-    req.body.password = bcrypt.hashSync(req.body.password, salt)
-    const user = User.create(req.body)
-    res.json(user)
+	
+    const user = await User.findOne({
+        where: {
+            email: req.body.body.email
+        }
+    })
+
+    if (user) {
+		res.status(200).send({
+			error: 'email ya se encuentra en uso',
+			ok:false
+		});
+    } else {
+        const salt = bcrypt.genSaltSync();
+        req.body.password = bcrypt.hashSync(req.body.body.password, salt)
+        const user = User.create(req.body.body)
+		res.status(200).send({
+			token: createToken(user),
+			ok:true
+		});
+    }
 })
 //login users
 router.post('/login', async (req, res) => {
