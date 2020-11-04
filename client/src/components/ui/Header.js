@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import AppBar from "@material-ui/core/AppBar";
-import ToolBar from "@material-ui/core/ToolBar";
+import Toolbar from "@material-ui/core/Toolbar";
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import { makeStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
@@ -15,7 +15,7 @@ import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from "@material-ui/icons/Menu";
 import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/Listitem';
+import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import logo from '../../assets/Logo1.svg';
 
@@ -312,7 +312,7 @@ export default function Header(props) {
         <React.Fragment>
             <ElevationScroll>
                 <AppBar position="fixed" className={classes.appbar}>
-                    <ToolBar disableGutters>
+                    <Toolbar disableGutters>
                         <Button 
                         component={Link} to="/"
                         disableRipple 
@@ -322,7 +322,7 @@ export default function Header(props) {
                             <img alt="logo de la empresa" className={classes.logo} src={logo} />
                         </Button>
                         {matches ? drawer : tabs}
-                    </ToolBar>
+                    </Toolbar>
                 </AppBar>
             </ElevationScroll>
                 <div className={classes.toolbarMargin} />
