@@ -102,28 +102,26 @@ export default function Contacto() {
                         <Typography variant="body1" style={{color: "#8EC3C7", textDecoration: "none"}}  component={Link} to="/"> sendpack@gmail.com</Typography>
                     </Grid>    
                 </Grid>
-                <Grid item container style={{ maxWidth: "20em" }}>
+                <Grid item container >
                     <Grid item>
                         <TextField label="Nombre" id="nombre" value={nombre}
                             onChange={event => setNombre(event.target.value)}
-                            fullWidth
+                            style= {{ borderBottom: "2px solid #71c4c8", width: "25em" }}
                         />    
                     </Grid>
                     <Grid item>
                         <TextField label="Email" id="email" value={email}
                              onChange={event => setEmail(event.target.value)}
-                             fullWidth
-                        />      
+                             style= {{ borderBottom: "2px solid #71c4c8", width: "25em" }}                        />      
                     </Grid>   
                     <Grid item>
                         <TextField label="Teléfono" id="telefono" value={telefono}
                             onChange={event => setTelefono(event.target.value)}
-                            fullWidth
-                        />       
+                            style= {{ borderBottom: "2px solid #71c4c8", width: "25em" }}                        />       
                     </Grid>       
                 </Grid>
                 <Grid item style={{maxWidth: "20em" }} >
-                    <TextField value={mensaje} style={{ borderBottom: "2px solid white" }}fullWidth InputProps={{ disableUnderline: true}} className={classes.mensaje} multiline rows={5} label="Mensaje" id="mensaje" onChange={event => setMensaje(event.target.value)} />
+                    <TextField value={mensaje} InputProps={{ disableUnderline: true}} className={classes.mensaje} multiline rows={5} label="Mensaje" id="mensaje" onChange={event => setMensaje(event.target.value)} />
                 </Grid>
                 <Grid item container style={{ marginTop: "1.5em", marginBottom: "1em", marginLeft: "1em" }}>
                 <Button

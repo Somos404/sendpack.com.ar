@@ -62,6 +62,9 @@ export default createMuiTheme({
             underline: {
                 "&:before": {
                     borderBottom: `2px solid white`
+                },
+                "&:hover:not($disabled):not($focused):not($error):before": {
+                    borderBottom: `2px solid white`
                 }
             }
         }
