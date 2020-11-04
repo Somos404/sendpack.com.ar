@@ -55,9 +55,18 @@ class AuthService {
     localStorage.removeItem("userfecha");
   }
 
-  register(inputs) {
+  register(body) {
     return axios.post(API_URL + "users/register", {
-      inputs
+      body
+    }).then(response => {
+
+      if(response.data.ok){
+        localStorage.removeItem("user");
+        localStorage.removeItem("userfecha");
+        localStorage.setItem("user", JSON.stringify(response.data));
+        localStorage.setItem("userfecha", new Date());
+      }
+      return response.data;
     })
   }
 
