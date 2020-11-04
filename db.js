@@ -7,6 +7,7 @@ const UsersModel = require('./models/users')
 // Option 2: Passing parameters separately (other dialects)
 const sequelize = new Sequelize(development.database, development.username, development.password, {
     host: development.host,
+    port: 3306,
     dialect: 'mysql'
 });
 
