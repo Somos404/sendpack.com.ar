@@ -70,7 +70,7 @@ export default function LoginTab(props) {
                     body: JSON.stringify(data)
 
                 }).then(function(response) {
-                    console.log('response: ',response);
+                    console.log('response: ',response.json());
                     if(response.ok) {
                         console.log('entraste!!!')
                     } else {
