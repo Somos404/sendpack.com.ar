@@ -17,11 +17,7 @@ router.post('/logReg', [
     check('email', 'El email debe estar correcto').isEmail(),
     check('last_name', 'El apellido es requerido').not().isEmpty()
 ], async (req, res) => {
-<<<<<<< HEAD
-    console.log('ya casi');
-=======
     return res.status(200).json({ errores: 'hola' })
->>>>>>> 6a07adada2ada5ed58f76eed2a055eca958bea7a
     const errors = validationResult(req)
 
     return res.status(200).json({ errores: errors.array() })
