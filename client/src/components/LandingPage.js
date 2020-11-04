@@ -5,10 +5,10 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import customSoftwareIcon from "../assets/Custom Software Icon.svg";
+import customSoftwareIcon from "../assets/recursos/Ico-04.png";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
-import mobileAppsIcon from "../assets/mobileIcon.svg";
-import websiteIcon from "../assets/websiteIcon.svg";
+import mobileAppsIcon from "../assets/recursos/Ico-07.png";
+import websiteIcon from "../assets/recursos/Ico-06.png";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import preguntasBackground from "../assets/repeatingBackground.svg";
@@ -18,7 +18,7 @@ import TextField from "@material-ui/core/TextField";
 import backgroundCel from "../assets/backgroundCel.svg";
 import Radio from "@material-ui/core/Radio";
 import infoBackground from "../assets/infoBackground.jpeg";
-import headerBackground from "../assets/headerBackground.jpeg";
+import headerBackground from "../assets/portada03.jpg";
 import { geocodeByAddress, getLatLng } from "react-places-autocomplete";
 import LocationSearchFrom from "../components/ui/locationSearchFrom";
 import LocationSearchTo from "../components/ui/locationSearchTo";
@@ -143,7 +143,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   icon: {
-    marginLeft: "2em",
+    marginLeft: "4em",
     [theme.breakpoints.down("xs")]: {
       marginLeft: "-33em",
     },
@@ -689,7 +689,7 @@ export default function LandingPage(props) {
               className={classes.icon}
               alt="custom software icon"
               src={customSoftwareIcon}
-              style={{marginTop: matchesSM ? "13em" : "2em"}}
+              style={{marginTop: matchesSM ? "13em" : "-3em"}}
             />
           </Grid>
         </Grid>

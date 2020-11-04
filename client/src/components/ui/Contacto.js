@@ -15,7 +15,10 @@ const useStyles = makeStyles(theme => ({
         backgroundImage: `url(${backgroundContacto})`,
         backgroundPosition: "center", 
         backgroundRepeat: "no-repeat",
-        height: "35em",  
+        height: "35em", 
+        position: "absolute",
+        marginTop: "6em",
+        marginLeft: "32em", 
         [theme.breakpoints.down("sm")]: {
         backgroundImage: "none",
         },
@@ -58,7 +61,8 @@ const useStyles = makeStyles(theme => ({
     mensaje: {
         border: `2px solid #8EC3C7`,
         marginTop: "2em",
-        borderRadius: 5
+        borderRadius: 5,
+        width: "25em",
     }
 
 }));
@@ -101,17 +105,20 @@ export default function Contacto() {
                 <Grid item container style={{ maxWidth: "20em" }}>
                     <Grid item>
                         <TextField label="Nombre" id="nombre" value={nombre}
-                            onChange={event => setNombre(event.target.value)} 
+                            onChange={event => setNombre(event.target.value)}
+                            style={{ width: "25em" }} 
                         />    
                     </Grid>
                     <Grid item>
                         <TextField label="Email" id="email" value={email}
-                             onChange={event => setEmail(event.target.value)}   
+                             onChange={event => setEmail(event.target.value)}
+                             style={{ width: "25em" }}  
                         />      
                     </Grid>   
                     <Grid item>
                         <TextField label="Teléfono" id="telefono" value={telefono}
-                            onChange={event => setTelefono(event.target.value)} 
+                            onChange={event => setTelefono(event.target.value)}
+                            style={{ width: "25em" }} 
                         />       
                     </Grid>       
                 </Grid>
