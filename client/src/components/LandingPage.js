@@ -457,9 +457,11 @@ export default function LandingPage(props) {
         setWayPoints(wayPoints)
     }
   };
+
  
   return (
     <Grid container direction="column" className={classes.mainContainer}>
+      
       <Grid item>
         {" "}
         {/*---Contenedor del header---*/}
@@ -472,7 +474,7 @@ export default function LandingPage(props) {
           className={classes.headerBackground}
         >
           <Grid sm item className={classes.heroTextContainer}>
-            <Typography className={classes.tituloHeader} variant="h1" align="center" style={{ marginTop: matchesSM ? "4em" : "1.5em",  marginLeft: matchesSM ? "16em" : "9em", maxWidth: matchesSM ? undefined : "14em", color: "#D34D4C"}}>
+            <Typography className={classes.tituloHeader} variant="h1" align="center" style={{ marginTop: matchesSM ? "4em" : "1.5em",  marginLeft: matchesSM ? "16em" : "11em", width: matchesSM ? undefined : "13em", color: "#D34D4C"}}>
               TRANSPORTE Y LOGÍSTICA
               <br />
               
@@ -652,12 +654,7 @@ export default function LandingPage(props) {
                     >
                       COTIZAR
                     </Button>
-                    
-                    <>
-                      <div className="botonAnimado">
-                        <span style={{ marginRight: 10 }}>prueba</span>
-                      </div>
-                      </>
+                 
                   </Grid>
                   <Grid item style={{ marginTop: matchesSM ? "2em" : "inherit"  }}>
                     <Button
@@ -951,7 +948,7 @@ export default function LandingPage(props) {
         {/*---Contenedor de Información---*/}
         <Grid
           container
-          style={{ height: "50em" }}
+          style={{ height: matchesSM ? "20em" : "50em" }}
           alignItems="center"
           direction="row"
           className={classes.infoBackground}

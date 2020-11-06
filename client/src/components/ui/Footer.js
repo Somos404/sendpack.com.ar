@@ -50,10 +50,10 @@ const useStyles = makeStyles(theme => ({
        },
        icon: {
            height: "3em",
-           width: "3em",
+           width: "2em",
            [theme.breakpoints.down("xs")]: {
             height: "2.5em",
-            width: "2.5em"
+            width: "1.5em"
          }
        },
        socialContainer: {

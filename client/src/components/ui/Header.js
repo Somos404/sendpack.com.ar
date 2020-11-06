@@ -120,7 +120,7 @@ function ElevationScroll(props) {
         }
       },
       drawer: {
-          backgroundColor: theme.palette.common.blue,
+          backgroundColor: "#71c4c8",
           top: "20px",
       },
       drawerItem: {
@@ -179,16 +179,16 @@ export default function Header(props) {
             link:"/servicios", 
             activeIndex: 1, 
             selectedIndex: 0 }, 
-        {name: "Expreso de Encomiendas", 
-            link:"/encomiendas", 
+        {name: "Logística Corporativa para Empresas", 
+            link:"/servicios", 
             activeIndex: 1, 
             selectedIndex: 1}, 
-        {name: "Mudanzas Familiares y Corporativas", 
-            link:"/mudanzas", 
+        {name: "Transporte General", 
+            link:"/servicios", 
             activeIndex: 1, 
             selectedIndex: 2}, 
-        {name: "Logística y Distribución de Productos", 
-            link:"/logistica_dist_prod", 
+        {name: "Mudanzas", 
+            link:"/servicios", 
             activeIndex: 1, 
             selectedIndex: 3}];
 
