@@ -4,13 +4,14 @@ import API_URL from "../constant/apiUrl"
 class AuthService {
 
   login(email, password) {
-    console.log('oO ===========================');
-    return axios
-      .post(API_URL + "users/login", {
-        email,
-        password
-      })
-      .then(response => {
+    try {
+      const body = {
+        'email': email,
+        'password': password
+      }
+      return axios.post(API_URL + 'users/login',
+        body
+      ).then(response => {
         if (response.data.ok) {
           localStorage.removeItem("user");
           localStorage.removeItem("userfecha");
@@ -19,34 +20,38 @@ class AuthService {
         }
 
         return response.data;
-      });
-  }
-
-  googleFacebookHandler(respuesta){
-    try {
-      const body = {
-          'email': respuesta.profileObj.email,
-          'name': respuesta.profileObj.givenName,
-          'last_name': respuesta.profileObj.familyName,
-          'password': respuesta.profileObj.googleId
-      }
-
-      return axios.post(API_URL +'/users/logReg',
-        body
-      ).then(response => {
-
-          if(response.data.ok){
-            localStorage.removeItem("user");
-            localStorage.removeItem("userfecha");
-            localStorage.setItem("user", JSON.stringify(response.data));
-            localStorage.setItem("userfecha", new Date());
-          }
-
-          return response.data;
       })
 
     } catch (error) {
-      console.log('error: ',error);
+      console.log('error: ', error);
+    }
+  }
+
+  googleFacebookHandler(respuesta) {
+    try {
+      const body = {
+        'email': respuesta.profileObj.email,
+        'name': respuesta.profileObj.givenName,
+        'last_name': respuesta.profileObj.familyName,
+        'password': respuesta.profileObj.googleId
+      }
+
+      return axios.post(API_URL + '/users/logReg',
+        body
+      ).then(response => {
+
+        if (response.data.ok) {
+          localStorage.removeItem("user");
+          localStorage.removeItem("userfecha");
+          localStorage.setItem("user", JSON.stringify(response.data));
+          localStorage.setItem("userfecha", new Date());
+        }
+
+        return response.data;
+      })
+
+    } catch (error) {
+      console.log('error: ', error);
     }
   }
 
@@ -57,25 +62,27 @@ class AuthService {
 
   register(input) {
 
-    const body = {
-      'email': input.email,
-      'name': input.name,
-      'last_name': input.last_name,
-      'password': input.password
+    try {
+  
+      return axios.post(API_URL + "users/register", {
+        'email': input.email,
+        'name': input.name,
+        'last_name': input.last_name,
+        'password': input.password
+      }).then(response => {
+
+        if (response.data.ok) {
+          localStorage.removeItem("user");
+          localStorage.removeItem("userfecha");
+          localStorage.setItem("user", JSON.stringify(response.data));
+          localStorage.setItem("userfecha", new Date());
+        }
+        return response.data;
+      })
+
+    } catch (error) {
+      console.log('error: ', error);
     }
-
-    return axios.post(API_URL + "users/register", {
-      body
-    }).then(response => {
-
-      if(response.data.ok){
-        localStorage.removeItem("user");
-        localStorage.removeItem("userfecha");
-        localStorage.setItem("user", JSON.stringify(response.data));
-        localStorage.setItem("userfecha", new Date());
-      }
-      return response.data;
-    })
   }
 
   getCurrentUser() {

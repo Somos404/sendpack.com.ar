@@ -56,7 +56,7 @@ router.post('/register', [
     check('email', 'El email debe estar correcto').isEmail()
 ], async (req, res) => {
     
-    const errors = validationResult(req.body.body)
+    const errors = validationResult(req.body)
 	
     if (!errors.isEmpty()) {
         console.log('validacion fallida');
@@ -65,7 +65,7 @@ router.post('/register', [
 	
     const user = await User.findOne({
         where: {
-            email: req.body.body.email
+            email: req.body.email
         }
     })
 
@@ -76,8 +76,8 @@ router.post('/register', [
 		});
     } else {
         const salt = bcrypt.genSaltSync();
-        req.body.password = bcrypt.hashSync(req.body.body.password, salt)
-        const user = User.create(req.body.body)
+        req.body.password = bcrypt.hashSync(req.body.password, salt)
+        const user = User.create(req.body)
 		res.status(200).send({
 			token: createToken(user),
 			ok:true
@@ -85,21 +85,35 @@ router.post('/register', [
     }
 })
 //login users
-router.post('/login', async (req, res) => {
+router.post('/login', [
+    check('password', 'El password obligatorio').not().isEmpty(),
+    check('email', 'El email debe estar correcto').isEmail()
+], async (req, res) => {
+	
     const user = await User.findOne({
         where: {
             email: req.body.email
         }
     })
+	 
     if (user) {
         const iguales = bcrypt.compareSync(req.body.password, user.password)
         if (iguales) {
-            res.json({success: createToken(user)})
+            res.status(200).send({
+                token: createToken(user),
+                ok:true
+            });
         } else {
-            res.json({ error: 'Error en usuario y/o contraseña' })
+            res.status(200).send({
+                error: 'Error en contraseña',
+                ok:false
+            });
         }
     } else {
-        res.json({ error: 'Error en usuario y/o contraseña' })
+        res.status(200).send({
+            error: 'Error en usuario',
+            ok:false
+        });
     }
 })
 

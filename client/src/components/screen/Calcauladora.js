@@ -114,9 +114,9 @@ export default function Calcauladora(props) {
   const theme = useTheme();
   const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
 
-  const [wayPointsState, setWayPoints] = useState(props.location.wayPoints);
-  const [datosEnvio, setDatosEnvio] = useState(props.location.datosEnvio);
-  const [costoEstimado, setCostoestimado] = useState(1500);
+  const [wayPointsState, setWayPoints] = useState(props.location.wayPoints?props.location.wayPoints:JSON.parse(localStorage.getItem("wayPointsState")));
+  const [datosEnvio, setDatosEnvio] = useState(props.location.datosEnvio?props.location.datosEnvio:JSON.parse(localStorage.getItem("datosEnvio")));
+  const [costoEstimado, setCostoestimado] = useState(3000);
   const [distancia, setDistancia] = useState();
   const [tiempo, setTiempo] = useState();
 
@@ -182,6 +182,10 @@ export default function Calcauladora(props) {
 
   useEffect(() => {
     if (wayPointsState) {
+      if (props.location.wayPoints) {
+        localStorage.setItem("wayPointsState", JSON.stringify(wayPointsState));
+        localStorage.setItem("datosEnvio", JSON.stringify(datosEnvio));
+      }
       wayPointsState.forEach(point => {
         point.geoCodedWayPoints.forEach(points => {
           setDistancia(points.legs[0].distance)

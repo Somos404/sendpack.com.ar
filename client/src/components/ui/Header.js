@@ -19,6 +19,8 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import logo from '../../assets/Logo1.svg';
 
+import AuthService from "services/AuthService";
+
 //const user = JSON.parse(localStorage.getItem("user"));
 
 function ElevationScroll(props) {
@@ -255,12 +257,14 @@ export default function Header(props) {
                         </Button>
                     :
                         <Button 
-                        component={Link}
-                        to="/login" 
-                        variant="contained" 
-                        color="#D34D4C" 
-                        className={classes.button}
-                        onClick={() =>props.setValue(5)}
+                            variant="contained" 
+                            color="#D34D4C" 
+                            className={classes.button}
+                            onClick={() => {
+                                console.log('saliendo');
+                                AuthService.logout()
+                                window.location.reload();
+                            }}
                         >
                         salir 
                         </Button>

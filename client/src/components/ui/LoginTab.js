@@ -66,16 +66,22 @@ export default function LoginTab(props) {
 
         const handleSubmit = (e) => {
             e.preventDefault();
-
             AuthService.login(email, password).then(
-                () => {
-                    //vulve a donde estaba antes del logeo
-                    window.history.back();
-                    window.location.reload();
-                    
+                data => {
+                    //sacarspiner
+                    //vulve a donde estaba antes del logeo 
+                    if (data.ok) {
+                        window.location.reload();
+                        window.history.back();
+                    }else{
+                        //no pudo logear ya se por clave erronea o usuario
+                        console.log(data);
+                    }
+                   
                 },
                 error => {
-                    //mensaje de error
+                    //mensaje de error sacael el spiner 
+                    console.log('error', error);
                 }
             );
         }
