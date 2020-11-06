@@ -7,8 +7,8 @@ class UserService {
   sendMails(body) {
     console.log('===== 1 ====');
     try {
-      return axios.post(API_URL + 'mail/send', { headers: authHeader() },
-        body
+      return axios.post(API_URL + 'mail/send', body,
+      { headers: authHeader() }
       ).then(response => {
         return response.data;
       }).catch((err) => {
