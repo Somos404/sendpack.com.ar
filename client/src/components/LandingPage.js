@@ -47,6 +47,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "-11em",
     [theme.breakpoints.down("xs")]: {
       display: "none",
+      height: 0,
     },
   },
   imagenCotizar: {
@@ -157,6 +158,8 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("xs")]: {
       marginTop: "2em",
       flexWrap: "inherit",
+      
+      overflow: "hidden",
     },
   },
   heroTextContainer: {
