@@ -13,6 +13,8 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
 
+import UserService from 'services/AuthService';
+
 const styleMap = { width: "100%", height: "60vh" };
 const useStyles = makeStyles((theme) => ({
   botonLeerMas: {
@@ -109,7 +111,10 @@ const labels = [
   ["G", "H"]
 ];
 
+const user = JSON.parse(localStorage.getItem("user"));
+
 export default function Calcauladora(props) {
+
   const classes = useStyles();
   const theme = useTheme();
   const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
@@ -178,6 +183,33 @@ export default function Calcauladora(props) {
       }
       
     }
+  }
+
+  const handlerEnviar = () => {
+    const body = {
+      datosEnvio: datosEnvio,
+      tiempo: tiempo,
+      distancia: distancia,
+      costoEstimado: costoEstimado
+    }
+
+    UserService.sendMails(body).then(
+          data => {
+                    //sacarspiner
+                    //vulve a donde estaba antes del logeo 
+          if (data.ok) {
+                        window.location.reload();
+                        window.history.back();
+            }else{
+                        //no pudo logear ya se por clave erronea o usuario
+              console.log(data);
+            }         
+          },
+          error => {
+            //mensaje de error sacael el spiner 
+          console.log('error', error);
+        }
+    );
   }
 
   useEffect(() => {
@@ -362,15 +394,26 @@ export default function Calcauladora(props) {
           >
             MODIFICAR ENVÍO
           </Button>
-          <Button
-            component={Link}
-            to="/"
+          {user?  
+              <Button
+                onClick={handlerEnviar}
+                variant="outlined"
+                className={classes.masInfoButton}
+                 >
+                CONTINUAR
+              </Button>
+              :
+              <Button
+                component={Link}
+                  to="/login"
+                    
+                  variant="outlined"
+                  className={classes.masInfoButton}
+                >
+               Logear
+            </Button>
+          }
           
-            variant="outlined"
-            className={classes.masInfoButton}
-          >
-            CONTINUAR
-          </Button>
       </Grid>
       </Grid>
       <Grid item xs={matchesSM ? 12 : 6}>

@@ -3,6 +3,7 @@ const { User } = require('../../db')
 const { check, validationResult } = require('express-validator')
 var nodemailer = require('nodemailer');
 const creds = require('../../config/config');
+const {checkToken} = require('../middlewares') 
 
 var transport = {
     host: 'webmail.sendpack.com.ar',
@@ -14,16 +15,36 @@ var transport = {
 }
 
 router.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "x-access-token, Origin, Content-Type, Accept"
+  );
   next();
 });
 
 
 var transporter = nodemailer.createTransport(transport)
 
+verifyToken = (req, res, next) => {
+  let token = req.headers["x-access-token"];
+
+  if (!token) {
+    return res.status(403).send({ message: "No token provided!" });
+  }
+  jwt.verify(token, config.secret, (err, decoded) => {
+    if (err) {
+      return res.status(401).send({ message: "Unauthorized!" });
+    }
+    req.userId = decoded.id;
+    next();
+  });
+};
+
+
 //register users
-router.post('/send', (req, res, next) => {
+router.post('/send', [
+  checkToken
+], (req, res, next) => {
     
     let name = req.body.name
     let para = 'mail del usuario'

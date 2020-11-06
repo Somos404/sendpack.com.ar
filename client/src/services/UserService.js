@@ -6,7 +6,7 @@ class UserService {
 
   sendMails(body) {
     try {
-      return axios.post(API_URL + 'mail/send',
+      return axios.post(API_URL + 'mail/send', {authHeader},
         body
       ).then(response => {
         return response.data;
