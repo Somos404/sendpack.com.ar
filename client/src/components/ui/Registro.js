@@ -20,7 +20,8 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: "3em",
         [theme.breakpoints.down("xs")]: {
             marginTop: "5em",
-            marginLeft: "14em"
+            marginLeft: "2em",
+            width: "80%",
           },
     },
     botonRegistrar: {
@@ -90,7 +91,7 @@ export default function Registro(props) {
         }
       
         return (
-            <Paper className={classes.padding} justify="center" alignItems="center" style={{ width: matchesSM ? "100%" : '30%' }}>
+            <Paper className={classes.padding} justify="center" alignItems="center" style={{ width: matchesSM ? "80%" : '30%' }}>
                 <div className={classes.margin}>
                     <form onChangeCapture={changeForm} onSubmit={handleSubmitRegister}>
                         <Grid container spacing={8} alignItems="flex-end">
