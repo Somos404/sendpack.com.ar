@@ -5,8 +5,8 @@ var nodemailer = require('nodemailer');
 const creds = require('../../config/config');
 
 var transport = {
-    host: 'smtp.example.com',
-    port: 587,
+    host: 'webmail.sendpack.com.ar',
+    port: 25,
     auth: {
         user: creds.USER,
         pass: creds.PASS
@@ -26,13 +26,14 @@ var transporter = nodemailer.createTransport(transport)
 router.post('/send', (req, res, next) => {
     
     let name = req.body.name
+    let para = 'mail del usuario'
     let email = req.body.email
     let message = req.body.message
     let content = `name: ${name} \n email: ${email} \n message: ${message} `
   
     let mail = {
       from: name,
-      to: 'RECEIVING_EMAIL_ADDRESS_GOES_HERE',  // Change to email address that you want to receive messages on
+      to: para,  // Change to email address that you want to receive messages on
       subject: 'New Message from Contact Form',
       text: content
     }
