@@ -159,27 +159,6 @@ export default function Footer(props) {
                                     item className={classes.link}>
                                     SOBRE NOSOTROS
                                 </Grid>
-                                <Grid 
-                                    component={Link} 
-                                    onClick={() => props.setValue(2)} 
-                                    to="/MyV" 
-                                    item className={classes.link}>
-                                    Misión y Visión
-                                </Grid>
-                                <Grid 
-                                    component={Link} 
-                                    onClick={() => props.setValue(2)} 
-                                    to="/" 
-                                    item className={classes.link}>
-                                    Lorem Ipsum
-                                </Grid>
-                                <Grid 
-                                    component={Link} 
-                                    onClick={() => props.setValue(2)} 
-                                    to="/"    
-                                    item className={classes.link}>
-                                    Lorem Ipsum
-                                </Grid>
                             </Grid>
                         </Grid>
                         <Grid 

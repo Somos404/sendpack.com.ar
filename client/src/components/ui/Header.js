@@ -79,7 +79,7 @@ function ElevationScroll(props) {
       button: {
           backgroundColor: "transparent",
           color: "white",
-          borderRadius: "50px",
+          transitionDuration: ".5s",
           marginLeft: "25px",
           marginRight: "25px",
           border: "1px solid",
@@ -91,6 +91,22 @@ function ElevationScroll(props) {
             
         }
       },
+      buttonR: {
+        backgroundColor: "transparent",
+        color: "white",
+        
+        marginLeft: "25px",
+        marginTop: "1em",
+        marginRight: "25px",
+        border: "1px solid",
+        "&:hover": {
+          backgroundColor: "#D34D4C",
+          border: "none",
+          opacity: 1
+
+          
+      }
+    },
       menu: {
           backgroundColor: "#71c4c8",
           color: "white"
@@ -329,7 +345,31 @@ export default function Header(props) {
                                 </ListItemText>
                             </ListItem>
                         ))}
-                        
+                        {!user?  
+                        <Button 
+                            component={Link}
+                            to="/login" 
+                            variant="contained" 
+                            color="#D34D4C" 
+                            className={classes.buttonR}
+                            onClick={() =>props.setValue(5)}
+                            >
+                            Ingresar / Login 
+                        </Button>
+                    :
+                        <Button 
+                            variant="contained" 
+                            color="#D34D4C" 
+                            className={classes.buttonR}
+                            onClick={() => {
+                                console.log('saliendo');
+                                AuthService.logout()
+                                window.location.reload();
+                            }}
+                        >
+                        salir 
+                        </Button>
+                    }
                     </List>
                  </SwipeableDrawer>
                  <IconButton 
