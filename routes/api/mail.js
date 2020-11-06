@@ -17,7 +17,7 @@ var transport = {
 router.use(function(req, res, next) {
   res.header(
     "Access-Control-Allow-Headers",
-    "x-access-token, Origin, Content-Type, Accept"
+    "user-token, Origin, Content-Type, Accept"
   );
   next();
 });
@@ -25,51 +25,50 @@ router.use(function(req, res, next) {
 
 var transporter = nodemailer.createTransport(transport)
 
-verifyToken = (req, res, next) => {
-  let token = req.headers["x-access-token"];
-
-  if (!token) {
-    return res.status(403).send({ message: "No token provided!" });
-  }
-  jwt.verify(token, config.secret, (err, decoded) => {
-    if (err) {
-      return res.status(401).send({ message: "Unauthorized!" });
-    }
-    req.userId = decoded.id;
-    next();
-  });
-};
-
-
 //register users
 router.post('/send', [
   checkToken
-], (req, res, next) => {
-    
-    let name = req.body.name
-    let para = 'mail del usuario'
-    let email = req.body.email
+], async (req, res, next) => {
+
+    const user = await User.findOne({
+      where: {
+          id: req.usuarioId
+      }
+    })
+
+
+   /*  datosEnvio: datosEnvio,
+    tiempo: tiempo,
+    distancia: distancia,
+    costoEstimado: costoEstimado */
+
+    /* let datosEnvio = req.body.datosEnvio
+    let name = user.name
+    let para = user.email
     let message = req.body.message
-    let content = `name: ${name} \n email: ${email} \n message: ${message} `
-  
+    let content = `name: ${name} \n email: ${email} \n message: ${message} ` */
+
+    let content = `Hola!: ${user.name} ${user.last_name} \n este mail es por x motivo \n timepo: ${req.body.tiempo} \n distnacia: ${req.body.distancia} `
     let mail = {
-      from: name,
-      to: para,  // Change to email address that you want to receive messages on
-      subject: 'New Message from Contact Form',
+      from: creds.USER,
+      to: user.email,  // Change to email address that you want to receive messages on
+      subject: 'cotizaciones sendpack',
       text: content
     }
   
     transporter.sendMail(mail, (err, data) => {
       if (err) {
+
+        //grabo db el envio solicitado
         res.status(200).send({
-			token: 'se envio exitosamente',
-			ok:true
-		});
+          msg: 'se envio exitosamente',
+          ok:true
+		    });
       } else {
         res.status(200).send({
-			token: 'no se pudo realizar el envio',
-			ok:false
-		});
+          msg: 'no se pudo realizar el envio',
+          ok:false
+		  });
       }
     })
 })
