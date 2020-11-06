@@ -8,6 +8,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import customSoftwareIcon from '../assets/recursos/Ico-04.png';
 import mobileAppsIcon from '../assets/recursos/Ico-07.png';
 import websiteIcon from "../assets/recursos/Ico-06.png";
+import './animacion.css'
 
 
 const useStyles = makeStyles(theme => ({
@@ -49,12 +50,12 @@ export default function Servicios(props) {
 
 
 
-
-
     return (
       
 
         <Grid container direction="column">
+
+    
             <Grid item> {" "} {/*---Contenedor de Servicio---*/}
                 
             <Grid
