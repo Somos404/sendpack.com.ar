@@ -5,8 +5,9 @@ import API_URL from '../constant/apiUrl'
 class UserService {
 
   sendMails(body) {
+    console.log('===== 1 ====');
     try {
-      return axios.post(API_URL + 'mail/send', {authHeader},
+      return axios.post(API_URL + 'mail/send', { headers: authHeader() },
         body
       ).then(response => {
         return response.data;
