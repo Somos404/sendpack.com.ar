@@ -43,7 +43,8 @@ function ElevationScroll(props) {
             
         },
         [theme.breakpoints.down("xs")]: {
-            marginBotton: "3em"
+            marginBotton: "3em",
+            width: "auto",
         }
       },
       logo: {
@@ -134,6 +135,9 @@ function ElevationScroll(props) {
       appbar: {
           zIndex: theme.zIndex.modal + 1,
           backgroundColor: "#71c4c8",
+          [theme.breakpoints.down("xs")]: {
+            position: "fixed"
+        }
       }
 
       

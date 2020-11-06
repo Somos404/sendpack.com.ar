@@ -24,7 +24,8 @@ import LocationSearchFrom from "../components/ui/locationSearchFrom";
 import LocationSearchTo from "../components/ui/locationSearchTo";
 import { v4 as uuid } from "uuid";
 import { ReactComponent as Cotizar } from '../assets/recursos/cotizar.svg';
-import "../components/ui/imagenCotizar.css";
+import './animacion.css'
+import Footer from './ui/Footer';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -73,12 +74,36 @@ const useStyles = makeStyles((theme) => ({
     transitionDuration: ".5s",
     transitionProperty: "background,transform",
     transitionTimingFunction: "cubic-bezier(.33,.19,.3,.85)",
+    transition: "slidein",
     "&:hover": {
       backgroundColor: "#8EC3C7",
       border: "none",
       opacity: 1,
       transform: "rotate(-30deg)",
     },
+   
+  },
+  
+   
+  "@keyframes slidein": {
+    "0%": {
+      opacity: 0,
+      transform: "translateY(-100%)",
+      marginLeft: "0px"
+    },
+    "50%": {
+      opacity: 1,
+      transform: "translateY(0)",
+      marginLeft: "20px"
+    },
+    "100%": {
+      opacity: 1,
+      transform: "translateY(0)",
+      marginLeft: "40px"
+    }
+  },
+  selector: {
+    animation: "$fadeIn .2s ease-in-out"
   },
   buttonContainer: {
     marginTop: "1em",
@@ -297,9 +322,9 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "-3.01em"
   },
   
-
   
 }));
+
 
 export default function LandingPage(props) {
   const classes = useStyles();
@@ -311,6 +336,8 @@ export default function LandingPage(props) {
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
   };
+
+ 
 
   const[datosEnvio , setDatosEnvio] = useState({
     origen: "",
@@ -430,7 +457,7 @@ export default function LandingPage(props) {
         setWayPoints(wayPoints)
     }
   };
-
+ 
   return (
     <Grid container direction="column" className={classes.mainContainer}>
       <Grid item>
@@ -445,7 +472,7 @@ export default function LandingPage(props) {
           className={classes.headerBackground}
         >
           <Grid sm item className={classes.heroTextContainer}>
-            <Typography className={classes.tituloHeader} variant="h2" align="center" style={{ marginTop: matchesSM ? "3em" : "1.5em",  marginLeft: matchesSM ? "10.5em" : "9em", maxWidth: matchesSM ? "0em" : "14em" }}>
+            <Typography className={classes.tituloHeader} variant="h1" align="center" style={{ marginTop: matchesSM ? "4em" : "1.5em",  marginLeft: matchesSM ? "16em" : "9em", maxWidth: matchesSM ? undefined : "14em", color: "#D34D4C"}}>
               TRANSPORTE Y LOGÍSTICA
               <br />
               
@@ -620,10 +647,17 @@ export default function LandingPage(props) {
                         datosEnvio: datosEnvio
                       }}
                       className={classes.botonCotizar}
+                      id="botonCotizar"
                       variant="contained"
                     >
                       COTIZAR
                     </Button>
+                    
+                    <>
+                      <div className="botonAnimado">
+                        <span style={{ marginRight: 10 }}>prueba</span>
+                      </div>
+                      </>
                   </Grid>
                   <Grid item style={{ marginTop: matchesSM ? "2em" : "inherit"  }}>
                     <Button
@@ -689,6 +723,8 @@ export default function LandingPage(props) {
             >
               <span style={{ marginRight: 10 }}>Leer más</span>
             </Button>
+          
+           
           </Grid>
           <Grid item>
             <img
@@ -962,7 +998,7 @@ export default function LandingPage(props) {
           </Grid>
         </Grid>
       </Grid>
-      
+
     </Grid>
     
   );

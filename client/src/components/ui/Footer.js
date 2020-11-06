@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {makeStyles} from '@material-ui/core/styles';
-import Logo1 from '../../assets/Logo1.png';
+import Logo1 from '../../assets/Logo2.png';
 import Grid from '@material-ui/core/Grid'
 import Hidden from '@material-ui/core/Hidden';
 import facebook from '../../assets/facebook.svg';
@@ -13,6 +13,7 @@ const useStyles = makeStyles(theme => ({
         width: "100%",
         height: "13em",
         zIndex: 1302,
+        bottom: 0,
         position: "relative",
         [theme.breakpoints.down("xs")]: {
             

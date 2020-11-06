@@ -11,7 +11,7 @@ import Calculadora from './screen/Calcauladora'
 import CalculadoraMudanza from './ui/CalculadoraMudanza';
 import LoginTab from './ui/LoginTab';
 import Registro from './ui/Registro';
-
+import Nosotros from './ui/Nosotros';
 function App() {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [value, setValue] = useState(0);
@@ -57,7 +57,15 @@ function App() {
               />
             )} 
           />
-          <Route exact path="/sobre_nosotros" component={() => <div>Sobre Nosotros</div>} />
+          <Route exact path="/sobre_nosotros" 
+             render={props => (
+              <Nosotros
+                {...props}
+                setValue={setValue}
+                setSelectedIndex={setSelectedIndex}
+                />
+              )} 
+          />
           <Route
            exact path="/contacto" 
            render={props => (

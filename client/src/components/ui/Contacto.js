@@ -21,6 +21,8 @@ const useStyles = makeStyles(theme => ({
         marginLeft: "32em", 
         [theme.breakpoints.down("sm")]: {
         backgroundImage: "none",
+        height: 0,
+       
         },
     },
     botonEnviar: {
@@ -79,12 +81,12 @@ export default function Contacto() {
 
     return (
         <Grid container direction="row">
-            <Grid item container direction="column"  justify="center" alignItems="center" style={{ marginLeft:  "7em" }} lg={3}> 
+            <Grid item container direction="column"  justify="center" alignItems="center" style={{ marginLeft: matchesSM ? "4em" : "7em", maxHeight: matchesSM ? "40em" : undefined }} lg={3}> 
                 <Grid item>
                     <Grid container direction="column">
                     <Grid item>
-                    <Typography variant="h2" style={{lineHeight: 1, fontFamily: "Roboto", marginTop: "0.7em"}}>CONTACTATE</Typography> 
-                    <Typography variant="body1" style={{ color: "#C76869",  fontFamily: "Roboto", fontWeight: 800}}>Preocupate por otra cosa</Typography>       
+                    <Typography variant="h2" style={{lineHeight: 1, fontFamily: "Roboto", marginTop: "0.7em", }}>CONTACTATE</Typography> 
+                    <Typography variant="body1" style={{ color: "#C76869",  fontFamily: "Roboto", fontWeight: 800, marginLeft: matchesSM ? "2em" : undefined}}>Preocupate por otra cosa</Typography>       
                 </Grid>
                 <Grid item container style={{ marginTop: "1.5em" }}>
                     <Grid item>
@@ -106,24 +108,24 @@ export default function Contacto() {
                     <Grid item>
                         <TextField label="Nombre" id="nombre" value={nombre}
                             onChange={event => setNombre(event.target.value)}
-                            style= {{ borderBottom: "2px solid #71c4c8", width: "25em" }}
+                            style= {{ borderBottom: "2px solid #71c4c8", width: matchesSM ? "15em" : "25em" }}
                         />    
                     </Grid>
                     <Grid item>
                         <TextField label="Email" id="email" value={email}
                              onChange={event => setEmail(event.target.value)}
-                             style= {{ borderBottom: "2px solid #71c4c8", width: "25em" }}                        />      
+                             style= {{ borderBottom: "2px solid #71c4c8", width: matchesSM ? "15em" : "25em" }}                        />      
                     </Grid>   
                     <Grid item>
                         <TextField label="Teléfono" id="telefono" value={telefono}
                             onChange={event => setTelefono(event.target.value)}
-                            style= {{ borderBottom: "2px solid #71c4c8", width: "25em" }}                        />       
+                            style= {{ borderBottom: "2px solid #71c4c8", width: matchesSM ? "15em" : "25em" }}                        />       
                     </Grid>       
                 </Grid>
-                <Grid item style={{maxWidth: "20em" }} >
-                    <TextField value={mensaje} InputProps={{ disableUnderline: true}} className={classes.mensaje} multiline rows={5} label="Mensaje" id="mensaje" onChange={event => setMensaje(event.target.value)} />
+                <Grid item style={{maxWidth: matchesSM ? "2em" : "20em" }} >
+                    <TextField value={mensaje} InputProps={{ disableUnderline: true}} className={classes.mensaje} multiline rows={5} label="Mensaje" id="mensaje" onChange={event => setMensaje(event.target.value)}  style= {{  width: matchesSM ? "15em" : "25em" }}/>
                 </Grid>
-                <Grid item container style={{ marginTop: "1.5em", marginBottom: "1em", marginLeft: "1em" }}>
+                <Grid item container style={{ marginTop: "1.5em", marginBottom: "1em", marginLeft: matchesSM ? "3.5.5em" : "1em" }}>
                 <Button
                       component={Link}
                       to="/"
