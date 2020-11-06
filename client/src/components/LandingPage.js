@@ -273,7 +273,7 @@ const useStyles = makeStyles((theme) => ({
     
   },
   formLin4: {
-    marginLeft: "5em",
+    marginLeft: "3em",
     marginTop: "0em",
     marginBottom: "1em",
     width: "62em",
@@ -659,7 +659,7 @@ export default function LandingPage(props) {
                   <Grid item style={{ marginTop: matchesSM ? "2em" : "inherit"  }}>
                     <Button
                       component={Link}
-                      to="/"
+                      to="/contacto"
                       variant="outlined"
                       className={classes.masInfoButton}
                     >
@@ -713,7 +713,7 @@ export default function LandingPage(props) {
             </Typography>
             <Button
               component={Link}
-              to="/"
+              to="/servicios"
               variant="outlined"
               style={{marginTop: matchesSM ? "2em" : "2em"}}
               className={classes.botonLeerMas}
@@ -760,7 +760,7 @@ export default function LandingPage(props) {
             </Typography>---*/}
             <Button
               component={Link}
-              to="/"
+              to="/servicios"
               variant="outlined"
               className={classes.botonLeerMas}
               style={{marginTop: matchesSM ? "2em" : "2em"}}
@@ -806,7 +806,7 @@ export default function LandingPage(props) {
             </Typography>
             <Button
               component={Link}
-              to="/"
+              to="/servicios"
               variant="outlined"
               className={classes.botonLeerMas}
               style={{marginTop: matchesSM ? "2em" : "2em"}}
@@ -938,6 +938,8 @@ export default function LandingPage(props) {
             <Button
               variant="outlined"
               className={classes.botonLeerMasPreguntas}
+              component={Link}
+              to="/contacto"
             >
               <span>Leer más</span>
             </Button>
@@ -977,6 +979,8 @@ export default function LandingPage(props) {
                     variant="outlined"
                     style={{ color: "white", borderColor: "white" }}
                     className={classes.botonLeerMas}
+                    component={Link}
+                    to="/contacto"
                   >
                     <span style={{ marginRight: 10 }}>Leer más</span>
                   </Button>
