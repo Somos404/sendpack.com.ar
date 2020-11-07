@@ -17,7 +17,7 @@ var transport = {
 router.use(function(req, res, next) {
   res.header(
     "Access-Control-Allow-Headers",
-    "user-token, Origin, Content-Type, Accept"
+    "user-token", "Origin", "Content-Type", "Accept"
   );
   next();
 });
