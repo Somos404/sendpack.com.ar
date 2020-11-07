@@ -125,7 +125,7 @@ export default function Footer(props) {
                                     to="/encomiendas" 
                                     item 
                                     className={classes.link}>
-                                    Expreso de encomiendas
+                                    Logistica corporativa para empresas
                                 </Grid>
                                 <Grid 
                                     component={Link} 
@@ -134,14 +134,14 @@ export default function Footer(props) {
                                     to="/mudanzas" 
                                     item 
                                     className={classes.link}>
-                                    Mudanzas familiares y corporativas
+                                    Transporte General                                
                                 </Grid>
                                 <Grid 
                                     component={Link} onClick={() => {props.setValue(1); 
                                     props.setSelectedIndex(3)}} 
                                     to="/logistica:dist_prod" 
                                     item className={classes.link}>
-                                    Logística y distribución de productos
+                                    Mudanzas
                                 </Grid>
                             </Grid>
                         </Grid>
@@ -158,27 +158,6 @@ export default function Footer(props) {
                                     to="/sobre_nosotros" 
                                     item className={classes.link}>
                                     SOBRE NOSOTROS
-                                </Grid>
-                                <Grid 
-                                    component={Link} 
-                                    onClick={() => props.setValue(2)} 
-                                    to="/MyV" 
-                                    item className={classes.link}>
-                                    Misión y Visión
-                                </Grid>
-                                <Grid 
-                                    component={Link} 
-                                    onClick={() => props.setValue(2)} 
-                                    to="/" 
-                                    item className={classes.link}>
-                                    Lorem Ipsum
-                                </Grid>
-                                <Grid 
-                                    component={Link} 
-                                    onClick={() => props.setValue(2)} 
-                                    to="/"    
-                                    item className={classes.link}>
-                                    Lorem Ipsum
                                 </Grid>
                             </Grid>
                         </Grid>

@@ -47,6 +47,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "-11em",
     [theme.breakpoints.down("xs")]: {
       display: "none",
+      height: 0,
     },
   },
   imagenCotizar: {
@@ -66,8 +67,8 @@ const useStyles = makeStyles((theme) => ({
   botonCotizar: {
     backgroundColor: "#D34D4C",
     color: "white",
-    borderRadius: 50,
-    border: "1px solid white",
+    
+    
     height: 45,
     width: 145,
     marginRight: 40,
@@ -79,7 +80,7 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: "#8EC3C7",
       border: "none",
       opacity: 1,
-      transform: "rotate(-30deg)",
+      transform: "rotate(-360deg)",
     },
    
   },
@@ -116,6 +117,7 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "Roboto",
     fontWeight: "bold",
     fontSize: "0.7rem",
+    transitionDuration: ".5s",
     height: 45,
     "&:hover": {
       backgroundColor: "#D34D4C",
@@ -135,6 +137,7 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "Roboto",
     fontWeight: "bold",
     fontSize: "0.7rem",
+    transitionDuration: ".5s",
     height: 35,
     "&:hover": {
       backgroundColor: "#D34D4C",
@@ -155,6 +158,8 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("xs")]: {
       marginTop: "2em",
       flexWrap: "inherit",
+      
+      overflow: "hidden",
     },
   },
   heroTextContainer: {
@@ -246,6 +251,7 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "Raleway",
     fontSize: "1.5rem",
     color: "#000",
+    transitionDuration: ".5s",
     fontWeight: 700,
   },
 
@@ -846,7 +852,7 @@ export default function LandingPage(props) {
           container
           alignItems="center"
           justify="center"
-          style={{ height: "60em", marginTop: matchesSM ? "2em" : "-7em", flexWrap: matchesSM ? "wrap" : undefined }}
+          style={{ height: "60em", marginTop: matchesSM ? "2em" : "-14em", flexWrap: matchesSM ? "wrap" : undefined }}
         >
           <Grid item className={[classes.preguntasCard, classes.gridItem]}>
             <Grid container direction="column" spacing={2}>
