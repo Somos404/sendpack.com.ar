@@ -186,6 +186,7 @@ export default function Calcauladora(props) {
   }
 
   const handlerEnviar = () => {
+    console.log('===== 0 ====');
     const body = {
       datosEnvio: datosEnvio,
       tiempo: tiempo,

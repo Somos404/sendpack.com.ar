@@ -5,9 +5,10 @@ import API_URL from '../constant/apiUrl'
 class UserService {
 
   sendMails(body) {
+    console.log('===== 1 ====');
     try {
-      return axios.post(API_URL + 'mail/send', {authHeader},
-        body
+      return axios.post(API_URL + 'mail/send', body,
+      { headers: authHeader() }
       ).then(response => {
         return response.data;
       }).catch((err) => {

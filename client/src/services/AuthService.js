@@ -36,7 +36,7 @@ class AuthService {
         'password': respuesta.profileObj.googleId
       }
 
-      return axios.post(API_URL + '/users/logReg',
+      return axios.post(API_URL + 'users/logReg',
         body
       ).then(response => {
 
