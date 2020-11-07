@@ -13,7 +13,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
 
-import UserService from 'services/AuthService';
+import UserService from 'services/UserService';
 
 const styleMap = { width: "100%", height: "60vh" };
 const useStyles = makeStyles((theme) => ({
@@ -396,7 +396,7 @@ export default function Calcauladora(props) {
           </Button>
           {user?  
               <Button
-                onClick={handlerEnviar}
+                onClick={() => handlerEnviar()}
                 variant="outlined"
                 className={classes.masInfoButton}
                  >

@@ -23,8 +23,7 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: "3em",
         [theme.breakpoints.down("xs")]: {
             marginTop: "5em",
-            marginLeft: "2em",
-            width: "80%"
+            marginLeft: "14em"
           },
     },
 
@@ -72,8 +71,8 @@ export default function LoginTab(props) {
                     //sacarspiner
                     //vulve a donde estaba antes del logeo 
                     if (data.ok) {
-                        window.history.back();
                         window.location.reload();
+                        window.history.back();
                     }else{
                         //no pudo logear ya se por clave erronea o usuario
                         console.log(data);
@@ -92,7 +91,6 @@ export default function LoginTab(props) {
                 () => {
                     //vulve a donde estaba antes del logeo
                     window.history.back();
-                    window.location.reload();
                 },
                 error => {
                     //mensaje de error
@@ -102,7 +100,7 @@ export default function LoginTab(props) {
   
         return (
             
-            <Paper className={classes.padding} justify="center" alignItems="center" style={{ width: matchesSM ? "80%" : '30%' }}>
+            <Paper className={classes.padding} justify="center" alignItems="center" style={{ width: matchesSM ? "100%" : '30%' }}>
                 <div className={classes.margin}>
                     <form onSubmit={handleSubmit}>
                         <Grid container spacing={8} alignItems="flex-end">
