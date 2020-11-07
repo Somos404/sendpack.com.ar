@@ -72,8 +72,8 @@ export default function LoginTab(props) {
                     //sacarspiner
                     //vulve a donde estaba antes del logeo 
                     if (data.ok) {
-                        window.location.reload();
                         window.history.back();
+                        window.location.reload();
                     }else{
                         //no pudo logear ya se por clave erronea o usuario
                         console.log(data);
@@ -92,6 +92,7 @@ export default function LoginTab(props) {
                 () => {
                     //vulve a donde estaba antes del logeo
                     window.history.back();
+                    window.location.reload();
                 },
                 error => {
                     //mensaje de error
