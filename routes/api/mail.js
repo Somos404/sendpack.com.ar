@@ -49,7 +49,7 @@ router.post('/send',[
 				<tr>
 					<td style="background-color: #ecf0f1">
 						<div style="color: #34495e; margin: 4% 10% 2%; text-align: justify;font-family: sans-serif">
-							<h2 style="color: #e67e22; margin: 0 0 7px">Hola! apellido , nombre</h2>
+							<h2 style="color: #e67e22; margin: 0 0 7px">Hola! ${user.last_name} , ${user.name}</h2>
 							<p style="margin: 2px; font-size: 15px">
 								mesaje generico!
 							</p>
@@ -61,15 +61,21 @@ router.post('/send',[
 							</div>
 							<p>Detalle del envío</p>
 							<ul>
-								<li>Origen: </li>
-								<li>Destino: </li>
-								<li>Distancia: </li>
-								<li>Distancia: </li>
-								<li>Pago en: </li>
-								<li>Cantidad de bultos: </li>
-								<li>Peso: </li>
-								<li>Valor declarado: </li>
-								<li>Costo Estimado: </li>
+								<li>Origen: ${req.body.datosEnvio.origen}</li>
+								<li>CP Origen: ${req.body.datosEnvio.cpOrigen}</li>
+
+								<li>Destino: ${req.body.datosEnvio.destino}</li>
+								<li>CP Destino: ${req.body.datosEnvio.cpDestino}</li>
+
+								<li>Distancia: ${req.body.distancia.text}</li>
+								<li>Tiempo estimado: ${req.body.tiempo.text}</li>
+
+								<li>Pago en: ${req.body.datosEnvio.pagoOrigen? "Origen": "Destino"}</li>
+								<li>Cantidad de bultos: ${req.body.datosEnvio.cantBultos}</li>
+								<li>Peso: ${req.body.datosEnvio.peso}</li>
+								<li>Valor declarado: ${req.body.datosEnvio.valorDeclarado}</li>
+
+								<li>Costo Estimado: ${req.body.costoEstimado}</li>
 							</ul>
 							<div style="width: 100%; text-align: center">
 								<a style="text-decoration: none; border-radius: 5px; padding: 11px 23px; color: white; background-color: #3498db" href="https://sendpack.com.ar">Ir a la página</a>	
