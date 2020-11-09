@@ -4,15 +4,8 @@ const { check, validationResult } = require('express-validator')
 var nodemailer = require('nodemailer');
 const creds = require('../../config/config');
 const {checkToken} = require('../middlewares') 
+const { initial_address } = require('../../db')
 
-var transport = {
-    host: 'webmail.sendpack.com.ar',
-    port: 25,
-    auth: {
-        user: creds.USER,
-        pass: creds.PASS
-    }
-}
 
 router.use(function(req, res, next) {
   res.header(
@@ -22,8 +15,6 @@ router.use(function(req, res, next) {
   next();
 });
 
-
-var transporter = nodemailer.createTransport(transport)
 
 //register users
 router.post('/send', [
@@ -36,6 +27,16 @@ router.post('/send', [
       }
     })
 
+
+var transporter = nodemailer.createTransport({
+   host: 'webmail.sendpack.com.ar',
+  port: 25,
+  secure: false,
+  auth: {
+      user: 'sendpack@sendpack.com.ar',
+      pass: 'Sendpack!2020'
+  }
+})
 
    /*  datosEnvio: datosEnvio,
     tiempo: tiempo,
@@ -56,21 +57,32 @@ router.post('/send', [
       text: content
     }
   
-    transporter.sendMail(mail, (err, data) => {
-      if (err) {
+    let info = await transporter.sendMail({
+      from: `" <>`, // sender address
+      to: user.email, // list of receivers
+      subject: "Tu solicitud de préstamo IPDUV Refacciones ha sido recibida", // Subject line
+      html: `
+          <p>Recibimos tu solicitud de préstamo línea Refacciones IPDUV con Tuya Recargable. </p>
+          <p>La misma será analizada y en los próximos días, un asesor de Nuevo Banco del Chaco se comunicará para informarte el estado de la gestión.</p>
 
-        //grabo db el envio solicitado
-        res.status(200).send({
-          msg: 'se envio exitosamente',
-          ok:true
-		    });
-      } else {
-        res.status(200).send({
-          msg: 'no se pudo realizar el envio',
-          ok:false
-		  });
-      }
-    })
+
+          <div style="display: table; font-weight: bold; margin: 50px 0">
+          <div style="display: table-row">
+                  <span style="display: table-cell">NÚMERO DE SOLICITUD:</span>
+          </div>
+          <div style="display: table-row">
+                  <span style="display: table-cell">NÚMERO DE TRÁMITE:</span>
+          </div>
+          <div style="display: table-row">
+                  <span style="display: table-cell">DNI:</span>
+          </div>
+          </div>
+
+          <p>Muchas gracias por elegirnos.</p>
+      `
+  })
+
+    
 })
 
 

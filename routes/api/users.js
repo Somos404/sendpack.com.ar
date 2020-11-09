@@ -122,7 +122,7 @@ const createToken = (user) => {
         usuarioEmail : user.email,
         usuarioId: user.id,
         createdAt: moment().unix(),
-        expiredAt: moment().add(5, 'minutes').unix()
+        expiredAt: moment().add(55, 'minutes').unix()
     }
 
     return jwt.encode(payload, 'key-secret-sendp')

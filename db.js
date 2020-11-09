@@ -12,6 +12,7 @@ const sequelize = new Sequelize(development.database, development.username, deve
 });
 
 const User = UsersModel(sequelize, Sequelize)
+const initial_address = UsersModel(sequelize, Sequelize)
 
 sequelize.sync({ force: false })
     .then(() => {
@@ -19,5 +20,5 @@ sequelize.sync({ force: false })
     })
 
 module.exports = {
-    User
+    User, initial_address
 }
