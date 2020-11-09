@@ -2,6 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
 const path = require('path');
+const winston = require('winston')
 
 require('./db')
 
@@ -30,5 +31,7 @@ app.use('/api', apiRouter)
 app.get('*', (req,res) =>{
 	res.sendFile(path.join(__dirname+'/client/build/index.html'));
 });
+
+app.listen(5000, () => winston.info('servidor corriendo'));
 
 module.exports = app
