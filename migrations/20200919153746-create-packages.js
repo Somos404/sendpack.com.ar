@@ -20,6 +20,21 @@ module.exports = {
       size: {
         type: Sequelize.INTEGER
       },
+      time: {
+        type: Sequelize.STRING
+      },
+      pago_en: {
+        type: Sequelize.BOOLEAN
+      },
+      cant_bultos: {
+        type: Sequelize.INTEGER
+      },
+      valor_declarado: {
+        type: Sequelize.INTEGER
+      },
+      costo_estimado: {
+        type: Sequelize.INTEGER
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
