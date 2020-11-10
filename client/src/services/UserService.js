@@ -10,6 +10,7 @@ class UserService {
       return axios.post(API_URL + 'mail/send', body,
       { headers: authHeader() }
       ).then(response => {
+        console.log('===== send ====', body);
         return response.data;
       }).catch((err) => {
         return { err, data: { msg: 'Server error!!!' } };
