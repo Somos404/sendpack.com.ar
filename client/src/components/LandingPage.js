@@ -26,6 +26,8 @@ import { v4 as uuid } from "uuid";
 import { ReactComponent as Cotizar } from '../assets/recursos/cotizar.svg';
 import './animacion.css'
 import Footer from './ui/Footer';
+import Backdrop from '@material-ui/core/Backdrop';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -156,7 +158,7 @@ const useStyles = makeStyles((theme) => ({
       marginTop: "3em",
     },
     [theme.breakpoints.down("xs")]: {
-      marginTop: "2em",
+      marginTop: "0em",
       flexWrap: "inherit",
       
       overflow: "hidden",
@@ -305,6 +307,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "-5em",
     [theme.breakpoints.down("sm")]: {
       backgroundImage: "none",
+      backgroundColor: "#71c4c8",
     },
   },
   infoBackground: {
@@ -327,7 +330,10 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "15em",
     marginTop: "-3.01em"
   },
-  
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 1,
+    color: '#fff',
+  },
   
 }));
 
@@ -464,10 +470,20 @@ export default function LandingPage(props) {
     }
   };
 
- 
+  const [open, setOpen] = React.useState(false);
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleToggle = () => {
+    setOpen(!open);
+  };
+
   return (
     <Grid container direction="column" className={classes.mainContainer}>
-      
+          <Backdrop className={classes.backdrop} open={open} onClick={handleClose}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
+
       <Grid item>
         {" "}
         {/*---Contenedor del header---*/}
@@ -488,7 +504,9 @@ export default function LandingPage(props) {
 
             <Grid item container className={classes.formLin2}>
               <Grid item direction="row" style={{ marginLeft: matchesSM ? "18.7em" : "20em", marginTop: matchesSM ? "1.5em" : "0em", fontWeight: 900 }}>
-                <Typography variant="p" align="center"  style={{color: matchesSM ? "#8EC3C7" : "white"}}>
+                <Typography variant="p" align="center"
+                    color="primary" 
+                  style={{color: matchesSM ? "white" : "white"}}>
                   COTIZAR
                 </Typography>
               </Grid>
@@ -579,7 +597,7 @@ export default function LandingPage(props) {
             </Grid>
             <Grid item container className={classes.formLin2}>
               <Grid item direction="row" style={{ marginLeft: matchesSM ? "19em" : "19em", marginTop: matchesSM ? "1.5em" : "0em", fontFamily: "Roboto", fontWeight: 900  }}>
-                <Typography variant="p" align="center" style={{color: matchesSM ? "#8EC3C7" : "white"}}>
+                <Typography variant="p" align="center" style={{color: matchesSM ? "white" : "white"}}>
                   PAGO EN
                 </Typography>
               </Grid>
@@ -657,6 +675,7 @@ export default function LandingPage(props) {
                       className={classes.botonCotizar}
                       id="botonCotizar"
                       variant="contained"
+                      onClick={handleToggle}
                     >
                       COTIZAR
                     </Button>
