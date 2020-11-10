@@ -20,6 +20,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import { useHistory } from "react-router-dom";
 
 const styleMap = { width: "100%", height: "60vh" };
 const useStyles = makeStyles((theme) => ({
@@ -67,7 +68,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "0.9rem",
     height: 45,
     width: 180,
-   margin: "2em",
+    margin: "2em",
     marginBottom: "5em",
     marginTop: "5em",
     [theme.breakpoints.down("sm")]: {
@@ -105,7 +106,7 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
     "&:hover": {
       background: "#D34D4J",
-      
+
     },
   }
 }));
@@ -118,19 +119,23 @@ const labels = [
 ];
 
 export default function Calcauladora(props) {
+  const history = useHistory();
 
   const classes = useStyles();
   const theme = useTheme();
   const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
 
-  const [wayPointsState, setWayPoints] = useState(props.location.wayPoints?props.location.wayPoints:JSON.parse(localStorage.getItem("wayPointsState")));
-  const [datosEnvio, setDatosEnvio] = useState(props.location.datosEnvio?props.location.datosEnvio:JSON.parse(localStorage.getItem("datosEnvio")));
+  const [wayPointsState, setWayPoints] = useState(props.location.wayPoints ? props.location.wayPoints : JSON.parse(localStorage.getItem("wayPointsState")));
+  const [datosEnvio, setDatosEnvio] = useState(props.location.datosEnvio ? props.location.datosEnvio : JSON.parse(localStorage.getItem("datosEnvio")));
   const [costoEstimado, setCostoestimado] = useState(3000);
   const [distancia, setDistancia] = useState();
   const [tiempo, setTiempo] = useState();
-  const [user, setUser] = useState(false);
+  const [relog, setRelog] = useState(false);
+  const user = JSON.parse(localStorage.getItem("user") ? localStorage.getItem("user") : false);
 
-
+  if (relog) {
+    window.location.reload();
+  }
 
   const calcularcostos = () => {
     let hs
@@ -141,34 +146,34 @@ export default function Calcauladora(props) {
     if (distancia && tiempo) {
       time = tiempo.text.split(" ")
       dis = distancia.text.split(' ')
-      if(dis[0] >= 150){
+      if (dis[0] >= 150) {
         //calculo por kilometros
         if (datosEnvio.peso < 500) {
           price = dis[0] * 14.7 // precio desde tabla db
-        } else if(datosEnvio.peso < 1800){
+        } else if (datosEnvio.peso < 1800) {
           price = dis[0] * 18.4
-        }else if(datosEnvio.peso < 3500){
+        } else if (datosEnvio.peso < 3500) {
           price = dis[0] * 23.7
-        }else{
+        } else {
           price = dis[0] * 35
         }
         return price
-      }else{
+      } else {
         //calculo por horas
         if (time.length == 4 && time[0] >= 3) {
           //obtebgo horas y minutos
-          hs= time[0]
-          min= time[2]
+          hs = time[0]
+          min = time[2]
           if (min >= 1) {
-            hs = hs +1
+            hs = hs + 1
           }
           if (datosEnvio.peso < 500) {
             price = hs * 400 // precio desde tabla db
-          } else if(datosEnvio.peso < 1800){
+          } else if (datosEnvio.peso < 1800) {
             price = hs * 700
-          }else if(datosEnvio.peso < 3500){
+          } else if (datosEnvio.peso < 3500) {
             price = hs * 1000
-          }else{
+          } else {
             price = hs * 1500
           }
 
@@ -176,17 +181,17 @@ export default function Calcauladora(props) {
         } else {
           if (datosEnvio.peso < 500) {
             price = 3 * 400 // precio desde tabla db
-          } else if(datosEnvio.peso < 1800){
+          } else if (datosEnvio.peso < 1800) {
             price = 3 * 700
-          }else if(datosEnvio.peso < 3500){
+          } else if (datosEnvio.peso < 3500) {
             price = 3 * 1000
-          }else{
+          } else {
             price = 3 * 1500
           }
           return price
         }
       }
-      
+
     }
   }
 
@@ -199,25 +204,27 @@ export default function Calcauladora(props) {
     }
 
     UserService.sendMails(body).then(
-          data => {
-                    //sacarspiner
-                    //vulve a donde estaba antes del logeo 
-          if (data.ok) {
-                        window.location.reload();
-                        window.history.back();
-            }else{
-                        //no pudo logear ya se por clave erronea o usuario
-              console.log(data);
-            }         
-          },
-          error => {
-            //mensaje de error sacael el spiner 
-          console.log('error', error);
+      data => {
+        //sacarspiner
+        //vulve a donde estaba antes del logeo 
+        if (data.ok) {
+          history.push({
+            pathname:  '/'
+        });
+        } else {
+          //no pudo logear ya se por clave erronea o usuario
+          console.log(data);
         }
+      },
+      error => {
+        //mensaje de error sacael el spiner 
+        console.log('error', error);
+      }
     );
   }
+
   useEffect(() => {
-    setUser(props.location.reload);
+    setRelog(props.location.reload);
     if (wayPointsState) {
       if (props.location.wayPoints) {
         localStorage.setItem("wayPointsState", JSON.stringify(wayPointsState));
@@ -230,7 +237,7 @@ export default function Calcauladora(props) {
         });
       });
     }
-  },[]);
+  }, []);
 
   const [open, setOpen] = React.useState(false);
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
@@ -247,212 +254,213 @@ export default function Calcauladora(props) {
     <Grid container direction={matchesSM ? "column-reverse" : "row"}>
       <Grid item xs={matchesSM ? 12 : 6}>
         <Grid
-         item 
-         container
-         direction="row"
-         justify="center"
-         alignItems="center"
+          item
+          container
+          direction="row"
+          justify="center"
+          alignItems="center"
         >
           <h1 className={classes.titulo1}>Detalle de la Cotización</h1>
         </Grid>
-        <Grid 
+        <Grid
           item
           container
           alignItems="center"
           direction="row">
-            
+
         </Grid>
         <List className={classes.root}>
           <ListItem>
-            <ListItemText primary="Origen" secondary={datosEnvio && datosEnvio.origen} style={{ marginTop: matchesSM ? "0em" : "-5px",  marginBottom: matchesSM ? "0em" : "-6px" }} />
+            <ListItemText primary="Origen" secondary={datosEnvio && datosEnvio.origen} style={{ marginTop: matchesSM ? "0em" : "-5px", marginBottom: matchesSM ? "0em" : "-6px" }} />
           </ListItem>
-            <Divider component="li" />
-            <li>
-              <Typography
-                className={classes.dividerFullWidth}
-                color="textSecondary"
-                display="block"
-                
-              >
-            
-              </Typography>
-                  </li>
-              <ListItem className={classes.listaEditada}>
-                <ListItemText primary="Destino" secondary={datosEnvio && datosEnvio.destino} style={{ marginTop: matchesSM ? "0em" : "-5px",  marginBottom: matchesSM ? "0em" : "-6px" }} />
-              </ListItem>
-              <Divider component="li" />
-           <li>
-              <Typography
-                className={classes.dividerInset}
-                color="textSecondary"
-                display="block"
-              
-              >
-                
-              </Typography>
-            </li>
-            <ListItem>
-              <ListItemText primary="Distancia" secondary={distancia && distancia.text}  style={{ marginTop: matchesSM ? "0em" : "-5px",  marginBottom: matchesSM ? "0em" : "-6px" }}/>
-            </ListItem>
-            <Divider component="li"/>
-            <li>
-              <Typography
-                className={classes.dividerInset}
-                color="textSecondary"
-                display="block"
-              
-              >
-          
-                </Typography>
-            </li>
-      <ListItem className={classes.listaEditada}>
-        <ListItemText primary="Tiempo" secondary={tiempo && tiempo.text} style={{ marginTop: matchesSM ? "0em" : "-5px",  marginBottom: matchesSM ? "0em" : "-6px" }} />
-      </ListItem>
-      <Divider component="li" />
-      <li>
-        <Typography
-          className={classes.dividerInset}
-          color="textSecondary"
-          display="block"
-         
-        >
-          
-        </Typography>
-      </li>
-      <ListItem>
-        <ListItemText primary="Pago en" secondary={datosEnvio && datosEnvio.pagoOrigen?'Origen':'destino'} style={{ marginTop: matchesSM ? "0em" : "-5px",  marginBottom: matchesSM ? "0em" : "-6px" }} />
-      </ListItem>
-      <Divider component="li" />
-      <li>
-        <Typography
-          className={classes.dividerInset}
-          color="textSecondary"
-          display="block"
-         
-        >
-          
-        </Typography>
-      </li>
-      <ListItem className={classes.listaEditada}>
-        <ListItemText primary="Cantidad de bultos" secondary={datosEnvio && datosEnvio.cantBultos}  style={{ marginTop: matchesSM ? "0em" : "-5px",  marginBottom: matchesSM ? "0em" : "-6px" }}/>
-      </ListItem>
-      <Divider component="li"/>
-      <li>
-        <Typography
-          className={classes.dividerInset}
-          color="textSecondary"
-          display="block"
-         
-        >
-          
-        </Typography>
-      </li>
-      <ListItem>
-        <ListItemText primary="Peso" secondary={datosEnvio && datosEnvio.peso}  style={{ marginTop: matchesSM ? "0em" : "-5px",  marginBottom: matchesSM ? "0em" : "-6px" }}/>
-      </ListItem>
-      <Divider component="li"/>
-      <li>
-        <Typography
-          className={classes.dividerInset}
-          color="textSecondary"
-          display="block"
-         
-        >
-          
-        </Typography>
-      </li>
-      <ListItem className={classes.listaEditada}>
-        <ListItemText primary="Valor declarado" secondary={datosEnvio && datosEnvio.valorDeclarado} style={{ marginTop: matchesSM ? "0em" : "-5px",  marginBottom: matchesSM ? "0em" : "-6px" }} />
-      </ListItem>
-      <Divider component="li" />
-      <li>
-        <Typography
-          className={classes.dividerInset}
-          color="textSecondary"
-          display="block"
-         
-        >
-          
-        </Typography>
-      </li>
-      <ListItem>
-        <ListItemText primary="Costo Estimado" secondary= {costoEstimado && calcularcostos()} style={{ marginTop: matchesSM ? "0em" : "-5px",  marginBottom: matchesSM ? "0em" : "-6px" }} />
-      </ListItem>
-      <Divider component="li" />
-      <li>
-        <Typography
-          className={classes.dividerInset}
-          color="textSecondary"
-          display="block"
-         
-        >
-          
-        </Typography>
-      </li>
-      
-      
-    </List>
+          <Divider component="li" />
+          <li>
+            <Typography
+              className={classes.dividerFullWidth}
+              color="textSecondary"
+              display="block"
 
-    <Grid 
-        item 
-        container
-        direction={matchesSM ? "column-reverse" : "row"}
-        justify="center"
-        alignItems="center"
-        style={{ marginTop: matchesSM ? "0em" : "-60px",  marginBottom: matchesSM ? "0em" : "-6px" }}
+            >
+
+            </Typography>
+          </li>
+          <ListItem className={classes.listaEditada}>
+            <ListItemText primary="Destino" secondary={datosEnvio && datosEnvio.destino} style={{ marginTop: matchesSM ? "0em" : "-5px", marginBottom: matchesSM ? "0em" : "-6px" }} />
+          </ListItem>
+          <Divider component="li" />
+          <li>
+            <Typography
+              className={classes.dividerInset}
+              color="textSecondary"
+              display="block"
+
+            >
+
+            </Typography>
+          </li>
+          <ListItem>
+            <ListItemText primary="Distancia" secondary={distancia && distancia.text} style={{ marginTop: matchesSM ? "0em" : "-5px", marginBottom: matchesSM ? "0em" : "-6px" }} />
+          </ListItem>
+          <Divider component="li" />
+          <li>
+            <Typography
+              className={classes.dividerInset}
+              color="textSecondary"
+              display="block"
+
+            >
+
+            </Typography>
+          </li>
+          <ListItem className={classes.listaEditada}>
+            <ListItemText primary="Tiempo" secondary={tiempo && tiempo.text} style={{ marginTop: matchesSM ? "0em" : "-5px", marginBottom: matchesSM ? "0em" : "-6px" }} />
+          </ListItem>
+          <Divider component="li" />
+          <li>
+            <Typography
+              className={classes.dividerInset}
+              color="textSecondary"
+              display="block"
+
+            >
+
+            </Typography>
+          </li>
+          <ListItem>
+            <ListItemText primary="Pago en" secondary={datosEnvio && datosEnvio.pagoOrigen ? 'Origen' : 'destino'} style={{ marginTop: matchesSM ? "0em" : "-5px", marginBottom: matchesSM ? "0em" : "-6px" }} />
+          </ListItem>
+          <Divider component="li" />
+          <li>
+            <Typography
+              className={classes.dividerInset}
+              color="textSecondary"
+              display="block"
+
+            >
+
+            </Typography>
+          </li>
+          <ListItem className={classes.listaEditada}>
+            <ListItemText primary="Cantidad de bultos" secondary={datosEnvio && datosEnvio.cantBultos} style={{ marginTop: matchesSM ? "0em" : "-5px", marginBottom: matchesSM ? "0em" : "-6px" }} />
+          </ListItem>
+          <Divider component="li" />
+          <li>
+            <Typography
+              className={classes.dividerInset}
+              color="textSecondary"
+              display="block"
+
+            >
+
+            </Typography>
+          </li>
+          <ListItem>
+            <ListItemText primary="Peso" secondary={datosEnvio && datosEnvio.peso} style={{ marginTop: matchesSM ? "0em" : "-5px", marginBottom: matchesSM ? "0em" : "-6px" }} />
+          </ListItem>
+          <Divider component="li" />
+          <li>
+            <Typography
+              className={classes.dividerInset}
+              color="textSecondary"
+              display="block"
+
+            >
+
+            </Typography>
+          </li>
+          <ListItem className={classes.listaEditada}>
+            <ListItemText primary="Valor declarado" secondary={datosEnvio && datosEnvio.valorDeclarado} style={{ marginTop: matchesSM ? "0em" : "-5px", marginBottom: matchesSM ? "0em" : "-6px" }} />
+          </ListItem>
+          <Divider component="li" />
+          <li>
+            <Typography
+              className={classes.dividerInset}
+              color="textSecondary"
+              display="block"
+
+            >
+
+            </Typography>
+          </li>
+          <ListItem>
+            <ListItemText primary="Costo Estimado" secondary={costoEstimado && calcularcostos()} style={{ marginTop: matchesSM ? "0em" : "-5px", marginBottom: matchesSM ? "0em" : "-6px" }} />
+          </ListItem>
+          <Divider component="li" />
+          <li>
+            <Typography
+              className={classes.dividerInset}
+              color="textSecondary"
+              display="block"
+
+            >
+
+            </Typography>
+          </li>
+
+
+        </List>
+
+        <Grid
+          item
+          container
+          direction={matchesSM ? "column-reverse" : "row"}
+          justify="center"
+          alignItems="center"
+          style={{ marginTop: matchesSM ? "0em" : "-60px", marginBottom: matchesSM ? "0em" : "-6px" }}
         >
           <Button
             component={Link}
             to="/"
-            
+
             variant="outlined"
             className={classes.masInfoButton2}
           >
             MODIFICAR ENVÍO
           </Button>
-          {user?  
-              <Button
+          {user ?
+            <Button
               onClick={handleClickOpen}
-               
-                variant="outlined"
-                className={classes.masInfoButton}
-                 >
-                CONTINUAR
+
+              variant="outlined"
+              className={classes.masInfoButton}
+            >
+              CONTINUAR
               </Button>
-              :
-              <Button
-                component={Link}
-                to={{pathname: `/login`, customroute: "/calculadora" }}
-                variant="outlined"
-                className={classes.masInfoButton}
-                >
-               Logear
+            :
+            <Button
+              component={Link}
+              to={{ pathname: `/login`, customroute: "/calculadora" }}
+              variant="outlined"
+              className={classes.masInfoButton}
+            >
+              Logear
             </Button>
-            
+
           }
-           <Dialog
-        fullScreen={fullScreen}
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="responsive-dialog-title"
-      >
-        <DialogTitle id="responsive-dialog-title">{"Detalle de Cotización"}</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            Nos comunicaremos con vos a tu correo electrónico para coordinar el envío de tu paquete
+          <Dialog
+            fullScreen={fullScreen}
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="responsive-dialog-title"
+          >
+            <DialogTitle id="responsive-dialog-title">{"Detalle de Cotización"}</DialogTitle>
+            <DialogContent>
+              <DialogContentText>
+                Nos comunicaremos con vos a tu correo electrónico para coordinar el envío de tu paquete
           </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button autoFocus onClick={handleClose} color="primary">
-            CANCELAR
+            </DialogContent>
+            <DialogActions>
+              <Button autoFocus onClick={handleClose} color="primary">
+                CANCELAR
           </Button>
-          <Button onClick={() => handlerEnviar()}
- color="primary" autoFocus>
-            CONTINUAR
+              <Button
+                onClick={() => handlerEnviar()}
+                color="primary" autoFocus>
+                CONTINUAR
           </Button>
-        </DialogActions>
-      </Dialog>
-      </Grid>
+            </DialogActions>
+          </Dialog>
+        </Grid>
       </Grid>
       <Grid item xs={matchesSM ? 12 : 6}>
         <MileageMap
@@ -461,7 +469,7 @@ export default function Calcauladora(props) {
           travelMode="DRIVING"
         />
       </Grid>
-      
+
     </Grid>
   );
 }

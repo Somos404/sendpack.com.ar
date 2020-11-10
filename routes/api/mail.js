@@ -102,7 +102,11 @@ router.post('/send',[
 		});
 	  }
 	});	
-	
+
+	return res.status(200).send({
+		msg: 'email enviado',
+		ok:true
+	});
   // grabar en db y retornar msj api es inmediato sin importar si envia o no el mail  
   const intialAddress = {
     street : req.body.datosEnvio.origen,

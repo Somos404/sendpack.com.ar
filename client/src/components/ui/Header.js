@@ -6,7 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Button from '@material-ui/core/Button';
-import {Link} from "react-router-dom";
+import {Link, useHistory, useLocation } from "react-router-dom";
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
@@ -162,6 +162,7 @@ function ElevationScroll(props) {
   }));
 
 export default function Header(props) {
+    let location = useLocation();
     const classes = useStyles();
     const theme = useTheme();
     const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
@@ -233,7 +234,7 @@ export default function Header(props) {
                     default:
                     break;
             }
-        },[user])
+        })
 
         
         
@@ -263,7 +264,7 @@ export default function Header(props) {
                     {!user?  
                         <Button 
                             component={Link}
-                            to="/login" 
+                            to={{pathname: `/login`, customroute: location.pathname }}
                             variant="contained" 
                             color="#D34D4C" 
                             className={classes.button}
@@ -277,7 +278,6 @@ export default function Header(props) {
                             color="#D34D4C" 
                             className={classes.button}
                             onClick={() => {
-                                console.log('saliendo');
                                 AuthService.logout()
                                 window.location.reload();
                             }}
@@ -348,7 +348,7 @@ export default function Header(props) {
                         {!user?  
                         <Button 
                             component={Link}
-                            to="/login" 
+                            to={{pathname: `/login`, customroute: location.pathname }}
                             variant="contained" 
                             color="#D34D4C" 
                             className={classes.buttonR}
@@ -362,7 +362,6 @@ export default function Header(props) {
                             color="#D34D4C" 
                             className={classes.buttonR}
                             onClick={() => {
-                                console.log('saliendo');
                                 AuthService.logout()
                                 window.location.reload();
                             }}

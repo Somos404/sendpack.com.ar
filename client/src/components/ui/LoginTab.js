@@ -79,21 +79,27 @@ export default function LoginTab(props) {
 
                     }else{
                         //no pudo logear ya se por clave erronea o usuario
-                        console.log('data:',data);
                     }
                    
                 },
                 error => {
                     //mensaje de error sacael el spiner 
-                    console.log('error', error);
                 }
             );
         }
 
         const loginHandler=(response)=>{
             AuthService.googleFacebookHandler(response).then(
-                () => {
-                    history.push(props.location.customroute);
+                data => {
+                    if (data.ok) {
+                        history.push({
+                            pathname:  props.location.customroute,
+                            reload: true
+                        });
+
+                    }else{
+                        //no pudo logear ya se por clave erronea o usuario
+                    }
                 },
                 error => {
                     //mensaje de error
