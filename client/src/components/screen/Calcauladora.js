@@ -453,17 +453,10 @@ export default function Calcauladora(props) {
               <Button autoFocus onClick={handleClose} color="primary">
                 CANCELAR
           </Button>
-<<<<<<< HEAD
-          <Button 
-            onClick={() => handlerEnviar()}
-             color="primary" autoFocus>
-            CONTINUAR
-=======
               <Button
                 onClick={() => handlerEnviar()}
                 color="primary" autoFocus>
                 CONTINUAR
->>>>>>> b00efcc926666eaf97e46c28cb25d2f2ba534a72
           </Button>
             </DialogActions>
           </Dialog>

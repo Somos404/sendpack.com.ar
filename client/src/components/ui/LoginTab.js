@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: "3em",
         [theme.breakpoints.down("xs")]: {
             marginTop: "5em",
-            marginLeft: "14em"
+            marginLeft: "2em"
           },
     },
 
@@ -109,7 +109,7 @@ export default function LoginTab(props) {
   
         return (
             
-            <Paper className={classes.padding} justify="center" alignItems="center" style={{ width: matchesSM ? "100%" : '30%' }}>
+            <Paper className={classes.padding} justify="center" alignItems="center" style={{ width: matchesSM ? "80%" : '30%' }}>
                 <div className={classes.margin}>
                     <form onSubmit={handleSubmit}>
                         <Grid container spacing={8} alignItems="flex-end">
@@ -179,24 +179,7 @@ export default function LoginTab(props) {
                             cookiePolicy={'single_host_origin'}
                             />
                     </Grid>
-                    <Grid 
-                        item 
-                        container
-                        justify="center"
-                        alignItems="center"
-                        direction="row"
-                        style={{ marginTop: "2em" }}
-                        >
-                        <FacebookLogin
-                        appId="1033562960426830"
-                        autoLoad={false}
-                        fields="name,email,picture"
-                        textButton="Acceder con Facebook"
-                        icon="fa-facebook"
-                        callback={loginHandler}
-                        cssClass="iconoFacebook"
-                    />
-                    </Grid>
+                    
                     <Grid 
                         item container  
                         justify="center"

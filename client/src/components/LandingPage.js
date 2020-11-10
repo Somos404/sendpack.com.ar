@@ -74,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
     height: 45,
     width: 145,
     marginRight: 40,
-    transitionDuration: ".5s",
+    transitionDuration: "1s",
     transitionProperty: "background,transform",
     transitionTimingFunction: "cubic-bezier(.33,.19,.3,.85)",
     transition: "slidein",
@@ -520,31 +520,7 @@ export default function LandingPage(props) {
                 </Typography>
               </Grid>
             </Grid>
-            <Grid item container className={classes.formLin3}>
-              <Grid item direction="row" style={{ marginLeft: matchesSM ? "21em" : "31em", marginTop: matchesSM ? "0em" : "-1em", fontFamily: "Roboto", fontWeight: 900, color: matchesSM ? "#8EC3C7" : "white", fontSize: matchesSM ? "1.3em" : undefined   }}>
-                <Radio
-                  checked={datosEnvio.envioPaquete === true}
-                  name="envioPaquete"
-                  
-                  inputProps={{ "aria-label": "C" }}
-                  onChange={(event) => setDatosEnvio(
-                    {...datosEnvio,
-                      envioPaquete: true}
-                  )}
-                />
-                Envío de paquete
-                <Radio
-                  checked={datosEnvio.mudanza === false}
-                  name="mudanza"
-                  inputProps={{ "aria-label": "D" }}
-                  onChange={(event) => setDatosEnvio(
-                    {...datosEnvio,
-                      mudanza: false}
-                  )}
-                />
-                Mudanza
-              </Grid>
-            </Grid>
+            
             <Grid item container className={classes.formLin1} >
               <Grid item direction="row" justify="center"
                   alignItems="center"
