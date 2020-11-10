@@ -15,6 +15,12 @@ import Divider from '@material-ui/core/Divider';
 
 import UserService from 'services/UserService';
 
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+
 const styleMap = { width: "100%", height: "60vh" };
 const useStyles = makeStyles((theme) => ({
   botonLeerMas: {
@@ -228,6 +234,17 @@ export default function Calcauladora(props) {
     }
   },[]);
 
+  const [open, setOpen] = React.useState(false);
+  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <Grid container direction={matchesSM ? "column-reverse" : "row"}>
       <Grid item xs={matchesSM ? 12 : 6}>
@@ -397,7 +414,8 @@ export default function Calcauladora(props) {
           </Button>
           {user?  
               <Button
-                onClick={() => handlerEnviar()}
+              onClick={handleClickOpen}
+               
                 variant="outlined"
                 className={classes.masInfoButton}
                  >
@@ -413,8 +431,30 @@ export default function Calcauladora(props) {
                 >
                Logear
             </Button>
+            
           }
-          
+           <Dialog
+        fullScreen={fullScreen}
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="responsive-dialog-title"
+      >
+        <DialogTitle id="responsive-dialog-title">{"Detalle de Cotización"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Nos comunicaremos con vos a tu correo electrónico para coordinar el envío de tu paquete
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button autoFocus onClick={handleClose} color="primary">
+            CANCELAR
+          </Button>
+          <Button onClick={() => handlerEnviar()}
+ color="primary" autoFocus>
+            CONTINUAR
+          </Button>
+        </DialogActions>
+      </Dialog>
       </Grid>
       </Grid>
       <Grid item xs={matchesSM ? 12 : 6}>
