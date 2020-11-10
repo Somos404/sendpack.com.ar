@@ -111,8 +111,6 @@ const labels = [
   ["G", "H"]
 ];
 
-const user = JSON.parse(localStorage.getItem("user"));
-
 export default function Calcauladora(props) {
 
   const classes = useStyles();
@@ -124,6 +122,7 @@ export default function Calcauladora(props) {
   const [costoEstimado, setCostoestimado] = useState(3000);
   const [distancia, setDistancia] = useState();
   const [tiempo, setTiempo] = useState();
+  const [user, setUser] = useState(false);
 
 
 
@@ -186,7 +185,6 @@ export default function Calcauladora(props) {
   }
 
   const handlerEnviar = () => {
-    console.log('===== 0 ====');
     const body = {
       datosEnvio: datosEnvio,
       tiempo: tiempo,
@@ -212,8 +210,8 @@ export default function Calcauladora(props) {
         }
     );
   }
-
   useEffect(() => {
+    setUser(props.location.reload);
     if (wayPointsState) {
       if (props.location.wayPoints) {
         localStorage.setItem("wayPointsState", JSON.stringify(wayPointsState));
@@ -305,7 +303,7 @@ export default function Calcauladora(props) {
         </Typography>
       </li>
       <ListItem>
-        <ListItemText primary="Pago en" secondary={datosEnvio && datosEnvio.pagoOrigen} style={{ marginTop: matchesSM ? "0em" : "-5px",  marginBottom: matchesSM ? "0em" : "-6px" }} />
+        <ListItemText primary="Pago en" secondary={datosEnvio && datosEnvio.pagoOrigen?'Origen':'destino'} style={{ marginTop: matchesSM ? "0em" : "-5px",  marginBottom: matchesSM ? "0em" : "-6px" }} />
       </ListItem>
       <Divider component="li" />
       <li>
@@ -406,10 +404,9 @@ export default function Calcauladora(props) {
               :
               <Button
                 component={Link}
-                  to="/login"
-                    
-                  variant="outlined"
-                  className={classes.masInfoButton}
+                to={{pathname: `/login`, customroute: "/calculadora" }}
+                variant="outlined"
+                className={classes.masInfoButton}
                 >
                Logear
             </Button>

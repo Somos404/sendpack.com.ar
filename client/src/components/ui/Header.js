@@ -170,7 +170,7 @@ export default function Header(props) {
     const [anchorEl, setAnchorEl] = useState(null)
     const [openMenu, setOpenMenu] = useState(false);
 
-    const [user , setUser] = useState(JSON.parse(localStorage.getItem("user")));
+    const [user , setUser] = useState(JSON.parse(localStorage.getItem("user"))?JSON.parse(localStorage.getItem("user")):'');
 
     const handleChange = (e, newValue) => {
         props.setValue(newValue);
@@ -233,7 +233,7 @@ export default function Header(props) {
                     default:
                     break;
             }
-        })
+        },[user])
 
         
         

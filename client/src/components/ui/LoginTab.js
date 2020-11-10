@@ -7,6 +7,7 @@ import ReactDOM from 'react-dom'
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import axios from 'axios';
 import AuthService from "services/AuthService";
+import { useHistory } from "react-router-dom";
 
 import GoogleLogin from 'react-google-login';
 import FacebookLogin from 'react-facebook-login';
@@ -49,6 +50,8 @@ const EmailVer = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@
 
 export default function LoginTab(props) {
 
+        const history = useHistory();
+
         const [email, setEmail] = useState("");
         const [password, setPassword] = useState("");
 
@@ -68,14 +71,15 @@ export default function LoginTab(props) {
             e.preventDefault();
             AuthService.login(email, password).then(
                 data => {
-                    //sacarspiner
-                    //vulve a donde estaba antes del logeo 
                     if (data.ok) {
-                        window.location.reload();
-                        window.history.back();
+                        history.push({
+                            pathname:  props.location.customroute,
+                            reload: true
+                        });
+
                     }else{
                         //no pudo logear ya se por clave erronea o usuario
-                        console.log(data);
+                        console.log('data:',data);
                     }
                    
                 },
@@ -89,8 +93,7 @@ export default function LoginTab(props) {
         const loginHandler=(response)=>{
             AuthService.googleFacebookHandler(response).then(
                 () => {
-                    //vulve a donde estaba antes del logeo
-                    window.history.back();
+                    history.push(props.location.customroute);
                 },
                 error => {
                     //mensaje de error
