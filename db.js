@@ -21,3 +21,6 @@ sequelize.sync({ force: false })
 module.exports = {
     User
 }
+
+// npx sequelize-cli db:migrate --config "config/config.json" --env "development"
+// npx sequelize-cli db:seed:all --config "config/config.json" --env "development"
