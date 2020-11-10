@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState , useEffect } from "react";
 import { Link } from "react-router-dom";
 import Lottie from "react-lottie";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
@@ -349,6 +349,15 @@ export default function LandingPage(props) {
     setSelectedValue(event.target.value);
   };
 
+  const [user, setUser] = useState(false);
+
+  if (user) {
+    window.location.reload();
+  }
+
+  useEffect(() => {
+    setUser(props.location.reload);
+  },[]);
  
 
   const[datosEnvio , setDatosEnvio] = useState({
