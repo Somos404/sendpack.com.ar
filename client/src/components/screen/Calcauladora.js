@@ -20,6 +20,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import TextField from "@material-ui/core/TextField";
 import { useHistory } from "react-router-dom";
 
 const styleMap = { width: "100%", height: "60vh" };
@@ -130,6 +131,7 @@ export default function Calcauladora(props) {
   const [costoEstimado, setCostoestimado] = useState(3000);
   const [distancia, setDistancia] = useState();
   const [tiempo, setTiempo] = useState();
+  const [tel, setTel] = useState(false);
   const [relog, setRelog] = useState(false);
   const user = JSON.parse(localStorage.getItem("user") ? localStorage.getItem("user") : false);
 
@@ -200,7 +202,8 @@ export default function Calcauladora(props) {
       datosEnvio: datosEnvio,
       tiempo: tiempo,
       distancia: distancia,
-      costoEstimado: costoEstimado
+      costoEstimado: costoEstimado,
+      tel: tel
     }
 
     UserService.sendMails(body).then(
@@ -209,8 +212,8 @@ export default function Calcauladora(props) {
         //vulve a donde estaba antes del logeo 
         if (data.ok) {
           history.push({
-            pathname:  '/'
-        });
+            pathname: '/'
+          });
         } else {
           //no pudo logear ya se por clave erronea o usuario
           console.log(data);
@@ -446,8 +449,23 @@ export default function Calcauladora(props) {
             <DialogTitle id="responsive-dialog-title">{"Detalle de Cotización"}</DialogTitle>
             <DialogContent>
               <DialogContentText>
-                Nos comunicaremos con vos a tu correo electrónico para coordinar el envío de tu paquete
-          </DialogContentText>
+                Nos comunicaremos con vos a tu correo electrónico/teléfono para coordinar el envío de tu paquete
+              </DialogContentText>
+              {tel &&
+                <DialogContentText>
+                    Si no es tu numero cámbialo al correcto para que podamos comunicarnos. 
+                </DialogContentText>
+              }
+              <TextField
+                autoFocus
+                margin="dense"
+                id="name"
+                label="teléfono"
+                value={tel ? tel : ''}
+                onChange={(event) => setTel(event.target.value)}
+                type="email"
+                fullWidth
+              />
             </DialogContent>
             <DialogActions>
               <Button autoFocus onClick={handleClose} color="primary">

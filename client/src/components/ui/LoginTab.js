@@ -89,6 +89,7 @@ export default function LoginTab(props) {
         }
 
         const loginHandler=(response)=>{
+
             AuthService.googleFacebookHandler(response).then(
                 data => {
                     if (data.ok) {
