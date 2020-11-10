@@ -4,7 +4,7 @@ const { check, validationResult } = require('express-validator')
 const nodemailer = require("nodemailer");
 const creds = require('../../config/config');
 const {checkToken} = require('../middlewares') 
-const { initial_address } = require('../../db')
+const { InitialAddress } = require('../../db')
 
 
 router.use(function(req, res, next) {
@@ -109,7 +109,7 @@ router.post('/send',[
     code_postal: req.body.datosEnvio.cpOrigen
   }
 
-  const initial_addr = initial_address.create(intialAddress)
+  const initial_addr = InitialAddress.create(intialAddress)
 
 })
 
