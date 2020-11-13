@@ -17,7 +17,13 @@ module.exports = (sequelize, DataTypes) => {
     km: DataTypes.INTEGER,
     price: DataTypes.INTEGER,
     weight: DataTypes.INTEGER,
-    size: DataTypes.INTEGER
+    size: DataTypes.INTEGER,
+    
+    time: DataTypes.STRING,
+    pago_en: DataTypes.BOOLEAN,
+    cant_bultos: DataTypes.INTEGER,
+    valor_declarado: DataTypes.INTEGER,
+    costo_estimado: DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'Packages',

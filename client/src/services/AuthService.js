@@ -1,6 +1,11 @@
 import axios from "axios"
 import API_URL from "../constant/apiUrl"
 
+const headers = {
+  'Content-Type': 'application/json;charset=UTF-8',
+  "Access-Control-Allow-Origin": "*",
+}
+
 class AuthService {
 
   login(email, password) {
@@ -9,9 +14,9 @@ class AuthService {
         'email': email,
         'password': password
       }
-      return axios.post(API_URL + 'users/login',
-        body
-      ).then(response => {
+      return axios.post(API_URL + 'users/login', body, {
+          headers: headers
+      }).then(response => {
         if (response.data.ok) {
           localStorage.removeItem("user");
           localStorage.removeItem("userfecha");
@@ -36,9 +41,9 @@ class AuthService {
         'password': respuesta.profileObj.googleId
       }
 
-      return axios.post(API_URL + 'users/logReg',
-        body
-      ).then(response => {
+      return axios.post(API_URL + 'users/logReg', body, {
+          headers: headers
+      }).then(response => {
 
         if (response.data.ok) {
           localStorage.removeItem("user");
@@ -69,7 +74,9 @@ class AuthService {
         'name': input.name,
         'last_name': input.last_name,
         'password': input.password
-      }).then(response => {
+      }, {
+        headers: headers
+     }).then(response => {
 
         if (response.data.ok) {
           localStorage.removeItem("user");

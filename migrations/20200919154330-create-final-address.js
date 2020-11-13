@@ -20,6 +20,9 @@ module.exports = {
       department: {
         type: Sequelize.STRING
       },
+      code_postal: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
