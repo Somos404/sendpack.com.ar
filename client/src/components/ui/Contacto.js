@@ -92,8 +92,10 @@ export default function Contacto() {
                     <Grid item>
                         <img src={phoneIcon} alt="telefono" style={{ marginRight: "0.5em" }} />
                     </Grid>
-                    <Grid item>
-                        <Typography variant="body1" style={{color: "#8EC3C7", textDecoration: "none"}}  component={Link} to="/"> 379 4007273</Typography>
+                    <Grid item
+                    component={Link} 
+                    to="https://wa.link/i0tbjs"
+                    >379 4007273 
                     </Grid>    
                 </Grid>
                 <Grid item container style={{ marginBottom: "1em" }}>

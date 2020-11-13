@@ -53,7 +53,7 @@ export default function Servicios(props) {
     return (
       
 
-        <Grid container direction="column">
+        <Grid container direction="column" style={{ zIndex: 1}}>
 
     
             <Grid item> {" "} {/*---Contenedor de Servicio---*/}

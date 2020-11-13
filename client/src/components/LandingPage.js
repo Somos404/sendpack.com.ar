@@ -26,7 +26,7 @@ import { v4 as uuid } from "uuid";
 import { ReactComponent as Cotizar } from '../assets/recursos/cotizar.svg';
 import './animacion.css'
 import Footer from './ui/Footer';
-
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 const useStyles = makeStyles((theme) => ({
   tituloHeader: {
@@ -343,7 +343,6 @@ export default function LandingPage(props) {
     setSelectedValue(event.target.value);
   };
 
- 
 
   const[datosEnvio , setDatosEnvio] = useState({
     origen: "",
@@ -464,11 +463,16 @@ export default function LandingPage(props) {
     }
   };
 
- 
+  async function init() {
+    this.set('isLoading', false);
+  }
+  
+  
   return (
     <Grid container direction="column" className={classes.mainContainer}>
-      
-      <Grid item>
+           
+           
+       <Grid item>
         {" "}
         {/*---Contenedor del header---*/}
         <Grid
@@ -688,9 +692,11 @@ export default function LandingPage(props) {
                   <Cotizar className={classes.imagenCotizar}/>
 
                 </Grid>
+                
               </Grid>
             </Grid>
           </Grid>
+          
         </Grid>
       </Grid>
       <Grid item>

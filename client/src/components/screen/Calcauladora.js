@@ -12,7 +12,11 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
-
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 import UserService from 'services/UserService';
 
 const styleMap = { width: "100%", height: "60vh" };
@@ -112,6 +116,7 @@ const labels = [
 ];
 
 const user = JSON.parse(localStorage.getItem("user"));
+
 
 export default function Calcauladora(props) {
 
@@ -227,6 +232,17 @@ export default function Calcauladora(props) {
       });
     }
   },[]);
+
+  const [open, setOpen] = React.useState(false);
+const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+
+const handleClickOpen = () => {
+  setOpen(true);
+};
+
+const handleClose = () => {
+  setOpen(false);
+};
 
   return (
     <Grid container direction={matchesSM ? "column-reverse" : "row"}>
@@ -397,6 +413,7 @@ export default function Calcauladora(props) {
           </Button>
           {user?  
               <Button
+                onClick={handleClickOpen}
                 onClick={() => handlerEnviar()}
                 variant="outlined"
                 className={classes.masInfoButton}
@@ -414,7 +431,28 @@ export default function Calcauladora(props) {
                Logear
             </Button>
           }
-          
+          <Dialog
+        fullScreen={fullScreen}
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="responsive-dialog-title"
+      >
+        <DialogTitle id="responsive-dialog-title">{"Use Google's location service?"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Let Google help apps determine location. This means sending anonymous location data to
+            Google, even when no apps are running.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button autoFocus onClick={handleClose} color="primary">
+            Disagree
+          </Button>
+          <Button onClick={() => handlerEnviar()} color="primary" autoFocus>
+            Agree
+          </Button>
+        </DialogActions>
+      </Dialog>
       </Grid>
       </Grid>
       <Grid item xs={matchesSM ? 12 : 6}>

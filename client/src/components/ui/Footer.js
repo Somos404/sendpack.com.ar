@@ -6,6 +6,7 @@ import Grid from '@material-ui/core/Grid'
 import Hidden from '@material-ui/core/Hidden';
 import facebook from '../../assets/facebook.svg';
 import instagram from '../../assets/instagram.svg';
+import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles(theme => ({
     footer: {
@@ -177,8 +178,11 @@ export default function Footer(props) {
                                 </Grid>
                                 <Grid 
                                     item 
-                                    className={classes.link}>
-                                    boton de whats                        
+                                    className={classes.link}
+                                    component={Link} to="https://wa.link/i0tbjs"
+                                    
+                                    > 379 4007273
+                                                     
                                 </Grid>
                             </Grid>
                         </Grid>
