@@ -17,7 +17,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import logo from '../../assets/Logo1.svg';
+import logo from '../../assets/recursos/Logo1.png';
 
 import AuthService from "services/AuthService";
 
