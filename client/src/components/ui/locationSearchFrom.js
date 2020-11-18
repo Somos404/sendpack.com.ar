@@ -20,9 +20,11 @@ class locationSearchFrom extends React.Component {
       .then((latLng) => console.log("Success", latLng))
       .catch((error) => console.error("Error", error));
   };
+  
 
   render() {
     const { wayPoints } = this.props;
+   
     return (
       <>
         {wayPoints &&
@@ -35,7 +37,10 @@ class locationSearchFrom extends React.Component {
               onSelect={(address) =>
                 this.props.handleFromSelect(address, point.id)
               }
+            
+              
             >
+              
               {({
                 
                 getInputProps,
@@ -53,6 +58,7 @@ class locationSearchFrom extends React.Component {
                      borderRight: "none",
                      marginTop: "3em",
                      background: "none",
+                     
                      fontSize: "1em"
                     }}
                     {...getInputProps({

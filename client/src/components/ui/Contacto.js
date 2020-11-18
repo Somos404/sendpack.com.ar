@@ -95,6 +95,7 @@ export default function Contacto() {
                     <Grid item
                     component={Link} 
                     to="https://wa.link/i0tbjs"
+                    style={{ textDecoration: "none" }}
                     >379 4007273 
                     </Grid>    
                 </Grid>

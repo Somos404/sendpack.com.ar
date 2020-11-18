@@ -26,13 +26,9 @@ import { v4 as uuid } from "uuid";
 import { ReactComponent as Cotizar } from '../assets/recursos/cotizar.svg';
 import './animacion.css'
 import Footer from './ui/Footer';
-<<<<<<< HEAD
-import LinearProgress from '@material-ui/core/LinearProgress';
-=======
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
->>>>>>> 5be90febbb0a0d5db6d65dfb9a42f64363ff2937
 
 const useStyles = makeStyles((theme) => ({
   tituloHeader: {
@@ -123,7 +119,9 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "Roboto",
     fontWeight: "bold",
     fontSize: "0.7rem",
-    transitionDuration: ".5s",
+    transitionDuration: "3s",
+    transitionProperty: "backgroundColor",
+
     height: 45,
     "&:hover": {
       backgroundColor: "#D34D4C",
@@ -338,7 +336,12 @@ const useStyles = makeStyles((theme) => ({
     zIndex: theme.zIndex.drawer + 1,
     color: '#fff',
   },
-  
+  Preg3: {
+    marginTop: "-15em",
+    [theme.breakpoints.down("sm")]: {
+      marginTop: "2em",
+    },
+  }
 }));
 
 
@@ -353,8 +356,6 @@ export default function LandingPage(props) {
     setSelectedValue(event.target.value);
   };
 
-<<<<<<< HEAD
-=======
   const [user, setUser] = useState(false);
 
   if (user) {
@@ -365,7 +366,6 @@ export default function LandingPage(props) {
     setUser(props.location.reload);
   },[]);
  
->>>>>>> 5be90febbb0a0d5db6d65dfb9a42f64363ff2937
 
   const[datosEnvio , setDatosEnvio] = useState({
     origen: "",
@@ -486,18 +486,6 @@ export default function LandingPage(props) {
     }
   };
 
-<<<<<<< HEAD
-  async function init() {
-    this.set('isLoading', false);
-  }
-  
-  
-  return (
-    <Grid container direction="column" className={classes.mainContainer}>
-           
-           
-       <Grid item>
-=======
   const [open, setOpen] = React.useState(false);
   const handleClose = () => {
     setOpen(false);
@@ -506,6 +494,8 @@ export default function LandingPage(props) {
     setOpen(!open);
   };
 
+    
+
   return (
     <Grid container direction="column" className={classes.mainContainer}>
           <Backdrop className={classes.backdrop} open={open} onClick={handleClose}>
@@ -513,7 +503,6 @@ export default function LandingPage(props) {
       </Backdrop>
 
       <Grid item>
->>>>>>> 5be90febbb0a0d5db6d65dfb9a42f64363ff2937
         {" "}
         {/*---Contenedor del header---*/}
         <Grid
@@ -691,6 +680,7 @@ export default function LandingPage(props) {
                       component={Link}
                       to="/contacto"
                       variant="outlined"
+                      id="color"
                       className={classes.masInfoButton}
                     >
                       MÁS INFORMACIÓN
@@ -871,14 +861,15 @@ export default function LandingPage(props) {
             <img 
               className={classes.divisor} 
               alt="Divisor" src={divisor} 
-              style={{marginTop: matchesSM ? "2em" : "2em", marginLeft: matchesSM ? "10.8em" : "41em" }} />
+              style={{marginTop: matchesSM ? "2em" : "2em", marginLeft: matchesSM ? "10.8em" : "37em" }} />
           </Grid>
         </Grid>
         <Grid
           container
           alignItems="center"
           justify="center"
-          style={{ height: "60em", marginTop: matchesSM ? "2em" : "-14em", flexWrap: matchesSM ? "wrap" : undefined }}
+          className={classes.contenedorPreg}
+          style={{ height: "60em", marginTop: matchesSM ? "2em" : "-6em", flexWrap: matchesSM ? "wrap" : undefined }}
         >
           <Grid item className={[classes.preguntasCard, classes.gridItem]}>
             <Grid container direction="column" spacing={2}>
@@ -935,7 +926,7 @@ export default function LandingPage(props) {
             </Grid>
           </Grid>
 
-          <Grid item className={[classes.preguntasCard, classes.gridItem]}>
+          <Grid item className={[classes.preguntasCard, classes.gridItem, classes.Preg3]}>
             <Grid container direction="column" spacing={2}>
               <Grid item className={classes.contenedorPregResp}>
                 <Typography
@@ -965,7 +956,7 @@ export default function LandingPage(props) {
             container 
             alignItems="center" 
             justify="center"
-            style={{marginTop: matchesSM ? "5em" : "-8em", marginBottom: matchesSM ? "1em" : "2em"}}
+            style={{marginTop: matchesSM ? "5em" : "0em", marginBottom: matchesSM ? "1em" : "0em"}}
             >
             <Button
               variant="outlined"
