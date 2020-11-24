@@ -30,6 +30,7 @@ import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 
+
 const useStyles = makeStyles((theme) => ({
   tituloHeader: {
     fontSize: "2.3em",
@@ -108,6 +109,27 @@ const useStyles = makeStyles((theme) => ({
   selector: {
     animation: "$fadeIn .2s ease-in-out"
   },
+
+  boton2: {
+    backgroundColor: "#D34D4C",
+    color: "white",
+    height: 40,
+    width: 150,
+    marginTop: "1em",
+    fontSize: "0.8rem",
+    transitionDuration: "1s",
+    transitionProperty: "background,transform",
+    transitionTimingFunction: "cubic-bezier(.33,.19,.3,.85)",
+    transition: "slidein",
+    "&:hover": {
+      backgroundColor: "#8EC3C7",
+      border: "none",
+      opacity: 1,
+      transform: "rotate(-360deg)",
+    },
+   
+  },
+  
   buttonContainer: {
     marginTop: "1em",
   },
@@ -326,11 +348,16 @@ const useStyles = makeStyles((theme) => ({
  
   CodigoPostal1: {
     marginLeft: "15em",
-    marginTop: "-3.05em"
+    marginTop: "-3.05em",
+    color: "white"
+  },
+  codigoPostalLabel: {
+    color: "white"
   },
   codigoPostal2: {
     marginLeft: "15em",
-    marginTop: "-3.01em"
+    marginTop: "-3.01em",
+    color: "white"
   },
   backdrop: {
     zIndex: theme.zIndex.drawer + 1,
@@ -557,6 +584,7 @@ export default function LandingPage(props) {
                 className={classes.CodigoPostal1}
                   label="CP"
                   id="codigoPostal"
+              
                   value={datosEnvio.cpOrigen}
                   onChange={(event) => setDatosEnvio(
                     {...datosEnvio,
@@ -581,6 +609,7 @@ export default function LandingPage(props) {
                 className={classes.codigoPostal2}
                   label="CP"
                   id="codigoPostal2"
+                  style={{color: "white"}}
                   value={datosEnvio.cpDestino}
                   onChange={(event) => setDatosEnvio(
                     {...datosEnvio,
@@ -625,6 +654,7 @@ export default function LandingPage(props) {
                 <TextField
                   label="Cantidad de bultos"
                   id="cantBultos"
+                  style={{color: "white"}}
                   value={datosEnvio.cantBultos}
                   onChange={(event) => setDatosEnvio(
                     {...datosEnvio,
@@ -634,6 +664,7 @@ export default function LandingPage(props) {
                 <TextField
                   label="Kg"
                   id="peso"
+                  style={{color: "#ffffff"}}
                   value={datosEnvio.peso}
                   onChange={(event) => setDatosEnvio(
                     {...datosEnvio,
@@ -643,6 +674,7 @@ export default function LandingPage(props) {
                 <TextField
                   label="Valor Declarado"
                   id="valorDeclarado"
+                  style={{color: "white"}}
                   value={datosEnvio.valorDeclarado}
                   onChange={(event) => setDatosEnvio(
                     {...datosEnvio,
@@ -846,7 +878,52 @@ export default function LandingPage(props) {
           </Grid>
         </Grid>
       </Grid>
+      <Grid container>
+        <Grid item container
+          direction="column" 
+          style={{
+            backgroundColor: "#71c4c8",
+             height: "13em", 
+             width: "100%"}}
+        >
+          <Grid item 
+            direction="row"
+            style={{marginTop: "2em"}}
+          >  
+          <Typography varient="h1" align="center" justify="center" 
+            style={{color: "#d34d4d", fontSize:"1.5em", fontWeight: 700}}
+          >
+              Sumate a nuestro Equipo de Trabajo
+          </Typography>
+          </Grid>
+          <Grid item direction="row">  
+            <Typography varient="body1" align="center" justify="center"
+              style={{color: "white"}}
+            >
+                ¡Mandanos tus datos y nos cumunicamos con vos!
+            </Typography>
+            </Grid>
+            <Grid item 
+                direction="row" 
+               align="center" 
+               justify="center"
+               style={{marginTop: "1em"}}
+            >
+                    <Button
+                      component={Link}
+                      to="/contacto"
+                      className={classes.boton2}
+                      id="botonCotizar"
+                      variant="contained"
+                     
 
+                    >
+                      QUIERO SUMARME
+                    </Button>
+                 
+                  </Grid>
+        </Grid>
+      </Grid>
       {/*---Contenedor de Preguntas Frecuentes---*/}
       <Grid item>
         <Grid item>
