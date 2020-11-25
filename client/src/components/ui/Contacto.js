@@ -79,6 +79,34 @@ export default function Contacto() {
     const [telefono, setTelefono] = useState('')
     const [mensaje, setMensaje] = useState('')
 
+    const handlerEnviar = () => {
+        const body = {
+            nombre: nombre,
+            email: email,
+            telefono: telefono,
+            mensaje: mensaje
+        }
+    
+        UserService.sendContactMails(body).then(
+          data => {
+            //sacarspiner
+            //vulve a donde estaba antes del logeo 
+            if (data.ok) {
+              history.push({
+                pathname: '/'
+              });
+            } else {
+              //no pudo logear ya se por clave erronea o usuario
+              console.log(data);
+            }
+          },
+          error => {
+            //mensaje de error sacael el spiner 
+            console.log('error', error);
+          }
+        );
+      }
+
     return (
         <Grid container direction="row">
             <Grid item container direction="column"  justify="center" alignItems="center" style={{ marginLeft: matchesSM ? "4em" : "7em", maxHeight: matchesSM ? "40em" : undefined }} lg={3}> 
@@ -130,8 +158,7 @@ export default function Contacto() {
                 </Grid>
                 <Grid item container style={{ marginTop: "1.5em", marginBottom: "1em", marginLeft: matchesSM ? "3.5.5em" : "1em" }}>
                 <Button
-                      component={Link}
-                      to="/"
+                      onClick={() => handlerEnviar()}
                       className={classes.botonEnviar}
                       variant="contained"
                     >

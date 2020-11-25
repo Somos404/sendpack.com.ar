@@ -28,6 +28,89 @@ const smtpTransport = nodemailer.createTransport({
 	}
 });
 
+//contact mail  
+router.post('/contact',[
+	checkToken
+], async (req, res) => {
+	
+	
+	let mailOptionSendpack = {
+	  from: 'sendpack@sendpack.com.ar',
+	  to: 'cotizaciones.sendpack@gmail.com',
+	  subject: 'Sendpack Cotización',
+	  html: `
+            <table style="max-width: 800px; padding: 10px; margin:0 auto; border-collapse: collapse;">
+				<tr>
+					<td style="background-color: #ecf0f1">
+						<div style="color: #34495e; margin: 4% 10% 2%; text-align: justify;font-family: sans-serif">
+							<h2 style="color: #e67e22; margin: 0 0 7px">Hola!</h2>
+							<p style="margin: 2px; font-size: 15px">
+								El usuario  ${req.body.nombre} consulta en el formulario de contactos!
+							</p>
+							<p></p>
+							<div style="width: 100%;margin:20px 0; display: inline-block;text-align: center">
+								<h2 style="color: #e67e22; margin: 0 0 7px">Datos de contacto</h2>
+								<ul>
+									<li>Email: ${req.body.email}</li>
+									<li>tel: ${req.body.telefono}</li>
+									<li style="margin-top: 1em;"><a style="text-decoration: none; border-radius: 5px; padding: 11px 23px; color: white; background-color: #3498db" href="https://web.whatsapp.com/send?phone=+549${req.body.tel}">LINK WHATSAPP WEB</a></li>
+								</ul>
+							</div>
+							<p>Detalle del envío</p>
+							<ul>
+								<li>Origen: ${req.body.mensaje}</li>
+							</ul>
+							<div style="width: 100%; text-align: center">
+								<a style="text-decoration: none; border-radius: 5px; padding: 11px 23px; color: white; background-color: #3498db" href="https://sendpack.com.ar">Ir a la página</a>	
+							</div>
+							<p style="color: #b3b3b3; font-size: 12px; text-align: center;margin: 30px 0 0">sendpack.com.ar </p>
+						</div>
+					</td>
+				</tr>
+			</table>
+          `
+	};
+
+	smtpTransport.sendMail(mailOptionSendpack, function (err) {
+	  if (err) {
+		res.status(200).send({
+			token: 'fallo al enviar email',
+			ok:false
+		});
+	  } else {
+		//grabar en db los datos del mail cuando envia el mail aunque puede tardar no se ejecuata  hasta que envia el mail puede pasar uno minutos para eso....
+		res.status(200).send({
+			token: 'email enviado',
+			ok:false
+		});
+	  }
+	});	
+	
+	smtpTransport.sendMail(mailOptions, function (err) {
+	  if (err) {
+		res.status(200).send({
+			token: 'fallo al enviar email',
+			ok:false
+		});
+	  } else {
+		//grabar en db los datos del mail cuando envia el mail aunque puede tardar no se ejecuata  hasta que envia el mail puede pasar uno minutos para eso....
+		res.status(200).send({
+			token: 'email enviado',
+			ok:false
+		});
+	  }
+	});	
+	
+	res.status(200).send({
+			token: 'fallo al enviar email',
+			ok:true
+	});
+	
+ 
+
+})
+
+
 //enviar mail  
 router.post('/send',[
 	checkToken
@@ -89,7 +172,7 @@ router.post('/send',[
 	
 	let mailOptionSendpack = {
 	  from: 'sendpack@sendpack.com.ar',
-	  to: user.email,
+	  to: 'cotizaciones.sendpack@gmail.com',
 	  subject: 'Sendpack Cotización',
 	  html: `
             <table style="max-width: 800px; padding: 10px; margin:0 auto; border-collapse: collapse;">
