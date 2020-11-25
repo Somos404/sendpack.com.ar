@@ -9,6 +9,8 @@ import TextField from '@material-ui/core/TextField';
 import backgroundContacto from "../../assets/backgroundContacto.svg";
 import phoneIcon from "../../assets/phone.svg";
 import emailIcon from "../../assets/email.svg";
+import UserService from 'services/UserService';
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
     backgroundContacto: {
@@ -70,6 +72,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function Contacto() {
+    const history = useHistory();
     const classes = useStyles()
     const theme = useTheme()
     const matchesSM = useMediaQuery(theme.breakpoints.down("sm"))
@@ -163,7 +166,7 @@ export default function Contacto() {
                       variant="contained"
                     >
                      ENVIAR
-                    </Button>
+                </Button>
                 </Grid>  
                     </Grid>    
                 </Grid>     
