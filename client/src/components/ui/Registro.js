@@ -4,10 +4,12 @@ import { Paper, withStyles, Grid, TextField, Button, FormControlLabel, Checkbox 
 import { Face, Fingerprint } from '@material-ui/icons';
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import AuthService from "services/AuthService";
+import { useHistory } from "react-router-dom";
 
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import data from "animations/documentsAnimation/data";
+
 const useStyles = makeStyles((theme) => ({
     margin: {
         margin: theme.spacing.unit * 2,
@@ -41,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
 const EmailVer = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 export default function Registro(props) {
-    
+    const history = useHistory();
         const classes = useStyles();
         
         const theme = useTheme();
@@ -81,7 +83,10 @@ export default function Registro(props) {
                     //vulve a donde estaba antes del logeo
                     console.log(data);
                     if(data.ok){
-                        window.history.back();
+                        history.push({
+                            pathname: '/',
+                            reload: true
+                        });
                     }
                 },
                 error => {
