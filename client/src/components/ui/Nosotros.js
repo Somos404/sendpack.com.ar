@@ -8,7 +8,7 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import backgroundContacto from "../../assets/backgroundContacto.svg";
 import phoneIcon from "../../assets/phone.svg";
-import headerBackground from '../../assets/portadaNosotros.jpg';
+import headerBackground from '../../assets/van_def.jpg';
 
 const useStyles = makeStyles(theme => ({
 

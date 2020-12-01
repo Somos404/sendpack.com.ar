@@ -88,12 +88,12 @@ export default function Servicios(props) {
             </Typography>
             <Button
               component={Link}
-              to="/"
+              to="/contacto"
               variant="outlined"
               style={{marginTop: matchesSM ? "2em" : "2em"}}
               className={classes.botonLeerMas}
             >
-              <span style={{ marginRight: 10 }}>Leer más</span>
+              <span style={{ marginRight: 10 }}>MÀS INFO</span>
             </Button>
           </Grid>
           <Grid item>
@@ -133,12 +133,12 @@ export default function Servicios(props) {
             </Typography>---*/}
             <Button
               component={Link}
-              to="/"
+              to="/contacto"
               variant="outlined"
               className={classes.botonLeerMas}
               style={{marginTop: matchesSM ? "2em" : "2em"}}
             >
-              <span style={{ marginRight: 10 }}>Leer más</span>
+              <span style={{ marginRight: 10 }}>MÀS INFO</span>
             </Button>
           </Grid>
           <Grid item style={{ marginRight: matchesSM ? 0 : "5em" }}>
@@ -179,12 +179,12 @@ export default function Servicios(props) {
             </Typography>
             <Button
               component={Link}
-              to="/"
+              to="/contacto"
               variant="outlined"
               className={classes.botonLeerMas}
               style={{marginTop: matchesSM ? "2em" : "2em"}}
             >
-              <span style={{ marginRight: 10 }}>Leer más</span>
+              <span style={{ marginRight: 10 }}>MÀS INFO</span>
             </Button>
           </Grid>
           <Grid item>

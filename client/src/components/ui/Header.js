@@ -40,9 +40,10 @@ function ElevationScroll(props) {
       toolbarMargin: {
           ...theme.mixins.toolbar,
           marginBotton: "5em",
+          overflow: "hidden",
           backgroundColor: "#71c4c8",
           [theme.breakpoints.down("md")]: {
-            
+            width: "auto",
         },
         [theme.breakpoints.down("xs")]: {
             marginBotton: "3em",
@@ -68,7 +69,8 @@ function ElevationScroll(props) {
           }
       },
       tabContainer: {
-          marginLeft: 'auto'
+          marginLeft: 'auto',
+          
       },
       tab: {
           ...theme.typography.tab,
@@ -131,6 +133,9 @@ function ElevationScroll(props) {
           "&:hover": {
                 backgroundColor: "transparent"
           },
+          [theme.breakpoints.down("md")]: {
+            marginLeft: "17em"
+        },
           [theme.breakpoints.down("xs")]: {
             marginLeft: "3em"
         }

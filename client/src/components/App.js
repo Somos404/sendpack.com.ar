@@ -1,4 +1,6 @@
 import React, {useState} from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import { ThemeProvider } from '@material-ui/styles';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import theme from './ui/Theme';
@@ -12,6 +14,8 @@ import CalculadoraMudanza from './ui/CalculadoraMudanza';
 import LoginTab from './ui/LoginTab';
 import Registro from './ui/Registro';
 import Nosotros from './ui/Nosotros';
+import Loader from './Loader';
+
 function App() {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [value, setValue] = useState(0);
@@ -21,6 +25,7 @@ function App() {
     <ThemeProvider theme={theme}>
       
       <BrowserRouter>
+      <Loader />
         <Header 
           value={value} 
           setValue={setValue} 

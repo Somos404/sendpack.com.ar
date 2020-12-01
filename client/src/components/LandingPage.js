@@ -35,8 +35,14 @@ const useStyles = makeStyles((theme) => ({
   tituloHeader: {
     fontSize: "2.3em",
     fontWeight: "900",
+    marginLeft: "11em",
+    [theme.breakpoints.down("md")]: {
+      marginLeft: "9em",
+      width: "95%",
+  },
     [theme.breakpoints.down("xs")]: {
       fontSize: "1.7em",
+      marginLeft: "16em",
     },
   },
   backgroundCel: {
@@ -46,12 +52,16 @@ const useStyles = makeStyles((theme) => ({
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
     height: "32em",
-    width: "42em",
-    marginTop: "-11em",
+    
+    marginTop: "-28em",
     [theme.breakpoints.down("xs")]: {
       display: "none",
       height: 0,
     },
+    [theme.breakpoints.down("md")]: {
+      display: "none",
+      height: 0,
+  },
   },
   imagenCotizar: {
     position: "absolute",
@@ -61,7 +71,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundRepeat: "no-repeat",
     height: "24em",
     width: "22em",
-   marginLeft: "10em",
+   marginLeft: "61em",
     [theme.breakpoints.down("xs")]: {
       display: "none",
     },
@@ -189,8 +199,14 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   heroTextContainer: {
-    minWidth: "50.5em",
+    minWidth: "100%",
     marginLeft: "1em",
+    [theme.breakpoints.down("md")]: {
+      marginLeft: "-13.5em",
+      minWidth: "81%",
+      
+
+    },
     [theme.breakpoints.down("xs")]: {
       
     },
@@ -232,7 +248,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   botonLeerMasPreguntas: {
-    marginTop: "-22em",
+    marginTop: "-29%",
     borderColor: "#D34D4C",
     color: "#D34D4C",
     borderWidth: 2,
@@ -256,6 +272,7 @@ const useStyles = makeStyles((theme) => ({
     border: "3px solid #C76869",
     borderRadius: 20,
     height: "15rem",
+    width: "30%",
     "&:hover": {
       backgroundColor: "#8EC3C7",
       border: "none",
@@ -274,7 +291,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   preguntasHome: {
-    fontFamily: "Raleway",
+    fontFamily: "Roboto",
     fontSize: "1.5rem",
     color: "#000",
     transitionDuration: ".5s",
@@ -364,7 +381,7 @@ const useStyles = makeStyles((theme) => ({
     color: '#fff',
   },
   Preg3: {
-    marginTop: "-15em",
+    marginTop: "0em",
     [theme.breakpoints.down("sm")]: {
       marginTop: "2em",
     },
@@ -377,6 +394,8 @@ export default function LandingPage(props) {
   const theme = useTheme();
   const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
   const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
+  const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
+
   const [selectedValue, setSelectedValue] = React.useState("a");
 
   const handleChange = (event) => {
@@ -541,7 +560,7 @@ export default function LandingPage(props) {
           className={classes.headerBackground}
         >
           <Grid sm item className={classes.heroTextContainer}>
-            <Typography className={classes.tituloHeader} variant="h1" align="center" style={{ marginTop: matchesSM ? "4em" : "1.5em",  marginLeft: matchesSM ? "16em" : "11em", width: matchesSM ? undefined : "13em", color: "#D34D4C"}}>
+            <Typography className={classes.tituloHeader} variant="h1" align="center" style={{ marginTop: matchesSM ? "4em" : "1.5em", width: matchesSM ? undefined : "13em", color: "#D34D4C"}}>
               TRANSPORTE Y LOGÍSTICA
               <br />
               
@@ -938,7 +957,7 @@ export default function LandingPage(props) {
             <img 
               className={classes.divisor} 
               alt="Divisor" src={divisor} 
-              style={{marginTop: matchesSM ? "2em" : "2em", marginLeft: matchesSM ? "10.8em" : "37em" }} />
+              style={{marginTop: matchesSM ? "2em" : "2em", marginLeft: matchesSM ? "10.8em" : "44%" }} />
           </Grid>
         </Grid>
         <Grid
@@ -946,7 +965,7 @@ export default function LandingPage(props) {
           alignItems="center"
           justify="center"
           className={classes.contenedorPreg}
-          style={{ height: "60em", marginTop: matchesSM ? "2em" : "-6em", flexWrap: matchesSM ? "wrap" : undefined }}
+          style={{ height: "60em", marginTop: matchesSM ? "2em" : "-18%", flexWrap: matchesSM ? "wrap" : undefined }}
         >
           <Grid item className={[classes.preguntasCard, classes.gridItem]}>
             <Grid container direction="column" spacing={2}>

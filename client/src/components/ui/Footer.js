@@ -200,7 +200,7 @@ export default function Footer(props) {
                 className={classes.socialContainer}>  
                 <Grid 
                     item component={"a"} 
-                    href="https://www.facebook.com" 
+                    href="https://www.facebook.com/sendpackctes/" 
                     rel="noopener noreferrer" 
                     tarjet="_blank">
                     <img  
@@ -211,7 +211,7 @@ export default function Footer(props) {
                 </Grid>
                 <Grid 
                     item component={"a"} 
-                    href="https://www.instagram.com" 
+                    href="https://instagram.com/sendpack.ok?igshid=6z9197hp0rho" 
                     rel="noopener noreferrer" 
                     tarjet="_blank">
                     <img 
@@ -223,7 +223,7 @@ export default function Footer(props) {
                 <Grid item container alignItems="center" justify="center" className={classes.contenedorCopy}>
                     <Grid 
                         component={Link} 
-                        
+                        styles={{textDecoration:"none"}}
                         to="/" 
                         item className={classes.link}>
                         ©opyrigh Somos404studio Not Found
