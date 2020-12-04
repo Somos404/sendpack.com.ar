@@ -9,6 +9,8 @@ import TextField from '@material-ui/core/TextField';
 import backgroundContacto from "../../assets/backgroundContacto.svg";
 import phoneIcon from "../../assets/phone.svg";
 import emailIcon from "../../assets/email.svg";
+import UserService from 'services/UserService';
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
     backgroundContacto: {
@@ -70,6 +72,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function Contacto() {
+    const history = useHistory();
     const classes = useStyles()
     const theme = useTheme()
     const matchesSM = useMediaQuery(theme.breakpoints.down("sm"))
@@ -78,6 +81,34 @@ export default function Contacto() {
     const [email, setEmail] = useState('')
     const [telefono, setTelefono] = useState('')
     const [mensaje, setMensaje] = useState('')
+
+    const handlerEnviar = () => {
+        const body = {
+            nombre: nombre,
+            email: email,
+            telefono: telefono,
+            mensaje: mensaje
+        }
+    
+        UserService.sendContactMails(body).then(
+          data => {
+            //sacarspiner
+            //vulve a donde estaba antes del logeo 
+            if (data.ok) {
+              history.push({
+                pathname: '/'
+              });
+            } else {
+              //no pudo logear ya se por clave erronea o usuario
+              console.log(data);
+            }
+          },
+          error => {
+            //mensaje de error sacael el spiner 
+            console.log('error', error);
+          }
+        );
+      }
 
     return (
         <Grid container direction="row">
@@ -130,13 +161,12 @@ export default function Contacto() {
                 </Grid>
                 <Grid item container style={{ marginTop: "1.5em", marginBottom: "1em", marginLeft: matchesSM ? "3.5.5em" : "1em" }}>
                 <Button
-                      component={Link}
-                      to="/"
+                      onClick={() => handlerEnviar()}
                       className={classes.botonEnviar}
                       variant="contained"
                     >
                      ENVIAR
-                    </Button>
+                </Button>
                 </Grid>  
                     </Grid>    
                 </Grid>     
