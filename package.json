@@ -33,6 +33,7 @@
   },
   "scripts": {
     "start": "nodemon index.js",
-    "build": "cd client && npm build"
+    "build": "cd client && npm build",
+    "watch": "npx nodemon /index"
   }
 }

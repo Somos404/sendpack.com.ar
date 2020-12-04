@@ -36,6 +36,12 @@ const useStyles = makeStyles(theme => ({
            marginTop: "0em",
         }
         },
+        link: {
+            textDecoration: "none",
+            "&:hover": {
+                textDecoration: "none",
+            }
+        },
        mainContainer: {
            position: "absolute"
        },

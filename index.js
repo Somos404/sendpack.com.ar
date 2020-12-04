@@ -18,4 +18,40 @@ const connection = mysql.createConnection({
     console.log('mysql disconnected OFF')
 } */
 
+const mercadopago = require ('mercadopago');
+
+//middleware
+
+
+// Agrega credenciales
+mercadopago.configure({
+    access_token: 'APP_USR-327784668252270-111502-2ac20dc1d5088b2e30bb07d2bfef4cbf-672708481'
+  });
+
+//routes
+app.post('/checkout', (req, res) => {
+// Crea un objeto de preferencia
+
+let preference = {
+    items: [
+      {
+        title:req.body.title,
+        unit_price: parseInt(req.body.price),
+        quantity: 1,
+      }
+    ]
+  };
+  
+  mercadopago.preferences.create(preference)
+  .then(function(response){
+  
+    
+    res.redirect(response.body.init_point);
+   
+  }).catch(function(error){
+    console.log(error);
+  });
+});
+
+
 app.listen(PORT, () => console.log(`Server runnig on port ${development.host}:${PORT}`))

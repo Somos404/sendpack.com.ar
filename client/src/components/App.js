@@ -112,6 +112,9 @@ function App() {
               />
             )} 
              />
+
+
+             
              
           <Route exact path="/reglog" component={() => <div>Ingresar/Login</div>} />
         </Switch>

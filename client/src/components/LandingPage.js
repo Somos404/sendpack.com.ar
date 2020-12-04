@@ -53,9 +53,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
     height: "32em",
-    width: "30em",
-    marginLeft: "60em",
-    marginTop: "-29em",
+    width: "18em",
+    marginLeft: "-5em",
+    marginTop: "-7em",
     [theme.breakpoints.down("xs")]: {
       display: "none",
       height: 0,
@@ -204,7 +204,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   heroTextContainer: {
-    minWidth: "100%",
+    
     marginLeft: "1em",
     [theme.breakpoints.down("md")]: {
       marginLeft: "-13.5em",
@@ -387,7 +387,7 @@ const useStyles = makeStyles((theme) => ({
     color: '#fff',
   },
   Preg3: {
-    marginTop: "0em",
+    marginTop: "0.9em",
     [theme.breakpoints.down("sm")]: {
       marginTop: "2em",
     },
@@ -783,6 +783,19 @@ export default function LandingPage(props) {
               textAlign: matchesSM ? "center" : undefined,
             }}
           >
+            <Grid sm item >
+            <Typography className={classes.tituloHeader} variant="h1" align="left" style={{ marginTop: matchesSM ? "-0.5em" : "-1em",  marginLeft: matchesSM ? "1em" : "6em", marginBottom: matchesSM ? "1em" : "1.8em", maxWidth: matchesSM ? undefined : "14em", color: "#D34D4C", fontSize: matchesSM ? "3rem" : "4.8rem", fontWeight: 500}}>
+              SERVICIOS
+              <br />
+              
+            </Typography>
+            <Grid item>
+            <img 
+              className={classes.divisor} 
+              alt="Divisor" src={divisor} 
+              style={{marginTop: matchesSM ? "2em" : "-15em", marginLeft: matchesSM ? "10.8em" : "71%" }} />
+          </Grid>
+            </Grid>
             <Typography variant="h4">Logística Corporativa para empresas</Typography>
             <Typography variant="subtitle1" className={classes.subtitle}>
             Nuestros servicios de Logística Corporativa están pensados para brindar <br/>la mejor  logística personalizada e integral para tu negocio. 
@@ -807,7 +820,7 @@ export default function LandingPage(props) {
               className={classes.icon}
               alt="custom software icon"
               src={customSoftwareIcon}
-              style={{marginTop: matchesSM ? "0em" : "-3em"}}
+              style={{marginTop: matchesSM ? "0em" : "6em"}}
             />
           </Grid>
         </Grid>
@@ -956,8 +969,9 @@ export default function LandingPage(props) {
             variant="h3"
             align="center"
             className={classes.contenedor2}
+            style={{color: "#D34D4C"}}
           >
-            Preguntas Frecuentes
+            PREGUNTAS FRECUENTES
           </Typography>
           <Grid item>
             <img 
