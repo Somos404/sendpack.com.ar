@@ -35,14 +35,15 @@ const useStyles = makeStyles((theme) => ({
   tituloHeader: {
     fontSize: "2.3em",
     fontWeight: "900",
-    marginLeft: "11em",
+    marginLeft: "11.5em",
+    textDecoration: "none",
     [theme.breakpoints.down("md")]: {
       marginLeft: "9em",
       width: "95%",
   },
     [theme.breakpoints.down("xs")]: {
       fontSize: "1.7em",
-      marginLeft: "16em",
+      marginLeft: "8.7em",
     },
   },
   backgroundCel: {
@@ -52,8 +53,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
     height: "32em",
-    
-    marginTop: "-28em",
+    width: "30em",
+    marginLeft: "60em",
+    marginTop: "-29em",
     [theme.breakpoints.down("xs")]: {
       display: "none",
       height: 0,
@@ -70,8 +72,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
     height: "24em",
-    width: "22em",
-   marginLeft: "61em",
+    width: "18em",
     [theme.breakpoints.down("xs")]: {
       display: "none",
     },
@@ -93,6 +94,8 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: "#8EC3C7",
       border: "none",
       opacity: 1,
+      textDecoration: "none",
+      color: "white",
       transform: "rotate(-360deg)",
     },
    
@@ -136,6 +139,8 @@ const useStyles = makeStyles((theme) => ({
       border: "none",
       opacity: 1,
       transform: "rotate(-360deg)",
+      textDecoration: "none",
+      color: "white",
     },
    
   },
@@ -204,11 +209,9 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("md")]: {
       marginLeft: "-13.5em",
       minWidth: "81%",
-      
-
     },
     [theme.breakpoints.down("xs")]: {
-      
+      marginLeft: "-27em",
     },
   },
   subtitle: {
@@ -264,7 +267,7 @@ const useStyles = makeStyles((theme) => ({
       opacity: 1,
     },
     [theme.breakpoints.down("sm")]: {
-      marginBottom: "-12em",
+      marginBottom: "0em",
     },
   },
 
@@ -279,6 +282,9 @@ const useStyles = makeStyles((theme) => ({
       opacity: 1,
       color: "white",
       cursor: "pointer",
+    },
+    [theme.breakpoints.down("sm")]: {
+      width: "80%",
     },
   },
 
@@ -560,7 +566,7 @@ export default function LandingPage(props) {
           className={classes.headerBackground}
         >
           <Grid sm item className={classes.heroTextContainer}>
-            <Typography className={classes.tituloHeader} variant="h1" align="center" style={{ marginTop: matchesSM ? "4em" : "1.5em", width: matchesSM ? undefined : "13em", color: "#D34D4C"}}>
+            <Typography className={classes.tituloHeader} variant="h1" align="center" style={{ marginTop: matchesSM ? "5em" : "1.5em", width: matchesSM ? undefined : "13em", color: "#D34D4C"}}>
               TRANSPORTE Y LOGÍSTICA
               <br />
               
@@ -603,7 +609,7 @@ export default function LandingPage(props) {
                 className={classes.CodigoPostal1}
                   label="CP"
                   id="codigoPostal"
-              
+                  style={{color: "white"}}
                   value={datosEnvio.cpOrigen}
                   onChange={(event) => setDatosEnvio(
                     {...datosEnvio,
@@ -645,7 +651,7 @@ export default function LandingPage(props) {
               </Grid>
             </Grid>
             <Grid item container className={classes.formLin3}>
-            <Grid item direction="row" style={{ marginLeft: matchesSM ? "21em" : "33em", marginTop: matchesSM ? "0em" : "-1em", fontFamily: "Roboto", fontWeight: 900, color: matchesSM ? "#8EC3C7" : "white", fontSize: matchesSM ? "1.3em" : undefined  }}>
+            <Grid item direction="row" style={{ marginLeft: matchesSM ? "24.5em" : "33em", marginTop: matchesSM ? "0em" : "-1em", fontFamily: "Roboto", fontWeight: 900, color: "white", fontSize: matchesSM ? "1.3em" : undefined  }}>
                 <Radio
                   checked={datosEnvio.pagoOrigen === true}
                   name="pagoOrigen"
@@ -669,7 +675,7 @@ export default function LandingPage(props) {
               </Grid>
             </Grid>
             <Grid item container className={classes.formLin4}>
-              <Grid item direction="row" style={{ marginLeft: matchesSM ? "43em" : "19em" }}>
+              <Grid item direction="row" style={{ marginLeft: matchesSM ? "43em" : "19em", color: "white" }}>
                 <TextField
                   label="Cantidad de bultos"
                   id="cantBultos"

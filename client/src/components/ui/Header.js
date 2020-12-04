@@ -76,7 +76,13 @@ function ElevationScroll(props) {
           ...theme.typography.tab,
           minWidth: 10,
           color: "white",
-          marginLeft: "25px"
+          marginLeft: "25px",
+          "&:hover": {
+           
+            textDecoration: "none",
+      color: "white",  
+            
+        }
       },
       button: {
           backgroundColor: "transparent",
@@ -88,8 +94,9 @@ function ElevationScroll(props) {
           "&:hover": {
             backgroundColor: "#D34D4C",
             border: "none",
-            opacity: 1
-
+            opacity: 1,
+            textDecoration: "none",
+      color: "white",  
             
         }
       },
@@ -104,20 +111,28 @@ function ElevationScroll(props) {
         "&:hover": {
           backgroundColor: "#D34D4C",
           border: "none",
-          opacity: 1
-
+          opacity: 1,
+          textDecoration: "none",
+          color: "white",    
           
       }
     },
       menu: {
           backgroundColor: "#71c4c8",
-          color: "white"
+          color: "white",
+          "&:hover": {
+            opacity: 1,
+            textDecoration: "none",
+            color: "white",  
+        }
       },
       menuItem: {
           ...theme.typography.tab,
           opacity: 0.7,
           "&:hover": {
-              opacity: 1
+              opacity: 1,
+              textDecoration: "none",
+              color: "white", 
           }
       },
       drawerIcon: {
