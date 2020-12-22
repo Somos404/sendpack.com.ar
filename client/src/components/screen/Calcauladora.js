@@ -353,9 +353,7 @@ export default function Calcauladora(props) {
               className={classes.dividerInset}
               color="textSecondary"
               display="block"
-
             >
-
             </Typography>
           </li>
           <ListItem>
@@ -367,9 +365,7 @@ export default function Calcauladora(props) {
               className={classes.dividerInset}
               color="textSecondary"
               display="block"
-
             >
-
             </Typography>
           </li>
           <ListItem className={classes.listaEditada}>
@@ -381,9 +377,7 @@ export default function Calcauladora(props) {
               className={classes.dividerInset}
               color="textSecondary"
               display="block"
-
             >
-
             </Typography>
           </li>
           <ListItem>
@@ -395,15 +389,10 @@ export default function Calcauladora(props) {
               className={classes.dividerInset}
               color="textSecondary"
               display="block"
-
             >
-
             </Typography>
           </li>
-
-
         </List>
-
         <Grid
           item
           container
@@ -421,11 +410,11 @@ export default function Calcauladora(props) {
           >
             MODIFICAR ENVÍO
           </Button>
-          <div>
+            <div>
             <form action="http://localhost:5000/checkout" method="POST">
 
               <input type="hidden" name="title" value="Envio de paquete" />
-              <input type="hidden" name="price" value="2500" />
+              <input type="hidden" name="price" value={calcularcostos()} />
               <input type="submit" value="Pagar ahora" class="btn btn-primary btn-block"  />
             </form>
           </div>
@@ -438,6 +427,7 @@ export default function Calcauladora(props) {
             >
               CONTINUAR
               </Button>
+              
             :
             <Button
               component={Link}
@@ -485,6 +475,7 @@ export default function Calcauladora(props) {
                 color="primary" autoFocus>
                 CONTINUAR
           </Button>
+        
             </DialogActions>
           </Dialog>
         </Grid>
