@@ -353,9 +353,7 @@ export default function Calcauladora(props) {
               className={classes.dividerInset}
               color="textSecondary"
               display="block"
-
             >
-
             </Typography>
           </li>
           <ListItem>
@@ -367,9 +365,7 @@ export default function Calcauladora(props) {
               className={classes.dividerInset}
               color="textSecondary"
               display="block"
-
             >
-
             </Typography>
           </li>
           <ListItem className={classes.listaEditada}>
@@ -381,9 +377,7 @@ export default function Calcauladora(props) {
               className={classes.dividerInset}
               color="textSecondary"
               display="block"
-
             >
-
             </Typography>
           </li>
           <ListItem>
@@ -395,15 +389,10 @@ export default function Calcauladora(props) {
               className={classes.dividerInset}
               color="textSecondary"
               display="block"
-
             >
-
             </Typography>
           </li>
-
-
         </List>
-
         <Grid
           item
           container
@@ -422,15 +411,13 @@ export default function Calcauladora(props) {
             MODIFICAR ENVÍO
           </Button>
           <div>
-              <form action="http://localhost:5000/checkout" method="POST">
-  
-                <input type="hidden" name="title" value="Envio de paquete" />
-                <input type="hidden" name="price" value="2.500" />
-                
-                <input type="submit" value="Pagar ahora" class="btn btn-primary btn-block"  />
-               
-              </form>
-            </div>
+            <form action="https://master.d3nwf6289kp5zj.amplifyapp.com/checkout" method="PUT">
+
+              <input type="hidden" name="title" value="Envio de paquete" />
+              <input type="hidden" name="price" value={calcularcostos()} />
+              <input type="submit" value="Pagar ahora" class="btn btn-primary btn-block"  />
+            </form>
+          </div>
           {user ?
             <Button
               onClick={handleClickOpen}
@@ -488,7 +475,11 @@ export default function Calcauladora(props) {
                 color="primary" autoFocus>
                 CONTINUAR
           </Button>
+<<<<<<< HEAD
           
+=======
+         
+>>>>>>> a0f0ce66314af08561dd208b4bbf05c18648d0cf
             </DialogActions>
           </Dialog>
         </Grid>

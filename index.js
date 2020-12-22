@@ -25,7 +25,7 @@ const mercadopago = require ('mercadopago');
 
 // Agrega credenciales
 mercadopago.configure({
-    access_token: 'APP_USR-327784668252270-111502-2ac20dc1d5088b2e30bb07d2bfef4cbf-672708481'
+    access_token: 'APP_USR-4835103058943058-122219-2e569ce09a9604a62af02296652b8f72-264859686'
   });
 
 //routes
@@ -33,17 +33,16 @@ app.post('/checkout', (req, res) => {
 // Crea un objeto de preferencia
 
 let preference = {
-    "back_urls": {
-        "success": "https://sendpack.com.ar/calculadora",
-        "failure": "https://sendpack.com.ar/calculadora",
-        "pending": "https://sendpack.com.ar/calculadora"
-    },
-    "auto_return": "approved",
+
   // ...
     items: [
       {
         title:req.body.title,
         unit_price: parseInt(req.body.price)
+<<<<<<< HEAD
+=======
+       
+>>>>>>> a0f0ce66314af08561dd208b4bbf05c18648d0cf
       }
     ]
     
@@ -60,7 +59,10 @@ let preference = {
   });
 });
 
+<<<<<<< HEAD
 // ...
+=======
+>>>>>>> a0f0ce66314af08561dd208b4bbf05c18648d0cf
 
 
 app.listen(PORT, () => console.log(`Server runnig on port ${development.host}:${PORT}`))
