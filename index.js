@@ -43,14 +43,7 @@ let preference = {
     items: [
       {
         title:req.body.title,
-        unit_price: parseInt(req.body.price),
-        quantity: 1,
-        id: '1234',
-        datosEnvio: {datosEnvio},
-        tiempo: {tiempo},
-        distancia: {disntacia},
-        costoEstimado: {costoEstimado},
-        tel: {tel}
+        unit_price: parseInt(req.body.price)
       }
     ]
     
@@ -66,22 +59,6 @@ let preference = {
     console.log(error);
   });
 });
-
-var preference = {}
-preference = {
-  // ...
-  
-  items: [
-    {
-      id: '1234',
-      datosEnvio: {datosEnvio},
-      tiempo: {tiempo},
-      distancia: {distancia},
-      costoEstimado: {costoEstimado},
-      tel: {tel}
-    }
-  ]// ...
-}
 
 // ...
 

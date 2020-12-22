@@ -117,11 +117,14 @@ function App() {
              
              
           <Route exact path="/reglog" component={() => <div>Ingresar/Login</div>} />
+          
         </Switch>
         <Footer value={value} setValue={setValue} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
       </BrowserRouter>
     </ThemeProvider>
+    
   );
+  
 }
 
 export default App;
