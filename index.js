@@ -33,13 +33,27 @@ app.post('/checkout', (req, res) => {
 // Crea un objeto de preferencia
 
 let preference = {
+    "back_urls": {
+        "success": "https://sendpack.com.ar/calculadora",
+        "failure": "https://sendpack.com.ar/calculadora",
+        "pending": "https://sendpack.com.ar/calculadora"
+    },
+    "auto_return": "approved",
+  // ...
     items: [
       {
         title:req.body.title,
         unit_price: parseInt(req.body.price),
         quantity: 1,
+        id: '1234',
+        datosEnvio: {datosEnvio},
+        tiempo: {tiempo},
+        distancia: {disntacia},
+        costoEstimado: {costoEstimado},
+        tel: {tel}
       }
     ]
+    
   };
   
   mercadopago.preferences.create(preference)
@@ -52,6 +66,24 @@ let preference = {
     console.log(error);
   });
 });
+
+var preference = {}
+preference = {
+  // ...
+  
+  items: [
+    {
+      id: '1234',
+      datosEnvio: {datosEnvio},
+      tiempo: {tiempo},
+      distancia: {distancia},
+      costoEstimado: {costoEstimado},
+      tel: {tel}
+    }
+  ]// ...
+}
+
+// ...
 
 
 app.listen(PORT, () => console.log(`Server runnig on port ${development.host}:${PORT}`))

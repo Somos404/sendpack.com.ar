@@ -36,6 +36,7 @@ const useStyles = makeStyles(theme => ({
     },
     servicioContainer: {
         marginTop: "10em",
+        zIndex: 0,
         [theme.breakpoints.down("sm")]: {
             padding: 25 
         }
