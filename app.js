@@ -18,7 +18,7 @@ app.use(bodyParser.json())
 const cors = require("cors");
 
 var corsOptions = {
-    origin: ["https://master.d3nwf6289kp5zj.amplifyapp.com:8080/", "http://127.0.0.1:8000/"]
+    origin: ["https://master.d3nwf6289kp5zj.amplifyapp.com:8000/", "http://127.0.0.1:8000/"]
 };
 
 app.use(cors(corsOptions));
