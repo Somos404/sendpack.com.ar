@@ -39,10 +39,7 @@ let preference = {
       {
         title:req.body.title,
         unit_price: parseInt(req.body.price)
-<<<<<<< HEAD
-=======
        
->>>>>>> a0f0ce66314af08561dd208b4bbf05c18648d0cf
       }
     ]
     
@@ -59,10 +56,6 @@ let preference = {
   });
 });
 
-<<<<<<< HEAD
-// ...
-=======
->>>>>>> a0f0ce66314af08561dd208b4bbf05c18648d0cf
 
 
 app.listen(PORT, () => console.log(`Server runnig on port ${development.host}:${PORT}`))

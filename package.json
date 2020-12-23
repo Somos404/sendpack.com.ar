@@ -35,5 +35,8 @@
     "start": "nodemon index.js",
     "build": "cd client && npm build",
     "watch": "npx nodemon /index"
+  },
+  "devDependencies": {
+    "serverless-s3-sync": "^1.15.0"
   }
 }
