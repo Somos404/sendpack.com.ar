@@ -17,7 +17,7 @@
     "express": "^4.17.1",
     "express-validator": "^6.6.1",
     "jwt-simple": "^0.5.6",
-    "mercadopago": "^1.5.1",
+    "mercadopago": "^1.5.2",
     "moment": "^2.28.0",
     "mysql": "^2.18.1",
     "mysql2": "^2.2.2",

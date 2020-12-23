@@ -1,0 +1,20 @@
+{
+    "prod": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-sendpack-prod-231724-authRole",
+            "UnauthRoleArn": "arn:aws:iam::809533128112:role/amplify-sendpack-prod-231724-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::809533128112:role/amplify-sendpack-prod-231724-authRole",
+            "Region": "us-east-2",
+            "DeploymentBucketName": "amplify-sendpack-prod-231724-deployment",
+            "UnauthRoleName": "amplify-sendpack-prod-231724-unauthRole",
+            "StackName": "amplify-sendpack-prod-231724",
+            "StackId": "arn:aws:cloudformation:us-east-2:809533128112:stack/amplify-sendpack-prod-231724/02012e50-44c5-11eb-bdc5-02ed04a7e3ae",
+            "AmplifyAppId": "d2a5barfdq0fw6"
+        },
+        "categories": {
+            "auth": {
+                "sendpack22cfd4f2": {}
+            }
+        }
+    }
+}

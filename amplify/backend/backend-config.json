@@ -1,0 +1,16 @@
+{
+	"auth": {
+		"sendpack22cfd4f2": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [],
+			"customAuth": false
+		}
+	},
+	"storage": {
+		"sendpackImages": {
+			"service": "S3",
+			"providerPlugin": "awscloudformation"
+		}
+	}
+}
