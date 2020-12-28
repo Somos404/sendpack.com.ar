@@ -25,7 +25,7 @@ const mercadopago = require ('mercadopago');
 
 // Agrega credenciales
 mercadopago.configure({
-    access_token: 'APP_USR-4835103058943058-122219-2e569ce09a9604a62af02296652b8f72-264859686'
+    access_token: 'APP_USR-691514658172465-121420-3381bc2ac8eae8433384760b0a1b9842-686357667'
   });
 
 //routes
@@ -38,12 +38,20 @@ let preference = {
     items: [
       {
         title:req.body.title,
-        unit_price: parseInt(req.body.price)
-       
-      }
-    ]
+        unit_price: parseInt(req.body.price),
+        quantity: 1,
+  
     
-  };
+      }
+    ],
+    "back_urls": {
+      "success": "https://sendpack.com.ar/calculadora",
+      "failure": "https://sendpack.com.ar/fail",
+      "pending": "https://sendpack.com.ar/pendiente"
+  },
+  "auto_return": "approved",
+    
+  }
   
   mercadopago.preferences.create(preference)
   .then(function(response){

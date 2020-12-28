@@ -411,10 +411,12 @@ export default function Calcauladora(props) {
             MODIFICAR ENVÍO
           </Button>
           <div>
-            <form action="https://master.d3nwf6289kp5zj.amplifyapp.com:8000/checkout" method="POST">
+            <form action="http://localhost:5000/checkout" method="POST">
 
               <input type="hidden" name="title" value="Envio de paquete" />
-              <input type="hidden" name="price" value={calcularcostos()} />
+              <input type="hidden" name="price" value= {calcularcostos()} />
+              
+             
               <input type="submit" value="Pagar ahora" class="btn btn-primary btn-block"  />
             </form>
           </div>
