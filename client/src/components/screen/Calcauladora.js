@@ -205,6 +205,9 @@ export default function Calcauladora(props) {
       tel: tel
     }
 
+
+    //console.log('==================',body);
+
     UserService.sendMails(body).then(
       data => {
         //sacarspiner
@@ -473,7 +476,7 @@ export default function Calcauladora(props) {
                 CANCELAR
           </Button>
               <Button
-                onClick={() => handlerEnviar()}
+                onClick={handlerEnviar}
                 color="primary" autoFocus>
                 CONTINUAR
           </Button>
